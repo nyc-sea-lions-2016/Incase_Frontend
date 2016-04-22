@@ -1,0 +1,3 @@
+rootProject.name = 'InCaseFrontend'
+
+include ':app'
