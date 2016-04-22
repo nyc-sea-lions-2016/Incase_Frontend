@@ -2,11 +2,11 @@ import React, {
   AppRegistry,
   Component,
   StyleSheet,
+  MapView,
   Text,
   View
 } from 'react-native';
 
-import MapView from 'react-native-maps';
 import MapContainer from '../Maps/MapContainer';
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
