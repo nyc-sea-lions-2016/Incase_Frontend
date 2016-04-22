@@ -14,6 +14,7 @@ import React, {
 
 class InCaseFrontend extends Component {
   render() {
+    //console.log(BackgroundGeolocation)
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
