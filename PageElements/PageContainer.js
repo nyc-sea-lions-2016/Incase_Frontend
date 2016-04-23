@@ -81,7 +81,7 @@ BackgroundGeolocation.start(function() {
   render() {
     return (
         <TabBarNavigator >
-          <TabBarNavigator.Item title='Tab 1' defaultTab>
+          <TabBarNavigator.Item title='ICYMI' icon={{uri: base64Icon, scale: 3}} defaultTab>
             <MapContainer />
           </TabBarNavigator.Item>
         </TabBarNavigator>
