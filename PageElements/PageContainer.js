@@ -8,6 +8,7 @@ import React, {
 } from 'react-native';
 
 import MapContainer from '../Maps/MapContainer';
+import TopNav from './TopNav'
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 class InCaseFrontend extends Component {
@@ -77,7 +78,10 @@ BackgroundGeolocation.start(function() {
   render() {
     // console.log(BackgroundGeolocation)
     return (
-      <MapContainer/>
+      <View>
+        {/*<TopNav />*/}
+        <MapContainer/>
+      </View>
       // <View style={styles.container}>
       //   <Text style={styles.welcome}>
       //     {this.state.message}
