@@ -25,7 +25,7 @@ var profileListStyles = StyleSheet.create({
   container: {
     paddingTop: 20,
     alignItems: "center",
-    backgroundColor: "red",
+    // backgroundColor: "red",
     width: 250,
     height: 325,
   }
