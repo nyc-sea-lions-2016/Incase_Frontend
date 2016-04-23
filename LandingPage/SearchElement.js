@@ -6,12 +6,12 @@ import React, {
   View
   } from 'react-native';
 
-  class ElementContainer extends Component {
+  class SearchElement extends Component {
     render() {
       return (
         <View style={styles.container}>
           <View>
-          <Text style={styles.box}>Time slot</Text>
+          <Text style={styles.box}>Time or Neighborhood</Text>
           </View>
         </View>
       )
@@ -34,4 +34,4 @@ import React, {
   })
 
 
-module.exports = ElementContainer
+module.exports = SearchElement
