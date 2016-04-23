@@ -2,10 +2,11 @@ import React, {
   StyleSheet,
   Text,
   View,
-  Navigator,
+  NavigatorIOS,
   Component,
   AppRegistry
 } from 'react-native'
+
 
 class TopNav extends Component {
   constructor(props){
@@ -13,11 +14,7 @@ class TopNav extends Component {
   }
   render(){
     return (
-    // <Navigator>
-    //   <Text>
-    //     Shit is for real
-    //   </Text>
-    // </Navigator>
+    <Navigator/>
     )
   }
 
@@ -27,4 +24,4 @@ const styles = StyleSheet.create({
   //Brian work yo magic
 })
 
-module.exports = TopNav
+// module.exports = TopNav

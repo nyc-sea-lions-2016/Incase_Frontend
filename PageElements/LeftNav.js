@@ -4,23 +4,28 @@ import React, {
   View,
   Component,
   Navigator,
+  Touchablehighlight,
   AppRegistry
 } from 'react-native'
 
 class LeftNav extends Component {
-  constructor(props){
-    super(props);
-  }
+
   render(){
-    <Navigator>
-      <Text>
-        Shit is for real
-      </Text>
-    </Navigator>
+    return(
+    <View style={styles.container}>
+        <Text>Here's some text</Text>
+    </View>
+    )
   }
 
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  }
   //Brian work yo magic
 })
+
+module.exports = LeftNav;

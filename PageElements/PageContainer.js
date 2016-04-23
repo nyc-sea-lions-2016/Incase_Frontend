@@ -3,12 +3,14 @@ import React, {
   Component,
   StyleSheet,
   MapView,
+  NavigatorIOS,
+  TabBarIOS,
   Text,
   View
 } from 'react-native';
 
 import MapContainer from '../Maps/MapContainer';
-import TopNav from './TopNav'
+import TabBarNavigator from 'react-native-tabbar-navigator';
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 class InCaseFrontend extends Component {
@@ -70,40 +72,26 @@ BackgroundGeolocation.start(function() {
   }, function(error) {
     alert("Location error: " + error);
   });
-});
+  });
+}
 
 
-
-  }
   render() {
-    // console.log(BackgroundGeolocation)
     return (
-      <View>
-        {/*<TopNav />*/}
-        <MapContainer/>
-      </View>
-      // <View style={styles.container}>
-      //   <Text style={styles.welcome}>
-      //     {this.state.message}
-      //   </Text>
-      //   <Text style={styles.instructions}>
-      //     To get started, edit index.ios.js
-      //   </Text>
-      //   <Text style={styles.instructions}>
-      //     Press Cmd+R to reload,{'\n'}
-      //     Cmd+D or shake for dev menu
-      //   </Text>
-      // </View>
+        <TabBarNavigator >
+          <TabBarNavigator.Item title='Home' >
+            <MapContainer />
+          </TabBarNavigator.Item>
+        </TabBarNavigator>
     );
   }
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
