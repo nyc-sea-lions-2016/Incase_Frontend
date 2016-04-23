@@ -12,7 +12,7 @@ class MapContainer extends Component{
 
   render(){
     return(
-      <MapView
+      <MapView style= {styles.map}
         initialRegion={{
           latitude: 40.7064170,
           longitude: -74.0090820,
