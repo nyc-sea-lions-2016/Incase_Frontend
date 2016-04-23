@@ -9,11 +9,23 @@ import React, {
 class ProfileElementContainer extends Component {
   render() {
     return(
-      <View>
+      <View style={profileElementStyles.container}>
         <Text>I am the text of an element.</Text>
       </View>
     )
   };
 }
+
+const profileElementStyles = StyleSheet.create({
+  container: {
+    backgroundColor: "green",
+    borderStyle: "solid",
+    borderColor: "black",
+    borderWidth: 1,
+    marginBottom: 50,
+    height: 50,
+    width: 180,
+  }
+})
 
 module.exports = ProfileElementContainer

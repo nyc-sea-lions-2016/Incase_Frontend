@@ -23,7 +23,11 @@ class ProfileListContainer extends Component {
 
 var profileListStyles = StyleSheet.create({
   container: {
+    paddingTop: 20,
     alignItems: "center",
+    backgroundColor: "red",
+    width: 200,
+    height: 325,
   }
 })
 
