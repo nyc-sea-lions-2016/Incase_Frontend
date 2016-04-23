@@ -7,7 +7,8 @@ import React, {
 } from 'react-native';
 
 import MapView from 'react-native-maps';
-import Tabs from '../PageElements/Tabs'
+// import Tabs from '../PageElements/Tabs'
+
 class MapContainer extends Component{
 
   render(){
