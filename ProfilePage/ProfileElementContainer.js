@@ -13,7 +13,7 @@ class ProfileElementContainer extends Component {
         <Text style={profileElementStyles.elementHeader}>
         Element header:
         </Text>
-        <Text>
+        <Text style={profileElementStyles.elementText}>
         I am the text of an element.
         </Text>
       </View>
@@ -24,18 +24,30 @@ class ProfileElementContainer extends Component {
 const profileElementStyles = StyleSheet.create({
   container: {
     // backgroundColor: "green",
-    marginBottom: 20,
+    marginBottom: 40,
+    paddingBottom: 10,
+    flex: 1,
     borderBottomColor: "#bbbbbb",
-    borderBottomWidth: 2,
-    height: 50,
+    borderBottomWidth: 1,
+    borderTopColor: "#bbbbbb",
+    borderTopWidth: 1,
+    height: 75,
     width: 220,
   },
 
   elementHeader: {
+    color: "#FFFFFF",
+    alignSelf: "center",
     paddingTop: 5,
     marginBottom: 10,
     fontSize: 20,
+  },
+
+  elementText: {
+    alignSelf: "center",
+    color: "#FFFFFF",
   }
+
 })
 
 module.exports = ProfileElementContainer

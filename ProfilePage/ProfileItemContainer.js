@@ -36,12 +36,14 @@ const profileItemStyles = StyleSheet.create({
   profilePicture: {
     width: 200,
     height: 200,
-    marginBottom: 10,
+    borderRadius: 100,
+    marginBottom: 15,
   },
 
   profilePictureHeader: {
     fontSize: 25,
     marginBottom: 10,
+    color: "#FFFFFF"
   }
 })
 
