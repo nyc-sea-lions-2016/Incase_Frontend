@@ -10,6 +10,8 @@ import React, {
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
+import SearchContainer from '../LandingPage/SearchContainer'
+import HoodIndex from '../LandingPage/HoodIndex'
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 class InCaseFrontend extends Component {
@@ -73,14 +75,13 @@ BackgroundGeolocation.start(function() {
   });
 });
 
-
-
   }
   render() {
     return (
       <View style={styles.container}>
         <MapContainer/>
         <ProfileContainer/>
+        <HoodIndex/>
       </View>
     );
   }

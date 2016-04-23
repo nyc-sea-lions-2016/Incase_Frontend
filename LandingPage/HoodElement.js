@@ -6,12 +6,12 @@ import React, {
   View
   } from 'react-native';
 
-  class ElementContainer extends Component {
+  class HoodElement extends Component {
     render() {
       return (
         <View style={styles.container}>
           <View>
-          <Text style={styles.box}>Time slot</Text>
+          <Text style={styles.box}>Neighborhood Name</Text>
           </View>
         </View>
       )
@@ -21,6 +21,7 @@ import React, {
   const styles = StyleSheet.create({
     container: {
       top: 30,
+      // flex: 1,
       flexDirection: "column",
       backgroundColor: "white",
       borderStyle: "solid",
@@ -33,4 +34,4 @@ import React, {
   })
 
 
-module.exports = ElementContainer
+module.exports = HoodElement
