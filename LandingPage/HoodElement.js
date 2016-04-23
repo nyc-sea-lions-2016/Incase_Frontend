@@ -3,6 +3,7 @@ import React, {
   AppRegistry,
   Component,
   Text,
+  TextInput,
   View
   } from 'react-native';
 
@@ -11,7 +12,17 @@ import React, {
       return (
         <View style={styles.container}>
           <View>
-          <Text style={styles.box}>Neighborhood Name</Text>
+          <Text>Name</Text>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          />
+          </View>
+
+          <View>
+          <Text>Location</Text>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          />
           </View>
         </View>
       )
@@ -19,17 +30,26 @@ import React, {
   }
 
   const styles = StyleSheet.create({
-    container: {
-      top: 30,
-      // flex: 1,
-      flexDirection: "column",
-      backgroundColor: "white",
-      borderStyle: "solid",
-      borderColor: "black",
-      borderWidth: 1,
-      marginBottom: 107.8,
-      height: 50,
-      width: 250,
+    mainContainer: {
+      width:300,
+      paddingTop:10,
+      paddingBottom:20,
+      paddingLeft:20,
+      paddingRight:20,
+      flex:1,
+    },
+
+    BoxTitleText:{
+    fontWeight:'bold',
+    color:'#fff',
+    textAlign:'left',
+    fontSize:20,
+    marginBottom:10
+    },
+
+    BoxBodyText:{
+    color:'#fff',
+    fontSize:16
     }
   })
 
