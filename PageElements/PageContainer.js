@@ -7,6 +7,8 @@ import React, {
   View
 } from 'react-native';
 
+
+import ProfileContainer from '../ProfilePage/ListContainer';
 import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
 
