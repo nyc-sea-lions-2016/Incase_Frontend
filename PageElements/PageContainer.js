@@ -7,8 +7,8 @@ import React, {
   View
 } from 'react-native';
 
+import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
-import TopNav from './TopNav'
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 class InCaseFrontend extends Component {
@@ -76,24 +76,11 @@ BackgroundGeolocation.start(function() {
 
   }
   render() {
-    // console.log(BackgroundGeolocation)
     return (
       <View>
-        {/*<TopNav />*/}
         <MapContainer/>
+        <ListContainer/>
       </View>
-      // <View style={styles.container}>
-      //   <Text style={styles.welcome}>
-      //     {this.state.message}
-      //   </Text>
-      //   <Text style={styles.instructions}>
-      //     To get started, edit index.ios.js
-      //   </Text>
-      //   <Text style={styles.instructions}>
-      //     Press Cmd+R to reload,{'\n'}
-      //     Cmd+D or shake for dev menu
-      //   </Text>
-      // </View>
     );
   }
 }
