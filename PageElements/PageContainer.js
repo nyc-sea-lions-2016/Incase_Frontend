@@ -77,7 +77,7 @@ BackgroundGeolocation.start(function() {
   }
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <MapContainer/>
         <ListContainer/>
       </View>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: "stretch",
     backgroundColor: '#F5FCFF',
   },
   welcome: {
