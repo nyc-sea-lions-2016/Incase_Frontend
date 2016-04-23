@@ -29,7 +29,7 @@ const profileItemStyles = StyleSheet.create({
     backgroundColor: "orange",
     paddingTop: 25,
     width: 300,
-    height: 600,
+    height: 675,
     alignItems: "center",
   },
 
@@ -40,7 +40,7 @@ const profileItemStyles = StyleSheet.create({
   },
 
   profilePictureHeader: {
-    marginBottom: 20,
+    marginBottom: 10,
   }
 })
 
