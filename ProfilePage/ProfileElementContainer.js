@@ -33,6 +33,7 @@ const profileElementStyles = StyleSheet.create({
   },
 
   elementHeader: {
+    textAlign: "center",
     paddingTop: 5,
     marginBottom: 10,
     fontSize: 20,

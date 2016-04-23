@@ -81,7 +81,7 @@ BackgroundGeolocation.start(function() {
       <View style={styles.container}>
         <MapContainer/>
         <ProfileContainer/>
-        <HoodIndex/>
+        {/*<HoodIndex/>*/}
       </View>
     );
   }
