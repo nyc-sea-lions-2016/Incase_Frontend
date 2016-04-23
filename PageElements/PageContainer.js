@@ -7,8 +7,7 @@ import React, {
   View
 } from 'react-native';
 
-
-import ProfileContainer from '../ProfilePage/ListContainer';
+import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
 
@@ -81,7 +80,7 @@ BackgroundGeolocation.start(function() {
     return (
       <View style={styles.container}>
         <MapContainer/>
-        <ListContainer/>
+        <ProfileContainer/>
       </View>
     );
   }
