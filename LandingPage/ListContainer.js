@@ -8,7 +8,7 @@ import React, {
   View,
 } from 'react-native';
 
-import ElementContainer from '../LandingPage/ElementContainer';
+import ItemContainer from '../LandingPage/ItemContainer';
 
 class ListContainer extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class ListContainer extends Component {
   render() {
     return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
+      <ItemContainer/>
     </View>
     );
   }

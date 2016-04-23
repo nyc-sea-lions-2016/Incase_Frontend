@@ -10,6 +10,7 @@ import React, {
     render() {
       return (
         <View style={styles.container}>
+          <Text>Im a god damn element</Text>
         </View>
       )
     }
@@ -18,7 +19,6 @@ import React, {
   const styles = StyleSheet.create({
     container: {
       top: 30,
-      backgroundColor: '#000000'
     }
   })
 
