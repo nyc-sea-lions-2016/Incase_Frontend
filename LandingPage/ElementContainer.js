@@ -9,9 +9,12 @@ import React, {
   class ElementContainer extends Component {
     render() {
       return (
-        <View style={styles.container}>
+        <View style={styles.mainContainer}>
           <View>
-          <Text style={styles.box}>Time slot</Text>
+          <Text style={styles.BoxTitleText}>Time / Day</Text>
+          </View>
+          <View>
+          <Text style={styles.BoxBodyText}>Information of the locations passed by This information is great.</Text>
           </View>
         </View>
       )
@@ -19,17 +22,26 @@ import React, {
   }
 
   const styles = StyleSheet.create({
-    container: {
-      top: 30,
-      // flex: 1,
-      flexDirection: "column",
-      backgroundColor: "white",
-      borderStyle: "solid",
-      borderColor: "black",
-      borderWidth: 1,
-      marginBottom: 107.8,
-      height: 50,
-      width: 250,
+    mainContainer: {
+      width:300,
+      paddingTop:10,
+      paddingBottom:20,
+      paddingLeft:20,
+      paddingRight:20,
+      flex:1,
+    },
+
+    BoxTitleText:{
+    fontWeight:'bold',
+    color:'#fff',
+    textAlign:'left',
+    fontSize:20,
+    marginBottom:10
+    },
+
+    BoxBodyText:{
+    color:'#fff',
+    fontSize:16
     }
   })
 

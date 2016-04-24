@@ -5,10 +5,12 @@ import React, {
   ListView,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from 'react-native';
 
 import SearchElement from '../LandingPage/SearchElement'
+import TimeElement from '../LandingPage/TimeElement'
 
 class SearchContainer extends Component {
   constructor(props){
@@ -18,7 +20,6 @@ class SearchContainer extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <SearchElement />
         <SearchElement />
       </View>
     )

@@ -3,33 +3,50 @@ import React, {
   AppRegistry,
   Component,
   Text,
+  Image,
   View
   } from 'react-native';
 
   class SearchElement extends Component {
     render() {
       return (
-        <View style={styles.container}>
+        <View style={styles.mainContainer}>
           <View>
-          <Text style={styles.box}>Time or Neighborhood</Text>
+            <Text style={styles.NeighborhoodText}>Neighborhood</Text>
+          </View>
+          <View>
+            <Text style={styles.TimeText}>Time</Text>
           </View>
         </View>
+
       )
     }
   }
 
   const styles = StyleSheet.create({
-    container: {
-      top: 30,
-      // flex: 1,
-      flexDirection: "column",
-      backgroundColor: "white",
-      borderStyle: "solid",
-      borderColor: "black",
+
+
+    NeighborhoodText:{
+    fontWeight:'bold',
+    color:'#fff',
+    textAlign:'left',
+    fontSize:20,
+    marginBottom:30,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius:10,
+    },
+
+    TimeText:{
+      fontWeight:'bold',
+      color:'#fff',
+      textAlign:'left',
+      fontSize:20,
+      marginBottom:10,
       borderWidth: 1,
-      marginBottom: 107.8,
-      height: 50,
-      width: 250,
+      padding: 10,
+      borderRadius:10,
+      textAlign: 'center',
     }
   })
 

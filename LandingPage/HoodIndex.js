@@ -12,12 +12,7 @@ import HoodElement from '../LandingPage/HoodElement';
 class HoodIndex extends Component {
   render(){
     return (
-      <View style={styles.container}>
-        <HoodElement/>
-        <HoodElement/>
-        <HoodElement/>
-        <HoodElement/>
-        <HoodElement/>
+      <View>
         <HoodElement/>
       </View>
     )
