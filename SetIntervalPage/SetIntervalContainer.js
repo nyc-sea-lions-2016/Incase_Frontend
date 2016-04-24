@@ -6,7 +6,7 @@ import React, {
   View
   } from 'react-native';
 
-  import SetIntervalItemContainer from '../SetIntervalContainer/SetIntervalItemContainer'
+  import SetIntervalItemContainer from '../SetIntervalPage/SetIntervalItemContainer'
 
   class SetIntervalContainer extends Component {
     constructor(props) {
@@ -18,12 +18,16 @@ import React, {
         <View style={intervalContainerStyles.container}>
           <SetIntervalItemContainer/>
         </View>
-      );
-    }
+      )
+    };
   }
 
 const intervalContainerStyles = StyleSheet.create({
   container: {
-    
+    backgroundColor: "#409CE9",
+    paddingTop: 25,
+    justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
   }
 })

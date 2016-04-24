@@ -79,7 +79,7 @@ BackgroundGeolocation.start(function() {
   render() {
     return (
       <View>
-        <Text>Hey this is text</Text>
+        <ProfileContainer/>
       </View>
     );
   }
