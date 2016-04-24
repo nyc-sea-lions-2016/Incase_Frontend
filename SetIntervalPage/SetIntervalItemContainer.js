@@ -7,6 +7,8 @@ import React, {
   View
   } from 'react-native';
 
+  import SetIntervalElementContainer from '../SetIntervalPage/SetIntervalElementContainer'
+
   class SetIntervalItemContainer extends Component {
     render() {
       return (

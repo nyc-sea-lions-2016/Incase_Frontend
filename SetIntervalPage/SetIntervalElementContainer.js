@@ -7,6 +7,8 @@ import React, {
   View
   } from 'react-native';
 
+  import TextInputDatePicker from '../SetIntervalPage/SetIntervalDateTimePicker'
+
   class SetIntervalElementContainer extends Component {
     render() {
       return (
@@ -15,6 +17,7 @@ import React, {
             <Text style={setElementStyles.header}>
               Start!
             </Text>
+            <TextInputDatePicker/>
           </View>
 
 
@@ -22,6 +25,7 @@ import React, {
             <Text style={setElementStyles.header}>
               End!
             </Text>
+            <TextInputDatePicker/>
         </View>
       </View>
       )
