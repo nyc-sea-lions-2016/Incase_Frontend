@@ -22,7 +22,6 @@ class MapContainer extends Component{
             longitudeDelta: 0.0421,
           }}
           />
-
     );
   }
 };
@@ -35,7 +34,11 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    alignItems: 'stretch'
+    // alignItems: 'stretch'
+    height: 250,
+    width: 250,
+    flex: 1,
+
   },
 });
 
