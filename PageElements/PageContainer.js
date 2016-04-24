@@ -7,7 +7,11 @@ import React, {
   View
 } from 'react-native';
 
+<<<<<<< HEAD
 import TabBarNavigator from 'react-native-tabbar-navigator'
+=======
+import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
+>>>>>>> e4da4f59bd1d293efc607c759643f3a7187b2c5b
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
