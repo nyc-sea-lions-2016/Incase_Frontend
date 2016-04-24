@@ -78,10 +78,8 @@ BackgroundGeolocation.start(function() {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <MapContainer/>
-        <ProfileContainer/>
-        {/*<HoodIndex/>*/}
+      <View>
+        <Text>Hey this is text</Text>
       </View>
     );
   }
