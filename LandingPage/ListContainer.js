@@ -15,11 +15,24 @@ class ListContainer extends Component {
     super(props);
   }
 
+  debugger;
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+    this.setState({places: nextProps})
+  }
+
+
   render() {
+    var listNodes = this.props.places.map(function(location){
+      return (<ItemContainer key={location.id}
+      place={location}/>)
+    })
+    // console.log(this.props.places)
     return (
-    <View style={styles.container}>
-      <ItemContainer/>
-    </View>
+      <View>
+        {listNodes}
+      </View>
     );
   }
 }

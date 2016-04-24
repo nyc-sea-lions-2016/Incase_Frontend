@@ -7,15 +7,16 @@ import React, {
   } from 'react-native';
 
   class ElementContainer extends Component {
+
+    componentWillReceiveProps(nextProps) {
+      console.log(nextProps)
+      this.setState({places: nextProps})
+    }
+
     render() {
       return (
-        <View style={styles.mainContainer}>
-          <View>
-          <Text style={styles.BoxTitleText}>Time / Day</Text>
-          </View>
-          <View>
-          <Text style={styles.BoxBodyText}>Information of the locations passed by This information is great.</Text>
-          </View>
+        <View>
+
         </View>
       )
     }

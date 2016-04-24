@@ -7,6 +7,8 @@ import React, {
   View
 } from 'react-native';
 
+API_URL = 'http://localhost:3000/places'
+
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
@@ -18,7 +20,7 @@ var BackgroundGeolocation = require('react-native-background-geolocation');
 class InCaseFrontend extends Component {
   constructor() {
     super();
-    this.state = {message: ''}
+    this.state = {message: '', places:[]}
     BackgroundGeolocation.configure({
           desiredAccuracy: 0,
           stationaryRadius: 50,
@@ -77,12 +79,26 @@ BackgroundGeolocation.start(function() {
 });
 
   }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    fetch(API_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        places: responseData,
+      });
+    })
+    .done();
+  }
+
   render() {
-    return (
-      <View>
-        <SetIntervalContainer/>
-      </View>
-    );
+      return (
+      <ListContainer places={this.state.places} />
+    )
   }
 }
 
@@ -102,7 +118,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
-  },
+  }
 });
 
 AppRegistry.registerComponent('PageContainer', () => PageContainer);
