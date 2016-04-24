@@ -64,6 +64,21 @@ BackgroundGeolocation.on('error', function(error) {
 BackgroundGeolocation.on('motionchange', function(location) {
     this.setState({message: JSON.stringify(location)});
     console.log('- [js]motionchanged: ', JSON.stringify(location));
+    var latlong = location
+    fetch('http://localhost:3000/latlong', {
+      method: 'POST',
+      body: JSON.stringify({
+        loc: latlong,
+        word: "ioehoihfewresponse"
+      })
+    })
+  .then(latlong)
+  .then(function(response) {
+    console.log('request succeeded with json response', response)
+  }).catch(function(error) {
+    console.log('request failed', error)
+  })
+
 }.bind(this));
 
 BackgroundGeolocation.start(function() {
@@ -71,14 +86,17 @@ BackgroundGeolocation.start(function() {
 
   // Fetch current position
   BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
-    console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
-    var latlong = location;
+    // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
+    // var latlong = location;
     fetch('http://localhost:3000/latlong', {
       method: 'POST',
       body: JSON.stringify({
-        latlong: latlong
-      })
-    })
+        latlong: location
+      }),
+
+    }).then((responseText) => {
+console.log(responseText);
+})
   }, function(error) {
     alert("Location error: " + error);
   });
