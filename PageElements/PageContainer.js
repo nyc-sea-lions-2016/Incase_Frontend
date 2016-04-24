@@ -9,6 +9,8 @@ import React, {
   View
 } from 'react-native';
 
+import TabBarNavigator from 'react-native-tabbar-navigator'
+import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
@@ -81,22 +83,31 @@ BackgroundGeolocation.start(function() {
   });
 }
 
-
-//   render() {
-//     return (
-//         <TabBarNavigator >
-//           <TabBarNavigator.Item title='ICYMI' icon={{uri: base64Icon, scale: 3}} defaultTab>
-//             <MapContainer />
-//           </TabBarNavigator.Item>
-//         </TabBarNavigator>
-// });
-//
-//   }
   render() {
     return (
-      <View style={styles.container}>
-        <ListContainer/>
-      </View>
+      <TabBarNavigator>
+        <TabBarNavigator.Item title='ICYMI' defaultTab>
+          <MapContainer />
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Today'>
+          <ListContainer places={this.state.today}/>
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Yesterday'>
+          <ListContainer place={this.state.yesterday}/>
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Two Days'>
+          <ListContainer place={this.state.twodays}/>
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Search'>
+          <SearchContainer />
+        </TabBarNavigator.Item>
+
+      </TabBarNavigator>
+
     );
   }
 }
