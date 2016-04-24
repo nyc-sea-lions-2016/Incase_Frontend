@@ -2,21 +2,44 @@ import React, {
   StyleSheet,
   AppRegistry,
   Component,
+  TouchableHighlight,
   Text,
   Image,
   View
   } from 'react-native';
 
+import HoodIndex from './HoodIndex'
+
   class SearchElement extends Component {
+    constructor(props){
+
+      super(props);
+    }
+    pressHood(){
+      this.props.navigator.push({
+        title: 'Neighborhood Search',
+        component: <HoodIndex/>
+      })
+    }
+    pressTime(){
+      this.props.navigator.push({
+        title: 'Time Search',
+        component: <ListContainer />
+      })
+    }
     render() {
       return (
         <View style={styles.mainContainer}>
-          <View>
+          <TouchableHighlight
+            onPress={this.pressHood.bind(this)}
+          >
             <Text style={styles.NeighborhoodText}>Neighborhood</Text>
-          </View>
-          <View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this.pressHood.bind(this)}
+          >
             <Text style={styles.TimeText}>Time</Text>
-          </View>
+          </TouchableHighlight>
         </View>
 
       )
