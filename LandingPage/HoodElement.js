@@ -10,18 +10,18 @@ import React, {
   class HoodElement extends Component {
     render() {
       return (
-        <View style={styles.container}>
-          <View>
-          <Text>Name</Text>
+        <View>
+          <View style={styles.mainContainer}>
+          <Text style={styles.text}>Name</Text>
           <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            style={styles.textField}
           />
           </View>
 
-          <View>
-          <Text>Location</Text>
+          <View style={styles.mainContainer}>
+          <Text style={styles.text}>Location</Text>
           <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            style={styles.textField}
           />
           </View>
         </View>
@@ -38,18 +38,15 @@ import React, {
       paddingRight:20,
       flex:1,
     },
-
-    BoxTitleText:{
-    fontWeight:'bold',
-    color:'#fff',
-    textAlign:'left',
-    fontSize:20,
-    marginBottom:10
+    textField: {
+      height: 40,
+      borderColor: '#f2f2f2',
+      borderWidth: 1,
+      backgroundColor: '#f2f2f2',
     },
-
-    BoxBodyText:{
-    color:'#fff',
-    fontSize:16
+    text:{
+      fontSize: 16,
+      color: '#fff'
     }
   })
 
