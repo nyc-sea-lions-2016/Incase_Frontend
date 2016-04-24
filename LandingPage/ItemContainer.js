@@ -17,6 +17,10 @@ import React, {
           <ElementContainer/>
           <ElementContainer/>
           <ElementContainer/>
+          <ElementContainer/>
+          <ElementContainer/>
+          <ElementContainer/>
+          <ElementContainer/>
         </View>
       )
     }
@@ -24,9 +28,7 @@ import React, {
 
   const itemStyles = StyleSheet.create({
     container: {
-      backgroundColor: "red",
-      flex: 1,
-      flexDirection: "column",
+      backgroundColor:'#8fb9f3',
     }
   })
 
