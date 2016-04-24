@@ -31,3 +31,5 @@ const intervalContainerStyles = StyleSheet.create({
     alignItems: "center",
   }
 })
+
+module.exports = SetIntervalContainer
