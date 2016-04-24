@@ -78,7 +78,7 @@ BackgroundGeolocation.start(function() {
   render() {
     return (
       <View style={styles.container}>
-        <HoodIndex/>
+        <MapContainer/>
       </View>
     );
   }
