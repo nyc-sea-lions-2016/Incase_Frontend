@@ -14,6 +14,8 @@ import SearchContainer from '../LandingPage/SearchContainer'
 import HoodIndex from '../LandingPage/HoodIndex'
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
+
+var new_location = BackgroundGeolocation
 class InCaseFrontend extends Component {
   constructor() {
     super();
@@ -70,16 +72,26 @@ BackgroundGeolocation.start(function() {
   // Fetch current position
   BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
     console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
+    var latlong = location;
+    fetch('http://localhost:3000/latlong', {
+      method: 'POST',
+      body: JSON.stringify({
+        latlong: latlong
+      })
+    })
   }, function(error) {
     alert("Location error: " + error);
   });
 });
 
   }
+
+
+
   render() {
     return (
       <View>
-        <Text>Hey this is text</Text>
+
       </View>
     );
   }
