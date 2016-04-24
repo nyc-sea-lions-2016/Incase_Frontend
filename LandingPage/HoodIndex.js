@@ -10,9 +10,13 @@ import React, {
 import HoodElement from '../LandingPage/HoodElement';
 
 class HoodIndex extends Component {
+  constructor(props){
+    super(props);
+  }
+
   render(){
     return (
-      <View>
+      <View style={styles.container}>
         <HoodElement/>
       </View>
     )

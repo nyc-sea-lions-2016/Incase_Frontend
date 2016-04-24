@@ -10,7 +10,7 @@ import React, {
   class HoodElement extends Component {
     render() {
       return (
-        <View style={styles.container}>
+        <View style={styles.mainContainer}>
           <View>
           <Text>Name</Text>
           <TextInput
