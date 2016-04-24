@@ -40,7 +40,7 @@ class Tabs extends Component {
         <TabBarIOS.Item
           selected={this.state.selectedTab === 'tabThree'}
           systemIcon='bookmarks'
-          onPress={() => this.setTab('tabThree')}>
+          onPress={() => this.setTab('tabThree').bind(this)}>
           <View>
             <Text>Today3</Text>
           </View>

@@ -77,28 +77,26 @@ BackgroundGeolocation.start(function() {
   }, function(error) {
     alert("Location error: " + error);
   });
-<<<<<<< HEAD
+
   });
 }
 
 
-  render() {
-    return (
-        <TabBarNavigator >
-          <TabBarNavigator.Item title='ICYMI' icon={{uri: base64Icon, scale: 3}} defaultTab>
-            <MapContainer />
-          </TabBarNavigator.Item>
-        </TabBarNavigator>
-=======
-});
-
-  }
+//   render() {
+//     return (
+//         <TabBarNavigator >
+//           <TabBarNavigator.Item title='ICYMI' icon={{uri: base64Icon, scale: 3}} defaultTab>
+//             <MapContainer />
+//           </TabBarNavigator.Item>
+//         </TabBarNavigator>
+// });
+//
+//   }
   render() {
     return (
       <View style={styles.container}>
-        <HoodIndex/>
+        <ListContainer/>
       </View>
->>>>>>> master
     );
   }
 }
@@ -108,12 +106,9 @@ BackgroundGeolocation.start(function() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-<<<<<<< HEAD
-=======
     justifyContent: 'center',
     alignSelf: "stretch",
     backgroundColor: '#F5FCFF',
->>>>>>> master
   },
   welcome: {
     fontSize: 20,
