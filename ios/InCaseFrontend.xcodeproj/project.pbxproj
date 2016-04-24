@@ -274,6 +274,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		09FC68DE1CCC397800A65205 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		139105B71AF99BAD00B5F7CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +357,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				09FC68DE1CCC397800A65205 /* Frameworks */,
 				0974E2431CCAD57900218B1B /* libsqlite3.tbd */,
 				0974E2411CCAD56700218B1B /* TSLocationManager.framework */,
 				0974E22D1CCAD52B00218B1B /* RNBackgroundGeolocation.xcodeproj */,
@@ -414,8 +422,8 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "InCaseFrontend" */;
 			buildPhases = (
 				13B07F871A680F5B00A75B9A /* Sources */,
-				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 			);
 			buildRules = (
@@ -759,7 +767,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = NO;
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/../node_modules/react-native-background-geolocation/**";
+				FRAMEWORK_SEARCH_PATHS = "/Users/apprentice/Desktop/Incase_Frontend/node_modules/react-native-background-geolocation/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -778,7 +786,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/../node_modules/react-native-background-geolocation/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Users/apprentice/Documents/FacebookSDK,
+					"/Users/apprentice/Desktop/Incase_Frontend/node_modules/react-native-background-geolocation/**",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

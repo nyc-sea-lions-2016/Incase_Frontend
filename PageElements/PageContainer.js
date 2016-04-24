@@ -7,6 +7,8 @@ import React, {
   View
 } from 'react-native';
 
+import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
+import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
 import SearchContainer from '../LandingPage/SearchContainer'
@@ -77,8 +79,8 @@ BackgroundGeolocation.start(function() {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <MapContainer/>
+      <View>
+        <SetIntervalContainer/>
       </View>
     );
   }
