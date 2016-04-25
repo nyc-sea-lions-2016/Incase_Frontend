@@ -11,10 +11,16 @@ import React, {
 
 
 
+<<<<<<< HEAD
 import SearchListContainer from '../SearchListPage/SearchListContainer'
+=======
+import FavoriteContainer from '../LandingPage/FavoriteContainer'
+>>>>>>> master
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
-import ListContainer from '../LandingPage/ListContainer';
+import TodayContainer from '../LandingPage/TodayContainer';
+import YesterdayContainer from '../LandingPage/YesterdayContainer';
+import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
 import SearchContainer from '../LandingPage/SearchContainer'
@@ -22,7 +28,7 @@ import SearchContainer from '../LandingPage/SearchContainer'
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 
-
+FAV_API_URL = 'http://localhost:3000/places/favorites'
 TODAY_API_URL = 'http://localhost:3000/places/today'
 YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
 TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
@@ -38,13 +44,16 @@ class InCaseFrontend extends Component {
         message: '',
         currentView: 'index',
         startDate: new Date(),
-        endDate: new Date()
+        endDate: new Date(),
+        favPlaces: [],
+        today: [],
+        yesterday: [],
+        twoDays: []
       }
-
       BackgroundGeolocation.configure({
             desiredAccuracy: 0,
-            stationaryRadius: 50,
-            distanceFilter: 50,
+            stationaryRadius: 5,
+            distanceFilter: 30,
             disableElasticity: false, // <-- [iOS] Default is 'false'.  Set true to disable speed-based distanceFilter elasticity
             locationUpdateInterval: 5000,
             minimumActivityRecognitionConfidence: 80,   // 0-100%.  Minimum activity-confidence for a state-change
@@ -86,21 +95,21 @@ class InCaseFrontend extends Component {
       this.setState({message: JSON.stringify(location)});
       console.log('- [js]motionchanged: ', JSON.stringify(location));
       var latlong = location
-      fetch('http://localhost:3000/latlongs', {
-        method: 'POST',
-        body: JSON.stringify({
-          loc: latlong,
-          word: "ioehoihfewresponse"
-        })
-      })
-    .then(latlong)
-    .then(function(response) {
-      console.log('request succeeded with json response', response)
-    }).catch(function(error) {
-      console.log('request failed', error)
-    })
-
-  }.bind(this));
+  //     fetch('http://localhost:3000/coordinates', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         loc: latlong,
+  //         word: "ioehoihfewresponse"
+  //       })
+  //     })
+  //   .then(latlong)
+  //   .then(function(response) {
+  //     console.log('request succeeded with json response', response)
+  //   }).catch(function(error) {
+  //     console.log('request failed', error)
+  //   })
+  //
+   }.bind(this));
 
   BackgroundGeolocation.start(function() {
     console.log('- [js] BackgroundGeolocation started successfully');
@@ -109,59 +118,24 @@ class InCaseFrontend extends Component {
     BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
-      fetch('http://localhost:3000/latlongs', {
-        method: 'POST',
-        body: JSON.stringify({
-          latlong: location
-        }),
+  //     fetch('http://localhost:3000/coordinates', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         latlong: location
+  //       }),
+  //
+  //     }).then((responseText) => {
+  // console.log(responseText);
+  // })
 
-      }).then((responseText) => {
-  console.log(responseText);
-  })
-    }, function(error) {
-      alert("Location error: " + error);
-      });
-        });
+  // , function(error) {
+  //     alert("Location error: " + error);
+  //         }
+            });
+         });
   }
 
-  componentWillMount() {
-    this.fetchTodayData();
-    this.fetchYesterdayData();
-    this.fetchTwoDaysData();
-  }
 
-  fetchTodayData() {
-    fetch(TODAY_API_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({
-        today: responseData,
-      });
-    })
-    .done();
-  }
-
-  fetchYesterdayData() {
-    fetch(YESTERDAY_API_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({
-        yesterday: responseData,
-      });
-    })
-    .done();
-  }
-
-  fetchTwoDaysData() {
-    fetch(TWO_DAYS_API_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({
-        twoDays: responseData,
-      });
-    })
-    .done();
-  }
 
   startDateChanged(d){
     console.log('startDateChanged', d)
@@ -178,6 +152,7 @@ class InCaseFrontend extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     if (this.state.currentView === 'searchList') {
       console.log('start', this.state.startDate);
       console.log('end', this.state.endDate);
@@ -223,6 +198,35 @@ class InCaseFrontend extends Component {
 
       );
     }
+=======
+    console.log('state:', this.state)
+    return (
+      <TabBarNavigator>
+        <TabBarNavigator.Item title='ICYMI' defaultTab>
+          <MapContainer />
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Today'>
+          <TodayContainer />
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Yesterday'>
+          <YesterdayContainer />
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Two Days'>
+          <TwoDaysContainer />
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Favorites'>
+          <FavoriteContainer />
+        </TabBarNavigator.Item>
+
+
+      </TabBarNavigator>
+
+    );
+>>>>>>> master
   }
 }
 
