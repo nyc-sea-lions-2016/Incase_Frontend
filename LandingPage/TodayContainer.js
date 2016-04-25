@@ -20,7 +20,6 @@ class TodayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       today: this.ds.cloneWithRows([]),
-
     };
   }
 

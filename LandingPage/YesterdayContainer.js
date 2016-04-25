@@ -17,22 +17,23 @@ const API_URL = 'http://localhost:3000/places/yesterday';
 class YesterdayContainer extends Component {
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      yesterday: []
+      yesterday: this.ds.cloneWithRows([]),
     };
   }
 
   componentDidMount() {
-      this.fetchTodayData();
+      this.fetchYesterdayData();
   }
 
-  fetchTodayData() {
+  fetchYesterdayData() {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
       console.log('responseData', responseData);
       this.setState({
-        yesterday: responseData
+        yesterday: this.ds.cloneWithRows(responseData)
       });
     })
     .done();
@@ -45,14 +46,14 @@ class YesterdayContainer extends Component {
     })
   }
 
+  renderOne(place) {
+    return (
+      <ItemContainer key={place.id} place={place} />
+    )
+  }
+
   render() {
     // console.log('props', this.props)
-    var listNodes = this.state.yesterday.map(function(place){
-      return(
-          <ItemContainer key={place.id} place={place} />
-      )
-    })
-
 
     if(this.state.yesterday.length == 0){
       return(
@@ -68,9 +69,10 @@ class YesterdayContainer extends Component {
               <Text> Filter Results </Text>
             </TouchableHighlight>
           </View>
-          <View>
-            {listNodes}
-          </View>
+            <ListView
+            dataSource={this.state.yesterday}
+            renderRow={this.renderOne}
+            />
         </View>
       );
     }
