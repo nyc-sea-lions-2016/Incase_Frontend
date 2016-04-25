@@ -4,12 +4,17 @@ import React, {
   Component,
   TouchableHighlight,
   Text,
+  TouchableHighlight,
   Image,
   View
   } from 'react-native';
 
 import HoodIndex from './HoodIndex'
+<<<<<<< HEAD
 import TimeElement from './TimeElement'
+=======
+
+>>>>>>> master
   class SearchElement extends Component {
     constructor(props){
 
