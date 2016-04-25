@@ -5,11 +5,12 @@ import React, {
   ListView,
   StyleSheet,
   Text,
+  TouchableHighlight,
   View,
 } from 'react-native';
 
 import ItemContainer from '../LandingPage/ItemContainer';
-
+import SearchContainer from './SearchContainer'
 class ListContainer extends Component {
   constructor(props) {
     super(props);
@@ -19,16 +20,28 @@ class ListContainer extends Component {
     this.setState({places: nextProps})
   }
 
+  pressSearch(){
+    this.props.navigator.push({
+      title: 'Search',
+      component: <SearchContainer/>
+    })
+  }
+
   render() {
     var listNodes = this.props.places.map(function(place){
       return(
           <ItemContainer key={place.id} place={place} />
       )
     })
+    var date = (this.props.places[0])
     // debugger;
     return (
       <View style={styles.container}>
-        <Text>{this.props.title}</Text>
+        <View>
+          <TouchableHighlight onPress={this.pressSearch.bind(this)} >
+            <Text> Click me to filter your results </Text>
+          </TouchableHighlight>
+        </View>
         {listNodes}
       </View>
     );
