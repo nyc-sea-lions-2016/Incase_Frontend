@@ -80,7 +80,7 @@ BackgroundGeolocation.start(function() {
 
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.fetchData();
   }
 
@@ -97,7 +97,7 @@ BackgroundGeolocation.start(function() {
 
   render() {
       return (
-      <ListContainer places={this.state.places} />
+        <ListContainer places={this.state.places}/>
     )
   }
 }

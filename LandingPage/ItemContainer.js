@@ -7,31 +7,25 @@ import React, {
   View
 } from 'react-native';
 
-  import ElementContainer from '../LandingPage/ElementContainer';
-
   class ItemContainer extends Component {
     constructor(props){
       super(props);
     }
-    //
-    // componentWillReceiveProps(nextProps) {
-    //   console.log(nextProps)
-    //   this.setState({places: nextProps})
-    // }
 
-
+    componentWillReceiveProps(nextProps) {
+      this.setState({places: nextProps})
+    }
 
     render(){
           return (
             <View style={styles.mainContainer}>
               <View>
-              <Text style={styles.BoxTitleText}>Time / Day</Text>
+              <Text style={styles.BoxTitleText}>{this.props.place.name}</Text>
               </View>
               <View>
-              <Text style={styles.BoxBodyText}>Information of the locations passed by This information is great.</Text>
+              <Text style={styles.BoxBodyText}>{this.props.place.address}</Text>
               </View>
             </View>
-
           )
       }
     }
@@ -39,24 +33,24 @@ import React, {
 
   const styles = StyleSheet.create({
     mainContainer: {
+      alignSelf: "center",
       width:300,
+      marginTop: 60,
       paddingTop:10,
       paddingBottom:20,
       paddingLeft:20,
       paddingRight:20,
       flex:1,
+      backgroundColor: 'orange',
     },
 
     BoxTitleText:{
     fontWeight:'bold',
-    color:'#fff',
-    textAlign:'left',
     fontSize:20,
     marginBottom:10
     },
 
     BoxBodyText:{
-    color:'#fff',
     fontSize:16
     }
   })

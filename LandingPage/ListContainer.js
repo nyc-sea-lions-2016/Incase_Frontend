@@ -13,24 +13,21 @@ import ItemContainer from '../LandingPage/ItemContainer';
 class ListContainer extends Component {
   constructor(props) {
     super(props);
-  }
-
-  debugger;
+    }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     this.setState({places: nextProps})
   }
 
-
   render() {
-    var listNodes = this.props.places.map(function(location){
-      return (<ItemContainer key={location.id}
-      place={location}/>)
+    var listNodes = this.props.places.map(function(place){
+      return(
+          <ItemContainer key={place.id} place={place} />
+      )
     })
-    // console.log(this.props.places)
+    // debugger;
     return (
-      <View>
+      <View style={styles.container}>
         {listNodes}
       </View>
     );
