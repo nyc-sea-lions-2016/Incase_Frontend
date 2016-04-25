@@ -11,10 +11,12 @@ import React, {
 
 
 
-import Favorites from '../LandingPage/Favorites'
+import FavoriteContainer from '../LandingPage/FavoriteContainer'
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
-import ListContainer from '../LandingPage/ListContainer';
+import TodayContainer from '../LandingPage/TodayContainer';
+import YesterdayContainer from '../LandingPage/YesterdayContainer';
+import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
 import SearchContainer from '../LandingPage/SearchContainer'
@@ -85,21 +87,21 @@ class InCaseFrontend extends Component {
       this.setState({message: JSON.stringify(location)});
       console.log('- [js]motionchanged: ', JSON.stringify(location));
       var latlong = location
-      fetch('http://localhost:3000/coordinates', {
-        method: 'POST',
-        body: JSON.stringify({
-          loc: latlong,
-          word: "ioehoihfewresponse"
-        })
-      })
-    .then(latlong)
-    .then(function(response) {
-      console.log('request succeeded with json response', response)
-    }).catch(function(error) {
-      console.log('request failed', error)
-    })
-
-  }.bind(this));
+  //     fetch('http://localhost:3000/coordinates', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         loc: latlong,
+  //         word: "ioehoihfewresponse"
+  //       })
+  //     })
+  //   .then(latlong)
+  //   .then(function(response) {
+  //     console.log('request succeeded with json response', response)
+  //   }).catch(function(error) {
+  //     console.log('request failed', error)
+  //   })
+  //
+   }.bind(this));
 
   BackgroundGeolocation.start(function() {
     console.log('- [js] BackgroundGeolocation started successfully');
@@ -108,76 +110,30 @@ class InCaseFrontend extends Component {
     BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
-      fetch('http://localhost:3000/coordinates', {
-        method: 'POST',
-        body: JSON.stringify({
-          latlong: location
-        }),
+  //     fetch('http://localhost:3000/coordinates', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         latlong: location
+  //       }),
+  //
+  //     }).then((responseText) => {
+  // console.log(responseText);
+  // })
 
-      }).then((responseText) => {
-  console.log(responseText);
-  })
-    }, function(error) {
-      alert("Location error: " + error);
-          });
+  // , function(error) {
+  //     alert("Location error: " + error);
+  //         }
+            });
          });
   }
 
-  componentWillMount() {
-    this.fetchTodayData();
-    this.fetchYesterdayData();
-    this.fetchTwoDaysData();
-    this.fetchFavData();
-  }
 
-  fetchFavData(){
-    fetch(FAV_API_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({
-        favPlaces: responseData,
-      });
-    })
-    .done();
-  }
-
-  fetchTodayData() {
-    fetch(TODAY_API_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({
-        today: responseData,
-      });
-    })
-    .done();
-  }
-
-  fetchYesterdayData() {
-    fetch(YESTERDAY_API_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({
-        yesterday: responseData,
-      });
-    })
-    .done();
-  }
-
-  fetchTwoDaysData() {
-    fetch(TWO_DAYS_API_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState({
-        twoDays: responseData,
-      });
-    })
-    .done();
-  }
 
 
 
 
   render() {
+    console.log('state:', this.state)
     return (
       <TabBarNavigator>
         <TabBarNavigator.Item title='ICYMI' defaultTab>
@@ -185,20 +141,21 @@ class InCaseFrontend extends Component {
         </TabBarNavigator.Item>
 
         <TabBarNavigator.Item title='Today'>
-          <ListContainer places={this.state.today} title="today"/>
+          <TodayContainer />
         </TabBarNavigator.Item>
 
         <TabBarNavigator.Item title='Yesterday'>
-          <ListContainer places={this.state.yesterday} title="yesterday"/>
+          <YesterdayContainer />
         </TabBarNavigator.Item>
 
         <TabBarNavigator.Item title='Two Days'>
-          <ListContainer places={this.state.twoDays} title="2days"/>
+          <TwoDaysContainer />
         </TabBarNavigator.Item>
 
         <TabBarNavigator.Item title='Favorites'>
-            <Favorites places={this.state.favPlaces} title="favorites"/>
+          <FavoriteContainer />
         </TabBarNavigator.Item>
+
 
       </TabBarNavigator>
 

@@ -12,13 +12,30 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-class ListContainer extends Component {
+const API_URL = 'http://localhost:3000/places/today';
+
+class TodayContainer extends Component {
   constructor(props) {
     super(props);
-    }
+    this.state = {
+      today: []
+    };
+  }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({places: nextProps})
+  componentDidMount() {
+      this.fetchTodayData();
+  }
+
+  fetchTodayData() {
+    fetch(API_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      console.log('responseData', responseData);
+      this.setState({
+        today: responseData
+      });
+    })
+    .done();
   }
 
   pressSearch(){
@@ -29,21 +46,24 @@ class ListContainer extends Component {
   }
 
   render() {
-    var listNodes = this.props.places.map(function(place){
+    // console.log('props', this.props)
+    var listNodes = this.state.today.map(function(place){
       return(
           <ItemContainer key={place.id} place={place} />
       )
     })
-    var date = (this.props.places[0])
-    // debugger;
+
     return (
       <View style={styles.container}>
+
         <View>
           <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-            <Text> Click me to filter your results </Text>
+            <Text> Filter Results </Text>
           </TouchableHighlight>
         </View>
-        {listNodes}
+        <View>
+          {listNodes}
+        </View>
       </View>
     );
   }
@@ -55,10 +75,21 @@ class ListContainer extends Component {
       flex: 1,
       paddingTop:40,
       backgroundColor: "#409ce9",
+    },
+    filterText:{
+      fontWeight:'bold',
+      color:'#fff',
+      textAlign:'left',
+      fontSize:20,
+      marginBottom:10,
+      borderWidth: 1,
+      padding: 10,
+      borderRadius:10,
+      textAlign: 'center',
     }
   })
 
 
-module.exports = ListContainer
+module.exports = TodayContainer
 // style={styles.container}
 // AppRegistry.registerComponent('InCaseFrontend', () => InCaseFrontend);
