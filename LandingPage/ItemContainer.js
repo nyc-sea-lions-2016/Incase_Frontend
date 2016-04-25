@@ -20,10 +20,10 @@ import React, {
           return (
             <View style={styles.mainContainer}>
               <View>
-              <Text style={styles.BoxTitleText}>{this.props.place.name}</Text>
+                <Text style={styles.BoxTitleText}>{this.props.place.name}</Text>
               </View>
               <View>
-              <Text style={styles.BoxBodyText}>{this.props.place.address}</Text>
+                <Text style={styles.BoxBodyText}>{this.props.place.address}</Text>
               </View>
             </View>
           )
@@ -35,6 +35,7 @@ import React, {
     mainContainer: {
       alignSelf: "center",
       width:300,
+      borderWidth: 1,
       marginTop: 60,
       paddingTop:10,
       paddingBottom:20,

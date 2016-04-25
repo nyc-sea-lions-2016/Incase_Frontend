@@ -28,6 +28,7 @@ class ListContainer extends Component {
     // debugger;
     return (
       <View style={styles.container}>
+        <Text>{this.props.title}</Text>
         {listNodes}
       </View>
     );

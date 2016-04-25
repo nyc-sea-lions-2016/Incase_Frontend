@@ -3,24 +3,34 @@ import React, {
   Component,
   StyleSheet,
   MapView,
+  NavigatorIOS,
+  TabBarIOS,
   Text,
   View
 } from 'react-native';
 
-API_URL = 'http://localhost:3000/places'
+
+
 
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
+import TabBarNavigator from 'react-native-tabbar-navigator';
 import SearchContainer from '../LandingPage/SearchContainer'
-import HoodIndex from '../LandingPage/HoodIndex'
+
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
+
+TODAY_API_URL = 'http://localhost:3000/places/today'
+YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
+TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
+
+
 class InCaseFrontend extends Component {
   constructor() {
     super();
-    this.state = {message: '', places:[]}
+    this.state = {today: [], yesterday: [], twoDays: []}
     BackgroundGeolocation.configure({
           desiredAccuracy: 0,
           stationaryRadius: 50,
@@ -76,31 +86,80 @@ BackgroundGeolocation.start(function() {
   }, function(error) {
     alert("Location error: " + error);
   });
-});
 
-  }
+  });
+}
 
   componentWillMount() {
-    this.fetchData();
+    this.fetchTodayData();
+    this.fetchYesterdayData();
+    this.fetchTwoDaysData();
   }
 
-  fetchData() {
-    fetch(API_URL)
+  fetchTodayData() {
+    fetch(TODAY_API_URL)
     .then((response) => response.json())
     .then((responseData) => {
       this.setState({
-        places: responseData,
+        today: responseData,
+      });
+    })
+    .done();
+  }
+
+  fetchYesterdayData() {
+    fetch(YESTERDAY_API_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        yesterday: responseData,
+      });
+    })
+    .done();
+  }
+
+  fetchTwoDaysData() {
+    fetch(TWO_DAYS_API_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        twoDays: responseData,
       });
     })
     .done();
   }
 
   render() {
-      return (
-        <ListContainer places={this.state.places}/>
-    )
+
+    return (
+      <TabBarNavigator>
+        <TabBarNavigator.Item title='ICYMI' defaultTab>
+          <MapContainer />
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Today'>
+          <ListContainer places={this.state.today} title="today"/>
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Yesterday'>
+          <ListContainer places={this.state.yesterday} title="yesterday"/>
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Two Days'>
+          <ListContainer places={this.state.twoDays} title="2days"/>
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Search'>
+          <SearchContainer />
+        </TabBarNavigator.Item>
+
+      </TabBarNavigator>
+
+    );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -118,7 +177,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
-  }
+  },
 });
 
 AppRegistry.registerComponent('PageContainer', () => PageContainer);
