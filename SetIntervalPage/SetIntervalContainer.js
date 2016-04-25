@@ -6,7 +6,7 @@ import React, {
   View
   } from 'react-native';
 
-  import SetIntervalItemContainer from '../SetIntervalPage/SetIntervalItemContainer'
+  import SetIntervalItemContainer from './SetIntervalItemContainer'
 
   class SetIntervalContainer extends Component {
     constructor(props) {
@@ -14,12 +14,20 @@ import React, {
     }
 
     render() {
+      console.log('sic props', this.props);
       return (
         <View style={intervalContainerStyles.container}>
-          <SetIntervalItemContainer/>
+          <SetIntervalItemContainer
+          startDateChanged={this.props.startDateChanged}
+          endDateChanged={this.props.endDateChanged}
+          onPressButton = {this.props.onPressButton}
+          startDate={this.props.startDate}
+          endDate={this.props.endDate}
+
+          />
         </View>
       )
-    };
+    }
   }
 
 const intervalContainerStyles = StyleSheet.create({

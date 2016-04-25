@@ -11,7 +11,7 @@ import React, {
 
 
 
-
+import SearchListContainer from '../SearchListPage/SearchListContainer'
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
@@ -34,7 +34,13 @@ var new_location = BackgroundGeolocation
 class InCaseFrontend extends Component {
   constructor() {
       super();
-      this.state = {message: ''}
+      this.state = {
+        message: '',
+        currentView: 'index',
+        startDate: new Date(),
+        endDate: new Date()
+      }
+
       BackgroundGeolocation.configure({
             desiredAccuracy: 0,
             stationaryRadius: 50,
@@ -157,39 +163,68 @@ class InCaseFrontend extends Component {
     .done();
   }
 
+  startDateChanged(d){
+    console.log('startDateChanged', d)
+    this.setState({startDate: d});
+  }
+  endDateChanged(d){
+    console.log('endDateChanged', d)
+    this.setState({endDate: d});
+  }
 
-
+  selectionButtonPressed() {
+    this.setState({currentView: 'searchList'})
+    console.log('Hello hello');
+  }
 
   render() {
-    return (
-      <TabBarNavigator>
-        <TabBarNavigator.Item title='ICYMI' defaultTab>
-          <MapContainer />
-        </TabBarNavigator.Item>
+    if (this.state.currentView === 'searchList') {
+      console.log('start', this.state.startDate);
+      console.log('end', this.state.endDate);
+      return(
+        <SearchListContainer
+        startDate={this.state.startDate}
+        endDate={this.state.endDate}
+        />
+      );
+    } else {
+      return (
+        // <TabBarNavigator>
+        //   <TabBarNavigator.Item title='ICYMI' defaultTab>
+        //     <MapContainer />
+        //   </TabBarNavigator.Item>
+        //
+        //   <TabBarNavigator.Item title='Today'>
+        //     <ListContainer places={this.state.today} title="today"/>
+        //   </TabBarNavigator.Item>
+        //
+        //   <TabBarNavigator.Item title='Yesterday'>
+        //     <ListContainer places={this.state.yesterday} title="yesterday"/>
+        //   </TabBarNavigator.Item>
+        //
+        //   <TabBarNavigator.Item title='Two Days'>
+        //     <ListContainer places={this.state.twoDays} title="2days"/>
+        //   </TabBarNavigator.Item>
+        //
+        //   <TabBarNavigator.Item title='Search'>
+        //     <SearchContainer />
+        //   </TabBarNavigator.Item>
+        //
+        // </TabBarNavigator>
+        <View>
+          <SetIntervalContainer
+          startDateChanged={this.startDateChanged.bind(this)}
+          endDateChanged={this.endDateChanged.bind(this)}
+          onPressButton = {this.selectionButtonPressed.bind(this)}
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
+          />
+        </View>
 
-        <TabBarNavigator.Item title='Today'>
-          <ListContainer places={this.state.today} title="today"/>
-        </TabBarNavigator.Item>
-
-        <TabBarNavigator.Item title='Yesterday'>
-          <ListContainer places={this.state.yesterday} title="yesterday"/>
-        </TabBarNavigator.Item>
-
-        <TabBarNavigator.Item title='Two Days'>
-          <ListContainer places={this.state.twoDays} title="2days"/>
-        </TabBarNavigator.Item>
-
-        <TabBarNavigator.Item title='Search'>
-          <SearchContainer />
-        </TabBarNavigator.Item>
-
-      </TabBarNavigator>
-
-    );
+      );
+    }
   }
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
