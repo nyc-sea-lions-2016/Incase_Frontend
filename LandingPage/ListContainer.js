@@ -20,16 +20,20 @@ class ListContainer extends Component {
   }
 
   render() {
-    var listNodes = this.props.places.map(function(place){
+    if(this.props.places == []){
+      var listNodes = this.props.places.map(function(place){
       return(
           <ItemContainer key={place.id} place={place} />
       )
     })
+  } else{
+    var listNodes = <Text>Travel around to fill this page up!</Text>
+  }
     // debugger;
     return (
       <View style={styles.container}>
         <Text>{this.props.title}</Text>
-        {listNodes}
+          {listNodes}
       </View>
     );
   }
