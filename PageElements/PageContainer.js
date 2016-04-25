@@ -65,7 +65,7 @@ BackgroundGeolocation.on('motionchange', function(location) {
     this.setState({message: JSON.stringify(location)});
     console.log('- [js]motionchanged: ', JSON.stringify(location));
     var latlong = location
-    fetch('http://localhost:3000/latlong', {
+    fetch('http://localhost:3000/latlongs', {
       method: 'POST',
       body: JSON.stringify({
         loc: latlong,
@@ -88,7 +88,7 @@ BackgroundGeolocation.start(function() {
   BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
     // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
     // var latlong = location;
-    fetch('http://localhost:3000/latlong', {
+    fetch('http://localhost:3000/latlongs', {
       method: 'POST',
       body: JSON.stringify({
         latlong: location
