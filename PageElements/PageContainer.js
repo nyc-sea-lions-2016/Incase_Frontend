@@ -3,19 +3,29 @@ import React, {
   Component,
   StyleSheet,
   MapView,
+  NavigatorIOS,
+  TabBarIOS,
   Text,
   View
 } from 'react-native';
 
+
+
+import TabBarNavigator from 'react-native-tabbar-navigator'
+import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
+import TabBarNavigator from 'react-native-tabbar-navigator';
 import SearchContainer from '../LandingPage/SearchContainer'
-import HoodIndex from '../LandingPage/HoodIndex'
+
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 
+
 var new_location = BackgroundGeolocation
+
+
 class InCaseFrontend extends Component {
   constructor() {
     super();
@@ -100,8 +110,8 @@ console.log(responseText);
   }, function(error) {
     alert("Location error: " + error);
   });
-});
 
+<<<<<<< HEAD
   }
 
 
@@ -111,9 +121,41 @@ console.log(responseText);
       <View>
 
       </View>
+=======
+  });
+}
+
+  render() {
+    return (
+      <TabBarNavigator>
+        <TabBarNavigator.Item title='ICYMI' defaultTab>
+          <MapContainer />
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Today'>
+          <ListContainer places={this.state.today}/>
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Yesterday'>
+          <ListContainer place={this.state.yesterday}/>
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Two Days'>
+          <ListContainer place={this.state.twodays}/>
+        </TabBarNavigator.Item>
+
+        <TabBarNavigator.Item title='Search'>
+          <SearchContainer />
+        </TabBarNavigator.Item>
+
+      </TabBarNavigator>
+
+>>>>>>> master
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
