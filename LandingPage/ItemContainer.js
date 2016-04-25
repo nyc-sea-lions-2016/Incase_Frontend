@@ -2,33 +2,57 @@ import React, {
   StyleSheet,
   AppRegistry,
   Component,
+  ListView,
   Text,
   View
 } from 'react-native';
 
-  import ElementContainer from '../LandingPage/ElementContainer';
-
   class ItemContainer extends Component {
-    render(){
-      return (
-        <View style={itemStyles.container}>
-          <ElementContainer/>
-          <ElementContainer/>
-          <ElementContainer/>
-          <ElementContainer/>
-          <ElementContainer/>
-          <ElementContainer/>
-          <ElementContainer/>
-          <ElementContainer/>
-          <ElementContainer/>
-        </View>
-      )
+    constructor(props){
+      super(props);
     }
-  }
 
-  const itemStyles = StyleSheet.create({
-    container: {
-      backgroundColor:'#8fb9f3',
+    componentWillReceiveProps(nextProps) {
+      this.setState({places: nextProps})
+    }
+
+    render(){
+          return (
+            <View style={styles.mainContainer}>
+              <View>
+                <Text style={styles.BoxTitleText}>{this.props.place.name}</Text>
+              </View>
+              <View>
+                <Text style={styles.BoxBodyText}>{this.props.place.address}</Text>
+              </View>
+            </View>
+          )
+      }
+    }
+
+
+  const styles = StyleSheet.create({
+    mainContainer: {
+      alignSelf: "center",
+      width:300,
+      borderWidth: 1,
+      marginTop: 60,
+      paddingTop:10,
+      paddingBottom:20,
+      paddingLeft:20,
+      paddingRight:20,
+      flex:1,
+      backgroundColor: 'orange',
+    },
+
+    BoxTitleText:{
+    fontWeight:'bold',
+    fontSize:20,
+    marginBottom:10
+    },
+
+    BoxBodyText:{
+    fontSize:16
     }
   })
 
