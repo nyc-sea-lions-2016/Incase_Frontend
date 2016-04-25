@@ -11,6 +11,7 @@ import React, {
 
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
+
 class ListContainer extends Component {
   constructor(props) {
     super(props);
