@@ -115,7 +115,7 @@ class InCaseFrontend extends Component {
     }, function(error) {
       alert("Location error: " + error);
       });
-    }
+        });
   }
 
   componentWillMount() {

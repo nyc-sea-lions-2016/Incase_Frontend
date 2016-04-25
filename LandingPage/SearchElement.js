@@ -2,7 +2,6 @@ import React, {
   StyleSheet,
   AppRegistry,
   Component,
-  TouchableHighlight,
   Text,
   TouchableHighlight,
   Image,
@@ -10,11 +9,8 @@ import React, {
   } from 'react-native';
 
 import HoodIndex from './HoodIndex'
-<<<<<<< HEAD
 import TimeElement from './TimeElement'
-=======
 
->>>>>>> master
   class SearchElement extends Component {
     constructor(props){
 
