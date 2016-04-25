@@ -22,5 +22,4 @@ class SearchListContainer extends Component {
 
 }
 
-
-  module.exports = SearchListContainer
+module.exports = SearchListContainer

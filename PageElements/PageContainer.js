@@ -9,13 +9,8 @@ import React, {
   View
 } from 'react-native';
 
-
-
-<<<<<<< HEAD
-import SearchListContainer from '../SearchListPage/SearchListContainer'
-=======
-import FavoriteContainer from '../LandingPage/FavoriteContainer'
->>>>>>> master
+import SearchListContainer from '../SearchListPage/SearchListContainer';
+import FavoriteContainer from '../LandingPage/FavoriteContainer';
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import TodayContainer from '../LandingPage/TodayContainer';
@@ -23,7 +18,7 @@ import YesterdayContainer from '../LandingPage/YesterdayContainer';
 import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
-import SearchContainer from '../LandingPage/SearchContainer'
+import SearchContainer from '../LandingPage/SearchContainer';
 
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
@@ -34,8 +29,6 @@ YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
 TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
 
 var new_location = BackgroundGeolocation
-
-
 
 class InCaseFrontend extends Component {
   constructor() {
@@ -152,10 +145,8 @@ class InCaseFrontend extends Component {
   }
 
   render() {
-<<<<<<< HEAD
+//HEAD
     if (this.state.currentView === 'searchList') {
-      console.log('start', this.state.startDate);
-      console.log('end', this.state.endDate);
       return(
         <SearchListContainer
         startDate={this.state.startDate}
@@ -198,7 +189,7 @@ class InCaseFrontend extends Component {
 
       );
     }
-=======
+// =======
     console.log('state:', this.state)
     return (
       <TabBarNavigator>
@@ -226,7 +217,7 @@ class InCaseFrontend extends Component {
       </TabBarNavigator>
 
     );
->>>>>>> master
+// >>>>>>> master
   }
 }
 

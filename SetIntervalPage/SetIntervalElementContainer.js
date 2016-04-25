@@ -18,7 +18,7 @@ import React, {
         <View style={setElementStyles.container}>
           <View style={setElementStyles.elementArea}>
             <Text style={setElementStyles.header}>
-              Start Time:
+              Start Time
             </Text>
             <DatePickerIOS onDateChange={this.props.startDateChanged}
              date={this.props.startDate} />
@@ -27,7 +27,7 @@ import React, {
 
           <View style={setElementStyles.elementArea}>
             <Text style={setElementStyles.header}>
-              End Time:
+              End Time
             </Text>
             <DatePickerIOS onDateChange={this.props.endDateChanged}
              date={this.props.endDate}  />
@@ -36,7 +36,7 @@ import React, {
           <View>
             <TouchableHighlight style={setElementStyles.button}
             onPress={this.props.onPressButton}>
-            <Text>Go</Text>
+            <Text>GO</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -45,14 +45,20 @@ import React, {
   }
 
   const setElementStyles = StyleSheet.create({
-    container: {
-      backgroundColor: "orange",
-    },
+    // container: {
+    //   borderWidth: 2,
+    //   borderRadius: 5,
+    //   borderColor: "#FFFFFF",
+    // },
 
     elementArea: {
-      width: 240,
-      backgroundColor: "green",
-      marginBottom: 100,
+      paddingTop: 10,
+      width: 325,
+      // backgroundColor: "green",
+      marginBottom: 50,
+      borderWidth: 2,
+      borderRadius: 5,
+      borderColor: "#FFFFFF",
 
     },
 
@@ -63,11 +69,16 @@ import React, {
     },
 
     button: {
+      backgroundColor: "#35d37c",
+      paddingTop: 4,
+      alignSelf: "center",
+      alignItems: "center",
+      marginTop: 20,
       width: 200,
-      height: 20,
-      backgroundColor: "yellow",
+      height: 25,
       bottom: 50,
-    }
+      borderColor: "#FFFFFF"
+    },
 
   })
 
