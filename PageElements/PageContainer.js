@@ -3,9 +3,12 @@ import React, {
   Component,
   StyleSheet,
   MapView,
+  NavigatorIOS,
+  TabBarIOS,
   Text,
   View
 } from 'react-native';
+
 
 
 import TabBarNavigator from 'react-native-tabbar-navigator'
@@ -13,10 +16,13 @@ import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
 import MapContainer from '../Maps/MapContainer';
+import TabBarNavigator from 'react-native-tabbar-navigator';
 import SearchContainer from '../LandingPage/SearchContainer'
-import HoodIndex from '../LandingPage/HoodIndex'
+
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
+
+
 class InCaseFrontend extends Component {
   constructor() {
     super();
@@ -76,9 +82,10 @@ BackgroundGeolocation.start(function() {
   }, function(error) {
     alert("Location error: " + error);
   });
-});
 
-  }
+  });
+}
+
   render() {
     return (
       <TabBarNavigator>
@@ -103,9 +110,12 @@ BackgroundGeolocation.start(function() {
         </TabBarNavigator.Item>
 
       </TabBarNavigator>
+
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
