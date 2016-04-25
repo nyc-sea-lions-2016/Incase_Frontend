@@ -53,7 +53,6 @@ class TodayContainer extends Component {
       )
     })
 
-
     return (
       <View style={styles.container}>
 

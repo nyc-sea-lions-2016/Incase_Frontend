@@ -49,16 +49,25 @@ class FavoriteContainer extends Component {
           <ItemContainer key={place.id} place={place} />
       )
     })
-    return (
-      <View style={styles.container}>
-        <View>
-          <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-            <Text> Click me to filter your results </Text>
-          </TouchableHighlight>
+
+    if(this.state.favorites.length == 0){
+      return(
+        <View style={styles.container}>
+          <Text>Add some places you would like to explore to build up this page!</Text>
         </View>
-        {listNodes}
-      </View>
-    );
+      )
+    } else {
+      return (
+        <View style={styles.container}>
+          <View>
+            <TouchableHighlight onPress={this.pressSearch.bind(this)} >
+              <Text> Click me to filter your results </Text>
+            </TouchableHighlight>
+          </View>
+          {listNodes}
+        </View>
+      );
+    }
   }
 }
 

@@ -53,19 +53,26 @@ class TwoDaysContainer extends Component {
       )
     })
 
-
-    return (
-      <View style={styles.container}>
-        <View>
-          <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-            <Text> Filter Results </Text>
-          </TouchableHighlight>
+    if(this.state.twoDays.length == 0){
+      return(
+        <View style={styles.container}>
+          <Text>Keep on exploring and build up this page!</Text>
         </View>
-        <View>
-          {listNodes}
+      )
+    } else {
+      return (
+        <View style={styles.container}>
+          <View>
+            <TouchableHighlight onPress={this.pressSearch.bind(this)} >
+              <Text> Filter Results </Text>
+            </TouchableHighlight>
+          </View>
+          <View>
+            {listNodes}
+          </View>
         </View>
-      </View>
-    );
+      );
+    }
   }
 }
 
