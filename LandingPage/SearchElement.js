@@ -4,6 +4,7 @@ import React, {
   Component,
   TouchableHighlight,
   Text,
+  TouchableHighlight,
   Image,
   View
   } from 'react-native';
@@ -26,6 +27,7 @@ import HoodIndex from './HoodIndex'
         title: 'Time Search',
         component: <ListContainer />
       })
+
     }
     render() {
       return (
@@ -36,7 +38,7 @@ import HoodIndex from './HoodIndex'
             <Text style={styles.NeighborhoodText}>Neighborhood</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={this.pressHood.bind(this)}
+            onPress={this.pressTime.bind(this)}
           >
             <Text style={styles.TimeText}>Time</Text>
           </TouchableHighlight>
