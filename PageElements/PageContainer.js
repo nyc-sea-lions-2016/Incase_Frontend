@@ -11,7 +11,7 @@ import React, {
 
 
 
-
+import Favorites from '../LandingPage/Favorites'
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import ListContainer from '../LandingPage/ListContainer';
@@ -35,7 +35,7 @@ class InCaseFrontend extends Component {
   constructor() {
       super();
       this.state = {
-        favorites: [],
+        favPlaces: [],
         today: [],
         yesterday: [],
         twoDays: []
@@ -197,7 +197,7 @@ class InCaseFrontend extends Component {
         </TabBarNavigator.Item>
 
         <TabBarNavigator.Item title='Favorites'>
-            <ListContainer places={this.state.favPlaces} title="favorites"/>
+            <Favorites places={this.state.favPlaces} title="favorites"/>
         </TabBarNavigator.Item>
 
       </TabBarNavigator>
