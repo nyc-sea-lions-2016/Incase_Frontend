@@ -22,7 +22,7 @@ import SearchContainer from '../LandingPage/SearchContainer'
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 
-
+FAV_API_URL = 'http://localhost:3000/places/favorites'
 TODAY_API_URL = 'http://localhost:3000/places/today'
 YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
 TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
@@ -34,11 +34,16 @@ var new_location = BackgroundGeolocation
 class InCaseFrontend extends Component {
   constructor() {
       super();
-      this.state = {message: ''}
+      this.state = {
+        favorites: [],
+        today: [],
+        yesterday: [],
+        twoDays: []
+      }
       BackgroundGeolocation.configure({
             desiredAccuracy: 0,
-            stationaryRadius: 50,
-            distanceFilter: 50,
+            stationaryRadius: 5,
+            distanceFilter: 30,
             disableElasticity: false, // <-- [iOS] Default is 'false'.  Set true to disable speed-based distanceFilter elasticity
             locationUpdateInterval: 5000,
             minimumActivityRecognitionConfidence: 80,   // 0-100%.  Minimum activity-confidence for a state-change
@@ -80,7 +85,7 @@ class InCaseFrontend extends Component {
       this.setState({message: JSON.stringify(location)});
       console.log('- [js]motionchanged: ', JSON.stringify(location));
       var latlong = location
-      fetch('http://localhost:3000/latlongs', {
+      fetch('http://localhost:3000/coordinates', {
         method: 'POST',
         body: JSON.stringify({
           loc: latlong,
@@ -103,7 +108,7 @@ class InCaseFrontend extends Component {
     BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
-      fetch('http://localhost:3000/latlongs', {
+      fetch('http://localhost:3000/coordinates', {
         method: 'POST',
         body: JSON.stringify({
           latlong: location
@@ -114,14 +119,26 @@ class InCaseFrontend extends Component {
   })
     }, function(error) {
       alert("Location error: " + error);
-      });
-        });
+          });
+         });
   }
 
   componentWillMount() {
     this.fetchTodayData();
     this.fetchYesterdayData();
     this.fetchTwoDaysData();
+    this.fetchFavData();
+  }
+
+  fetchFavData(){
+    fetch(FAV_API_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        favPlaces: responseData,
+      });
+    })
+    .done();
   }
 
   fetchTodayData() {
@@ -179,8 +196,8 @@ class InCaseFrontend extends Component {
           <ListContainer places={this.state.twoDays} title="2days"/>
         </TabBarNavigator.Item>
 
-        <TabBarNavigator.Item title='Search'>
-          <SearchContainer />
+        <TabBarNavigator.Item title='Favorites'>
+            <ListContainer places={this.state.favPlaces} title="favorites"/>
         </TabBarNavigator.Item>
 
       </TabBarNavigator>

@@ -13,7 +13,7 @@ import React, {
     }
 
     componentWillReceiveProps(nextProps) {
-      this.setState({places: nextProps})
+      this.setState({place: nextProps})
     }
 
     render(){
