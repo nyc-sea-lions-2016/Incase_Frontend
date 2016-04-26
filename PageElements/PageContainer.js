@@ -18,13 +18,8 @@ import YesterdayContainer from '../LandingPage/YesterdayContainer';
 import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
-<<<<<<< HEAD
-import SearchContainer from '../LandingPage/SearchContainer';
-
-=======
 import SearchContainer from '../LandingPage/SearchContainer'
 import PlaceContainer from '../PlacePage/PlaceContainer'
->>>>>>> build-place-element
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 
@@ -141,15 +136,15 @@ class InCaseFrontend extends Component {
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Today'>
-            <ListContainer places={this.state.today} title="today"/>
+            <TodayContainer places={this.state.today} title="today" navigator={navigator}/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Yesterday'>
-            <ListContainer places={this.state.yesterday} title="yesterday"/>
+            <YesterdayContainer places={this.state.yesterday} title="yesterday" navigator={navigator}/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Two Days'>
-            <ListContainer places={this.state.twoDays} title="2days"/>
+            <TwoDaysContainer places={this.state.twoDays} title="2days" navigator={navigator}/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Search'>

@@ -21,12 +21,12 @@ import React, {
           />
             <View style={styles.detailsContainer}>
               <View style={styles.detailsContainer}>
-              <Text style={styles.placeName}> Sample Place Name </Text>
+              <Text style={styles.placeName}>{this.props.name}</Text>
               </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Address </Text>
-                <Text style={styles.placeAddress}> 123 Main Street, New York, NY 19283 </Text>
+                <Text style={styles.placeAddress}>{this.props.address}</Text>
               </View>
 
               <View style={styles.detailsContainer}>

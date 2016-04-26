@@ -16,7 +16,10 @@ import React, {
     render() {
       return (
         <View style={styles.container}>
-          <PlaceElement/>
+          <PlaceElement
+          name={this.props.name}
+          address={this.props.address}
+          />
         </View>
       );
     }

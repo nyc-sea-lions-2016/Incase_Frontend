@@ -9,8 +9,9 @@ import React, {
   View,
 } from 'react-native';
 
+import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
-import SearchContainer from './SearchContainer'
+import SearchContainer from './SearchContainer';
 
 const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/today';
 
@@ -46,15 +47,28 @@ class TodayContainer extends Component {
     })
   }
 
+  pressItem(id, place) {
+      this.props.navigator.push({
+      component: <PlaceContainer
+      name={place.name}
+      address={place.address}
+      />
+    })
+  }
+
   renderOne(place) {
     return(
+      <View>
         <ItemContainer key={place.id} place={place} />
+        <TouchableHighlight style={styles.button} onPress={this.pressItem.bind(this, place.id, place)} >
+        <Text>Select Location</Text>
+        </TouchableHighlight>
+      </View>
     )
   }
 
   render() {
     // console.log('props', this.props)
-    console.log('state', this.state)
     return (
       <View style={styles.container}>
 
@@ -63,10 +77,11 @@ class TodayContainer extends Component {
             <Text> Filter Results </Text>
           </TouchableHighlight>
         </View>
-        <ListView
-           dataSource={this.state.today}
-           renderRow={this.renderOne}
-        />
+
+          <ListView
+             dataSource={this.state.today}
+             renderRow={this.renderOne.bind(this)}
+          />
       </View>
     );
   }
@@ -79,7 +94,7 @@ class TodayContainer extends Component {
       paddingTop:40,
       backgroundColor: "#409ce9",
     },
-    filterText:{
+    filterText: {
       fontWeight:'bold',
       color:'#fff',
       textAlign:'left',
@@ -89,6 +104,12 @@ class TodayContainer extends Component {
       padding: 10,
       borderRadius:10,
       textAlign: 'center',
+    },
+
+    button: {
+      width: 100,
+      height: 20,
+      backgroundColor: "yellow",
     }
   })
 
