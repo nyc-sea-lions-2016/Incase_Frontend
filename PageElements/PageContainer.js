@@ -19,7 +19,7 @@ import YesterdayContainer from '../LandingPage/YesterdayContainer';
 import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
-import SearchContainer from '../LandingPage/SearchContainer';
+import SearchContainer from '../LandingPage/SearchContainer'
 import PlaceContainer from '../PlacePage/PlaceContainer'
 
 
@@ -140,15 +140,15 @@ class InCaseFrontend extends Component {
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Today'>
-            <TodayContainer places={this.state.today} title="today"/>
+            <TodayContainer places={this.state.today} title="today" navigator={navigator}/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Yesterday'>
-            <YesterdayContainer places={this.state.yesterday} title="yesterday"/>
+            <YesterdayContainer places={this.state.yesterday} title="yesterday" navigator={navigator}/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Two Days'>
-            <TwoDaysContainer places={this.state.twoDays} title="2days"/>
+            <TwoDaysContainer places={this.state.twoDays} title="2days" navigator={navigator}/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Favorites'>

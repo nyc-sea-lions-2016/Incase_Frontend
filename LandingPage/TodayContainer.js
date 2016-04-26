@@ -9,8 +9,9 @@ import React, {
   View,
 } from 'react-native';
 
+import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
-import SearchContainer from './SearchContainer'
+import SearchContainer from './SearchContainer';
 
 
 const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
@@ -48,16 +49,28 @@ class TodayContainer extends Component {
     })
   }
 
+  pressItem(id, place) {
+      this.props.navigator.push({
+      component: <PlaceContainer
+      name={place.name}
+      address={place.address}
+      />
+    })
+  }
+
   renderOne(place) {
     return(
-        <ItemContainer key={place.id} place={place} />
+      <View>
+        <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)} >
+          <View>
+            <ItemContainer style={styles.button} key={place.id} place={place} />
+          </View>
+        </TouchableHighlight>
+      </View>
     )
   }
 
   render() {
-    // console.log('props', this.props)
-
-
     return (
       <View style={styles.container}>
         <View>
@@ -65,10 +78,11 @@ class TodayContainer extends Component {
             <Text style={styles.filterText}> Filter Results </Text>
           </TouchableHighlight>
         </View>
-        <ListView
-           dataSource={this.state.today}
-           renderRow={this.renderOne}
-        />
+
+          <ListView
+             dataSource={this.state.today}
+             renderRow={this.renderOne.bind(this)}
+          />
       </View>
     );
   }
@@ -81,7 +95,7 @@ class TodayContainer extends Component {
       paddingTop:40,
       backgroundColor: "#409ce9",
     },
-    filterText:{
+    filterText: {
       fontWeight:'bold',
       color:'#fff',
       textAlign:'left',
@@ -91,6 +105,17 @@ class TodayContainer extends Component {
       padding: 10,
       borderRadius:10,
       textAlign: 'center',
+    },
+
+    button: {
+      paddingTop: 2,
+      marginTop: 10,
+      borderRadius: 5,
+      alignItems: "center",
+      alignSelf: "center",
+      width: 120,
+      height: 20,
+      backgroundColor: "#35d37c",
     }
   })
 
