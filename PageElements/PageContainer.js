@@ -24,10 +24,12 @@ import PlaceContainer from '../PlacePage/PlaceContainer'
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 
-FAV_API_URL = 'http://localhost:3000/places/favorites'
-TODAY_API_URL = 'http://localhost:3000/places/today'
-YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
-TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
+// FAV_API_URL = 'http://localhost:3000/places/favorites'
+// TODAY_API_URL = 'http://localhost:3000/places/today'
+// YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
+// TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
+
+
 
 var new_location = BackgroundGeolocation
 
@@ -90,15 +92,14 @@ class InCaseFrontend extends Component {
       console.log('- [js]motionchanged: ', JSON.stringify(location));
       var latlong = location
 
-      fetch('http://localhost:3000/places', {
+      fetch('https://boiling-refuge-94422.herokuapp.com/places', {
         method: 'POST',
         body: JSON.stringify({
-          loc: latlong,
-          word: "ioehoihfewresponse"
+          latlong: location
         })
       })
-    .then(latlong)
     .then(function(response) {
+
       console.log('request succeeded with json response', response)
     }).catch(function(error) {
       console.log('request failed', error)
@@ -114,7 +115,7 @@ class InCaseFrontend extends Component {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
 
-      fetch('http://localhost:3000/places', {
+      fetch('https://boiling-refuge-94422.herokuapp.com/places', {
         method: 'POST',
         body: JSON.stringify({
           latlong: location
