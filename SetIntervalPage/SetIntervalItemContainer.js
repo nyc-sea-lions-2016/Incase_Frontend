@@ -11,7 +11,6 @@ import React, {
 
   class SetIntervalItemContainer extends Component {
     render() {
-      console.log('siic props', this.props);
       return (
         <View style={setItemStyles.container}>
           <SetIntervalElementContainer
@@ -20,7 +19,6 @@ import React, {
           onPressButton = {this.props.onPressButton}
           startDate={this.props.startDate}
           endDate={this.props.endDate}
-
           />
         </View>
       )

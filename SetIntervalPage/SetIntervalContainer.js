@@ -7,25 +7,27 @@ import React, {
   } from 'react-native';
 
   import SetIntervalItemContainer from './SetIntervalItemContainer'
+  import SearchListContainer from '../SearchListPage/SearchListContainer'
 
   class SetIntervalContainer extends Component {
-    constructor(props) {
-      super(props);
-      this.state.currentView = 'index'
+    constructor() {
+      super();
+      this.state = {
+        startDate: new Date(),
+        endDate: new Date(),
+        currentView: 'index'
+      }
     }
 
     startDateChanged(d){
-      console.log('startDateChanged', d)
       this.setState({startDate: d});
     }
     endDateChanged(d){
-      console.log('endDateChanged', d)
       this.setState({endDate: d});
     }
 
     selectionButtonPressed() {
-      this.setState({currentView: 'searchList'})
-      console.log('Hello hello');
+      this.setState({currentView: 'searchList'});
     }
 
       render() {
@@ -37,9 +39,9 @@ import React, {
           />
         );
 
-        else {
+      } else {
           return (
-          <View>
+          <View style={intervalContainerStyles.container}>
             <SetIntervalItemContainer
             startDateChanged={this.startDateChanged.bind(this)}
             endDateChanged={this.endDateChanged.bind(this)}
@@ -52,7 +54,7 @@ import React, {
         }
       }
     }
-  }
+
 
 const intervalContainerStyles = StyleSheet.create({
   container: {

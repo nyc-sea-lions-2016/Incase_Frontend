@@ -11,7 +11,6 @@ import React, {
 class SearchListContainer extends Component {
 
     render() {
-      debugger
       return(
         <View>
         <Text>{this.props.startDate.toLocaleDateString()}</Text>

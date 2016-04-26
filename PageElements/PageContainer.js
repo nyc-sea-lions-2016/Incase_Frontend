@@ -35,9 +35,6 @@ class InCaseFrontend extends Component {
       super();
       this.state = {
         message: '',
-        // currentView: 'index',
-        startDate: new Date(),
-        endDate: new Date(),
         favPlaces: [],
         today: [],
         yesterday: [],
@@ -128,32 +125,7 @@ class InCaseFrontend extends Component {
          });
   }
 
-
-
-  // startDateChanged(d){
-  //   console.log('startDateChanged', d)
-  //   this.setState({startDate: d});
-  // }
-  // endDateChanged(d){
-  //   console.log('endDateChanged', d)
-  //   this.setState({endDate: d});
-  // }
-  //
-  // selectionButtonPressed() {
-  //   this.setState({currentView: 'searchList'})
-  //   console.log('Hello hello');
-  // }
-
   render() {
-//HEAD
-    // if (this.state.currentView === 'searchList') {
-    //   return(
-    //     <SearchListContainer
-    //     startDate={this.state.startDate}
-    //     endDate={this.state.endDate}
-    //     />
-    //   );
-    // } else {
       return (
         <TabBarNavigator>
           <TabBarNavigator.Item title='ICYMI' defaultTab>
@@ -175,51 +147,12 @@ class InCaseFrontend extends Component {
           <TabBarNavigator.Item title='Search'>
             <SearchContainer />
           </TabBarNavigator.Item>
-        //
-        // </TabBarNavigator>
-        // <View>
-        //   <SetIntervalContainer
-        //   startDateChanged={this.startDateChanged.bind(this)}
-        //   endDateChanged={this.endDateChanged.bind(this)}
-        //   onPressButton = {this.selectionButtonPressed.bind(this)}
-        //   startDate={this.state.startDate}
-        //   endDate={this.state.endDate}
-        //   />
-        // </View>
 
+          </TabBarNavigator>
       );
     }
-// =======
-    console.log('state:', this.state)
-    return (
-      <TabBarNavigator>
-        <TabBarNavigator.Item title='ICYMI' defaultTab>
-          <MapContainer />
-        </TabBarNavigator.Item>
-
-        <TabBarNavigator.Item title='Today'>
-          <TodayContainer />
-        </TabBarNavigator.Item>
-
-        <TabBarNavigator.Item title='Yesterday'>
-          <YesterdayContainer />
-        </TabBarNavigator.Item>
-
-        <TabBarNavigator.Item title='Two Days'>
-          <TwoDaysContainer />
-        </TabBarNavigator.Item>
-
-        <TabBarNavigator.Item title='Favorites'>
-          <FavoriteContainer />
-        </TabBarNavigator.Item>
-
-
-      </TabBarNavigator>
-
-    );
-// >>>>>>> master
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {

@@ -44,16 +44,9 @@ import React, {
   }
 
   const setElementStyles = StyleSheet.create({
-    // container: {
-    //   borderWidth: 2,
-    //   borderRadius: 5,
-    //   borderColor: "#FFFFFF",
-    // },
-
     elementArea: {
       paddingTop: 10,
       width: 325,
-      // backgroundColor: "green",
       marginBottom: 50,
       borderWidth: 2,
       borderRadius: 5,
