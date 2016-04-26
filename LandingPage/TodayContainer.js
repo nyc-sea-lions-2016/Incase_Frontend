@@ -12,6 +12,8 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
+//var RefreshableListView = require('react-native-refreshable-listview');
+
 const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/today';
 
 class TodayContainer extends Component {
@@ -27,6 +29,7 @@ class TodayContainer extends Component {
       this.fetchTodayData();
   }
 
+
   fetchTodayData() {
     fetch(API_URL)
     .then((response) => response.json())
@@ -39,13 +42,18 @@ class TodayContainer extends Component {
     .done();
   }
 
+  reloadContainer() {
+    // returns a Promise of reload completion
+    // for a Promise-free version see ControlledRefreshableListView below
+     this.fetchTodayData()
+  }
+
   pressSearch(){
     this.props.navigator.push({
       title: 'Search',
       component: <SearchContainer/>
     })
   }
-
   renderOne(place) {
     return(
         <ItemContainer key={place.id} place={place} />
@@ -53,19 +61,24 @@ class TodayContainer extends Component {
   }
 
   render() {
-    // console.log('props', this.props)
-    console.log('state', this.state)
     return (
+
       <View style={styles.container}>
 
-        <View>
-          <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-            <Text> Filter Results </Text>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            onPress={this.pressSearch.bind(this)}
+            style={styles.touchable}>
+            <View style={styles.button}>
+              <Text style={styles.welcome}> Filter Results </Text>
+            </View>
           </TouchableHighlight>
         </View>
         <ListView
            dataSource={this.state.today}
            renderRow={this.renderOne}
+           loadData={this.reloadContainer}
+           minDisplayTime={4}
         />
       </View>
     );
@@ -74,23 +87,33 @@ class TodayContainer extends Component {
 
   var styles = StyleSheet.create({
     container: {
-      top: 25,
       flex: 1,
-      paddingTop:40,
-      backgroundColor: "#409ce9",
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
     },
-    filterText:{
-      fontWeight:'bold',
-      color:'#fff',
-      textAlign:'left',
-      fontSize:20,
-      marginBottom:10,
-      borderWidth: 1,
-      padding: 10,
-      borderRadius:10,
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
+    },
+    welcome: {
+      fontSize: 18,
       textAlign: 'center',
-    }
-  })
+      margin: 10,
+      color: '#FFFFFF'
+
+    },
+    button: {
+      backgroundColor: '#35d37c',
+      height: 40,
+      width: 200,
+      borderRadius:10,
+      justifyContent: 'center'
+    },
+    touchable: {
+    borderRadius: 10
+  },
+})
 
 
 module.exports = TodayContainer

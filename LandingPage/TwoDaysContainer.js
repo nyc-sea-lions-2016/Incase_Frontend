@@ -17,8 +17,9 @@ const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/two_days';
 class TwoDaysContainer extends Component {
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      twoDays: []
+      twoDays: this.ds.cloneWithRows([]),
     };
   }
 
@@ -45,31 +46,39 @@ class TwoDaysContainer extends Component {
     })
   }
 
-  render() {
-    // console.log('props', this.props)
-    var listNodes = this.state.twoDays.map(function(place){
-      return(
-          <ItemContainer key={place.id} place={place} />
-      )
-    })
+  renderOne(place) {
+    return (
+      <ItemContainer key={place.id} place={place} />
+    )
+  }
 
+  render() {
     if(this.state.twoDays.length == 0){
       return(
-        <View style={styles.container}>
-          <Text>Keep on exploring and build up this page!</Text>
+        <View style={styles.emptyContainer}>
+          <Text style={styles.bold}>Nothing to see here</Text>
+          <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
         </View>
       )
     } else {
       return (
         <View style={styles.container}>
-          <View>
-            <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-              <Text> Filter Results </Text>
+
+          <View style={styles.buttonContainer}>
+            <TouchableHighlight
+              onPress={this.pressSearch.bind(this)}
+              onPressIn={this._onPressIn}
+              onPressOut={this._onPressOut}
+              style={styles.touchable}>
+              <View style={styles.button}>
+                <Text style={styles.welcome}> Filter Results </Text>
+              </View>
             </TouchableHighlight>
           </View>
-          <View>
-            {listNodes}
-          </View>
+          <ListView
+             dataSource={this.state.twoDays}
+             renderRow={this.renderOne}
+          />
         </View>
       );
     }
@@ -77,23 +86,47 @@ class TwoDaysContainer extends Component {
 }
 
   var styles = StyleSheet.create({
-    container: {
-      top: 25,
+    emptyContainer:{
       flex: 1,
-      paddingTop:40,
-      backgroundColor: "#409ce9",
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
     },
-    filterText:{
-      fontWeight:'bold',
-      color:'#fff',
-      textAlign:'left',
-      fontSize:20,
-      marginBottom:10,
-      borderWidth: 1,
-      padding: 10,
-      borderRadius:10,
+    normal:{
+      fontSize:15,
+    },
+    bold:{
+      fontWeight: 'bold',
+      fontSize:16,
+    },
+
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
+    },
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
+    },
+    welcome: {
+      fontSize: 18,
       textAlign: 'center',
-    }
+      margin: 10,
+      color: '#FFFFFF'
+
+    },
+    button: {
+      backgroundColor: '#35d37c',
+      height: 40,
+      width: 200,
+      borderRadius:10,
+      justifyContent: 'center'
+    },
+    touchable: {
+      borderRadius: 10
+    },
   })
 
 
