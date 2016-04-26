@@ -12,7 +12,9 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/today';
+
+const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
+
 
 class TodayContainer extends Component {
   constructor(props) {
@@ -54,13 +56,13 @@ class TodayContainer extends Component {
 
   render() {
     // console.log('props', this.props)
-    console.log('state', this.state)
+
+
     return (
       <View style={styles.container}>
-
         <View>
           <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-            <Text> Filter Results </Text>
+            <Text style={styles.filterText}> Filter Results </Text>
           </TouchableHighlight>
         </View>
         <ListView

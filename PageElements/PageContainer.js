@@ -9,6 +9,7 @@ import React, {
   View
 } from 'react-native';
 
+
 import SearchListContainer from '../SearchListPage/SearchListContainer';
 import FavoriteContainer from '../LandingPage/FavoriteContainer';
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
@@ -18,21 +19,11 @@ import YesterdayContainer from '../LandingPage/YesterdayContainer';
 import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
-<<<<<<< HEAD
 import SearchContainer from '../LandingPage/SearchContainer';
-
-=======
-import SearchContainer from '../LandingPage/SearchContainer'
 import PlaceContainer from '../PlacePage/PlaceContainer'
->>>>>>> build-place-element
+
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
-
-// FAV_API_URL = 'http://localhost:3000/places/favorites'
-// TODAY_API_URL = 'http://localhost:3000/places/today'
-// YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
-// TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
-
 
 
 var new_location = BackgroundGeolocation
@@ -141,19 +132,19 @@ class InCaseFrontend extends Component {
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Today'>
-            <ListContainer places={this.state.today} title="today"/>
+            <TodayContainer places={this.state.today} title="today"/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Yesterday'>
-            <ListContainer places={this.state.yesterday} title="yesterday"/>
+            <YesterdayContainer places={this.state.yesterday} title="yesterday"/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Two Days'>
-            <ListContainer places={this.state.twoDays} title="2days"/>
+            <TwoDaysContainer places={this.state.twoDays} title="2days"/>
           </TabBarNavigator.Item>
 
-          <TabBarNavigator.Item title='Search'>
-            <SearchContainer />
+          <TabBarNavigator.Item title='Favorites'>
+            <FavoriteContainer />
           </TabBarNavigator.Item>
 
           </TabBarNavigator>
