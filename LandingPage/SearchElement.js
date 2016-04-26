@@ -19,7 +19,7 @@ import TimeElement from './TimeElement'
     pressHood(){
       this.props.navigator.push({
         title: 'Category Search',
-        component: <HoodIndex todayData={this.props.todayData}/>
+        component: <HoodIndex todayData={this.props.todayData} navigator={this.props.navigator}/>
       })
     }
     pressTime(){

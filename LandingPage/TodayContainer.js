@@ -48,6 +48,7 @@ class TodayContainer extends Component {
       title: 'Search',
       component: <SearchContainer
       todayData={this.state.todayData}
+      navigator={this.props.navigator}
       />
     })
   }
