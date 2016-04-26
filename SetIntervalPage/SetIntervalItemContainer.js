@@ -29,7 +29,7 @@ import React, {
 
   const setItemStyles = StyleSheet.create({
     container: {
-      paddingTop: 0,
+      paddingTop: 25,
       // backgroundColor: "orange",
       width: 300,
       height: 675,

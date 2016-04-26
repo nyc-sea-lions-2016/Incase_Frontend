@@ -13,7 +13,6 @@ import React, {
 
   class SetIntervalElementContainer extends Component {
     render() {
-      console.log('siec props', this.props);
       return (
         <View style={setElementStyles.container}>
           <View style={setElementStyles.elementArea}>
