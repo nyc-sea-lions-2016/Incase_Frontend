@@ -18,12 +18,15 @@ import React, {
 
     render(){
           return (
-            <View style={styles.mainContainer}>
+            <View style={styles.mainParent}>
               <View>
-                <Text style={styles.BoxTitleText}>{this.props.place.name}</Text>
+                <Text style={[styles.mainChild, styles.mainName]}>{this.props.place.name}</Text>
               </View>
               <View>
-                <Text style={styles.BoxBodyText}>{this.props.place.address}</Text>
+                <Text style={[styles.mainChild, styles.mainAddress]}>{this.props.place.address}</Text>
+              </View>
+              <View>
+                <Text style={styles.mainChild}>Category</Text>
               </View>
             </View>
           )
@@ -32,27 +35,35 @@ import React, {
 
 
   const styles = StyleSheet.create({
-    mainContainer: {
-      alignSelf: "center",
-      width:300,
-      borderWidth: 1,
-      marginTop: 60,
-      paddingTop:10,
-      paddingBottom:20,
-      paddingLeft:20,
-      paddingRight:20,
-      flex:1,
-      backgroundColor: 'orange',
+    mainParent: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: 15,
+        fontFamily: 'Helvetica Neue',
+        borderBottomColor: '#ddd',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+
+    },
+    mainName:{
+      fontSize:16,
+      margin:3,
+      paddingBottom: 10,
+      fontWeight: 'bold',
+
+    },
+    mainChild:{
+      flex: 1,
+      textAlign: 'center',
+      fontSize: 20,
+      fontFamily: 'Helvetica Neue',
     },
 
-    BoxTitleText:{
-    fontWeight:'bold',
-    fontSize:20,
-    marginBottom:10
-    },
-
-    BoxBodyText:{
-    fontSize:16
+    mainAddress:{
+      fontSize: 16,
+      fontFamily: 'Helvetica Neue',
+      margin:3,
+      paddingBottom: 10,
     }
   })
 

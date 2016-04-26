@@ -18,7 +18,7 @@ class Tabs extends Component {
   render(){
     return (
 
-      <TabBarIOS>
+      <TabBarIOS >
         <TabBarIOS.Item
           selected={this.state.selectedTab === 'tabOne'}
           systemIcon='history'
@@ -50,8 +50,9 @@ class Tabs extends Component {
   }
 }
 
-// const styles = StyleSheet.create({
-// })
-// AppRegistry.registerComponent('Tabs', () => Tabs);
+const styles = StyleSheet.create({
 
+})
+// AppRegistry.registerComponent('Tabs', () => Tabs);
+//
 module.exports = Tabs;
