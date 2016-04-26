@@ -12,27 +12,30 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
+
 const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
+
 
 class YesterdayContainer extends Component {
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      yesterday: []
+      yesterday: this.ds.cloneWithRows([]),
     };
   }
 
   componentDidMount() {
-      this.fetchTodayData();
+      this.fetchYesterdayData();
   }
 
-  fetchTodayData() {
+  fetchYesterdayData() {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
       console.log('responseData', responseData);
       this.setState({
-        yesterday: responseData
+        yesterday: this.ds.cloneWithRows(responseData)
       });
     })
     .done();
@@ -45,27 +48,14 @@ class YesterdayContainer extends Component {
     })
   }
 
+  renderOne(place) {
+    return (
+      <ItemContainer key={place.id} place={place} />
+    )
+  }
+
   render() {
     // console.log('props', this.props)
-    var listNodes = this.state.yesterday.map(function(place){
-      return(
-          <ItemContainer key={place.id} place={place} />
-      )
-    })
-
-    var yesterday = new Date();
-    var dd = yesterday.getDate() -1;
-    var mm = yesterday.getMonth()+1;
-    var yyyy = yesterday.getFullYear();
-    if(dd<10) {
-        dd='0'+dd
-    }
-
-    if(mm<10) {
-        mm='0'+mm
-    }
-
-    yesterday = mm+'/'+dd+'/'+yyyy;
 
     if(this.state.yesterday.length == 0){
       return(
@@ -81,9 +71,10 @@ class YesterdayContainer extends Component {
               <Text style={styles.filterText}> Filter Results </Text>
             </TouchableHighlight>
           </View>
-          <View>
-            {listNodes}
-          </View>
+            <ListView
+            dataSource={this.state.yesterday}
+            renderRow={this.renderOne}
+            />
         </View>
       );
     }

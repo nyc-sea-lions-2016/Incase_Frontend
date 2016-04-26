@@ -14,6 +14,7 @@ import SearchContainer from './SearchContainer'
 
 const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
 
+
 class TwoDaysContainer extends Component {
   constructor(props) {
     super(props);

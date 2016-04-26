@@ -12,13 +12,16 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
+
 const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
+
 
 class TodayContainer extends Component {
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      today: []
+      today: this.ds.cloneWithRows([]),
     };
   }
 
@@ -32,7 +35,7 @@ class TodayContainer extends Component {
     .then((responseData) => {
       console.log('responseData', responseData);
       this.setState({
-        today: responseData
+        today: this.ds.cloneWithRows(responseData)
       });
     })
     .done();
@@ -45,14 +48,16 @@ class TodayContainer extends Component {
     })
   }
 
+  renderOne(place) {
+    return(
+        <ItemContainer key={place.id} place={place} />
+    )
+  }
+
   render() {
     // console.log('props', this.props)
-    var listNodes = this.state.today.map(function(place){
-      return(
-          <ItemContainer key={place.id} place={place} />
-      )
-    })
-    today = new Date()
+
+
     return (
       <View style={styles.container}>
         <View>
@@ -60,9 +65,10 @@ class TodayContainer extends Component {
             <Text style={styles.filterText}> Filter Results </Text>
           </TouchableHighlight>
         </View>
-        <View>
-          {listNodes}
-        </View>
+        <ListView
+           dataSource={this.state.today}
+           renderRow={this.renderOne}
+        />
       </View>
     );
   }

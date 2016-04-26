@@ -12,7 +12,9 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
+
 const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/favorites';
+
 
 class FavoriteContainer extends Component {
   constructor(props) {

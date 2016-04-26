@@ -9,7 +9,8 @@ import React, {
   View
 } from 'react-native';
 
-//import SearchListContainer from '../SearchListPage/SearchListContainer';
+
+import SearchListContainer from '../SearchListPage/SearchListContainer';
 import FavoriteContainer from '../LandingPage/FavoriteContainer';
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
@@ -19,12 +20,10 @@ import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
 import SearchContainer from '../LandingPage/SearchContainer';
-//import PlaceContainer from '../PlacePage/PlaceContainer'
+import PlaceContainer from '../PlacePage/PlaceContainer'
 
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
-
-
 
 
 var new_location = BackgroundGeolocation
