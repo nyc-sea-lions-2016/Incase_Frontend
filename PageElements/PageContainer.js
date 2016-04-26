@@ -137,7 +137,7 @@ class InCaseFrontend extends Component {
   render() {
       return (
         <TabBarNavigator>
-          <TabBarNavigator.Item title='Map' icon={{uri: worldImg, scale:2}}>
+          <TabBarNavigator.Item title='ICYMI' icon={{uri: worldImg, scale:2}}>
             <MapContainer />
           </TabBarNavigator.Item>
 
