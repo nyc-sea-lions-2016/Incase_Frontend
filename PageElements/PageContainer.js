@@ -51,7 +51,12 @@ class InCaseFrontend extends Component {
             activityRecognitionInterval: 10000,
             stopDetectionDelay: 1,  // <--  minutes to delay after motion stops before engaging stop-detection system
             stopTimeout: 2, // 2 minutes
-
+            debug: true,
+            function(state){
+              if(!state.enabled){
+                bgGeo.start();
+              }
+            }
             // HTTP / SQLite config
       /*
             url: 'http://posttestserver.com/post.php?dir=cordova-background-geolocation',
@@ -123,6 +128,9 @@ class InCaseFrontend extends Component {
           });
          });
   }
+
+
+  //
 
   render() {
       return (
