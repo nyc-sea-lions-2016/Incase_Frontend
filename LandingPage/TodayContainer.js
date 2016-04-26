@@ -74,8 +74,6 @@ class TodayContainer extends Component {
 
   var styles = StyleSheet.create({
     container: {
-      top: 25,
-      flex: 1,
       paddingTop:40,
       backgroundColor: "#409ce9",
     },
