@@ -9,9 +9,8 @@ import React, {
   View
 } from 'react-native';
 
-
-
-import FavoriteContainer from '../LandingPage/FavoriteContainer'
+//import SearchListContainer from '../SearchListPage/SearchListContainer';
+import FavoriteContainer from '../LandingPage/FavoriteContainer';
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
 import ProfileContainer from '../ProfilePage/ProfileContainer';
 import TodayContainer from '../LandingPage/TodayContainer';
@@ -19,29 +18,29 @@ import YesterdayContainer from '../LandingPage/YesterdayContainer';
 import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
-import SearchContainer from '../LandingPage/SearchContainer'
+import SearchContainer from '../LandingPage/SearchContainer';
+//import PlaceContainer from '../PlacePage/PlaceContainer'
 
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 
-FAV_API_URL = 'http://localhost:3000/places/favorites'
-TODAY_API_URL = 'http://localhost:3000/places/today'
-YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
-TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
+
+
 
 var new_location = BackgroundGeolocation
-
-
 
 class InCaseFrontend extends Component {
   constructor() {
       super();
       this.state = {
+        message: '',
         favPlaces: [],
         today: [],
         yesterday: [],
         twoDays: []
       }
+
+
       BackgroundGeolocation.configure({
             desiredAccuracy: 0,
             stationaryRadius: 5,
@@ -87,21 +86,21 @@ class InCaseFrontend extends Component {
       this.setState({message: JSON.stringify(location)});
       console.log('- [js]motionchanged: ', JSON.stringify(location));
       var latlong = location
-  //     fetch('http://localhost:3000/coordinates', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         loc: latlong,
-  //         word: "ioehoihfewresponse"
-  //       })
-  //     })
-  //   .then(latlong)
-  //   .then(function(response) {
-  //     console.log('request succeeded with json response', response)
-  //   }).catch(function(error) {
-  //     console.log('request failed', error)
-  //   })
-  //
-   }.bind(this));
+
+      fetch('https://boiling-refuge-94422.herokuapp.com/places', {
+        method: 'POST',
+        body: JSON.stringify({
+          latlong: location
+        })
+      })
+    .then(function(response) {
+
+      console.log('request succeeded with json response', response)
+    }).catch(function(error) {
+      console.log('request failed', error)
+    })
+
+  }.bind(this));
 
   BackgroundGeolocation.start(function() {
     console.log('- [js] BackgroundGeolocation started successfully');
@@ -110,60 +109,49 @@ class InCaseFrontend extends Component {
     BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
-  //     fetch('http://localhost:3000/coordinates', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         latlong: location
-  //       }),
-  //
-  //     }).then((responseText) => {
-  // console.log(responseText);
-  // })
 
-  // , function(error) {
-  //     alert("Location error: " + error);
-  //         }
-            });
+      fetch('https://boiling-refuge-94422.herokuapp.com/places', {
+        method: 'POST',
+        body: JSON.stringify({
+          latlong: location
+        }),
+
+      }).then((responseText) => {
+  console.log(responseText);
+  })
+    }, function(error) {
+      alert("Location error: " + error);
+          });
          });
   }
 
-
-
-
-
-
   render() {
-    console.log('state:', this.state)
-    return (
-      <TabBarNavigator>
-        <TabBarNavigator.Item title='ICYMI' defaultTab>
-          <MapContainer />
-        </TabBarNavigator.Item>
+      return (
+        <TabBarNavigator>
+          <TabBarNavigator.Item title='ICYMI' defaultTab>
+            <MapContainer />
+          </TabBarNavigator.Item>
 
-        <TabBarNavigator.Item title='Today'>
-          <TodayContainer />
-        </TabBarNavigator.Item>
+          <TabBarNavigator.Item title='Today'>
+            <TodayContainer places={this.state.today} title="today"/>
+          </TabBarNavigator.Item>
 
-        <TabBarNavigator.Item title='Yesterday'>
-          <YesterdayContainer />
-        </TabBarNavigator.Item>
+          <TabBarNavigator.Item title='Yesterday'>
+            <YesterdayContainer places={this.state.yesterday} title="yesterday"/>
+          </TabBarNavigator.Item>
 
-        <TabBarNavigator.Item title='Two Days'>
-          <TwoDaysContainer />
-        </TabBarNavigator.Item>
+          <TabBarNavigator.Item title='Two Days'>
+            <TwoDaysContainer places={this.state.twoDays} title="2days"/>
+          </TabBarNavigator.Item>
 
-        <TabBarNavigator.Item title='Favorites'>
-          <FavoriteContainer />
-        </TabBarNavigator.Item>
+          <TabBarNavigator.Item title='Search'>
+            <SearchContainer />
+          </TabBarNavigator.Item>
 
-
-      </TabBarNavigator>
-
-    );
+          </TabBarNavigator>
+      );
+    }
   }
-}
-
-
 
 const styles = StyleSheet.create({
   container: {
