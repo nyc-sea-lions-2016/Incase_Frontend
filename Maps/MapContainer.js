@@ -14,6 +14,8 @@ class MapContainer extends Component{
   render(){
     return(
         <MapView
+          showsUserLocation={true}
+          followUserLocation={true}
           style={styles.map}
           initialRegion={{
             latitude: 40.7064170,

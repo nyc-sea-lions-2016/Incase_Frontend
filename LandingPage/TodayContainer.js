@@ -52,13 +52,12 @@ class TodayContainer extends Component {
           <ItemContainer key={place.id} place={place} />
       )
     })
-
+    today = new Date()
     return (
       <View style={styles.container}>
-
         <View>
-          <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-            <Text> Filter Results </Text>
+          <TouchableHighlight onPress={this.pressSearch.bind(this)} date={today} >
+            <Text style={styles.filterText}> Filter Results </Text>
           </TouchableHighlight>
         </View>
         <View>

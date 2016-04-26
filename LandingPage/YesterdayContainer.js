@@ -53,6 +53,19 @@ class YesterdayContainer extends Component {
       )
     })
 
+    var yesterday = new Date();
+    var dd = yesterday.getDate() -1;
+    var mm = yesterday.getMonth()+1;
+    var yyyy = yesterday.getFullYear();
+    if(dd<10) {
+        dd='0'+dd
+    }
+
+    if(mm<10) {
+        mm='0'+mm
+    }
+
+    yesterday = mm+'/'+dd+'/'+yyyy;
 
     if(this.state.yesterday.length == 0){
       return(
@@ -64,8 +77,8 @@ class YesterdayContainer extends Component {
       return (
         <View style={styles.container}>
           <View>
-            <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-              <Text> Filter Results </Text>
+            <TouchableHighlight onPress={this.pressSearch.bind(this)} date={yesterday} >
+              <Text style={styles.filterText}> Filter Results </Text>
             </TouchableHighlight>
           </View>
           <View>

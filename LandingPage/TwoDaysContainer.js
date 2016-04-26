@@ -52,6 +52,7 @@ class TwoDaysContainer extends Component {
           <ItemContainer key={place.id} place={place} />
       )
     })
+    
 
     if(this.state.twoDays.length == 0){
       return(
@@ -64,7 +65,7 @@ class TwoDaysContainer extends Component {
         <View style={styles.container}>
           <View>
             <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-              <Text> Filter Results </Text>
+              <Text style={styles.filterText}> Filter Results </Text>
             </TouchableHighlight>
           </View>
           <View>
