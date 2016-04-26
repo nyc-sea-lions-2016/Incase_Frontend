@@ -11,22 +11,46 @@ import React, {
   class SetIntervalContainer extends Component {
     constructor(props) {
       super(props);
+      this.state.currentView = 'index'
     }
 
-    render() {
-      console.log('sic props', this.props);
-      return (
-        <View style={intervalContainerStyles.container}>
-          <SetIntervalItemContainer
-          startDateChanged={this.props.startDateChanged}
-          endDateChanged={this.props.endDateChanged}
-          onPressButton = {this.props.onPressButton}
-          startDate={this.props.startDate}
-          endDate={this.props.endDate}
+    startDateChanged(d){
+      console.log('startDateChanged', d)
+      this.setState({startDate: d});
+    }
+    endDateChanged(d){
+      console.log('endDateChanged', d)
+      this.setState({endDate: d});
+    }
 
+    selectionButtonPressed() {
+      this.setState({currentView: 'searchList'})
+      console.log('Hello hello');
+    }
+
+      render() {
+        if ( this.state.currentView === 'searchList' ) {
+          return(
+          <SearchListContainer
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
           />
-        </View>
-      )
+        );
+
+        else {
+          return (
+          <View>
+            <SetIntervalItemContainer
+            startDateChanged={this.startDateChanged.bind(this)}
+            endDateChanged={this.endDateChanged.bind(this)}
+            onPressButton = {this.selectionButtonPressed.bind(this)}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+            />
+          </View>
+          );
+        }
+      }
     }
   }
 

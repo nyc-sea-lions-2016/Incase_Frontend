@@ -35,7 +35,7 @@ class InCaseFrontend extends Component {
       super();
       this.state = {
         message: '',
-        currentView: 'index',
+        // currentView: 'index',
         startDate: new Date(),
         endDate: new Date(),
         favPlaces: [],
@@ -130,62 +130,62 @@ class InCaseFrontend extends Component {
 
 
 
-  startDateChanged(d){
-    console.log('startDateChanged', d)
-    this.setState({startDate: d});
-  }
-  endDateChanged(d){
-    console.log('endDateChanged', d)
-    this.setState({endDate: d});
-  }
-
-  selectionButtonPressed() {
-    this.setState({currentView: 'searchList'})
-    console.log('Hello hello');
-  }
+  // startDateChanged(d){
+  //   console.log('startDateChanged', d)
+  //   this.setState({startDate: d});
+  // }
+  // endDateChanged(d){
+  //   console.log('endDateChanged', d)
+  //   this.setState({endDate: d});
+  // }
+  //
+  // selectionButtonPressed() {
+  //   this.setState({currentView: 'searchList'})
+  //   console.log('Hello hello');
+  // }
 
   render() {
 //HEAD
-    if (this.state.currentView === 'searchList') {
-      return(
-        <SearchListContainer
-        startDate={this.state.startDate}
-        endDate={this.state.endDate}
-        />
-      );
-    } else {
+    // if (this.state.currentView === 'searchList') {
+    //   return(
+    //     <SearchListContainer
+    //     startDate={this.state.startDate}
+    //     endDate={this.state.endDate}
+    //     />
+    //   );
+    // } else {
       return (
-        // <TabBarNavigator>
-        //   <TabBarNavigator.Item title='ICYMI' defaultTab>
-        //     <MapContainer />
-        //   </TabBarNavigator.Item>
-        //
-        //   <TabBarNavigator.Item title='Today'>
-        //     <ListContainer places={this.state.today} title="today"/>
-        //   </TabBarNavigator.Item>
-        //
-        //   <TabBarNavigator.Item title='Yesterday'>
-        //     <ListContainer places={this.state.yesterday} title="yesterday"/>
-        //   </TabBarNavigator.Item>
-        //
-        //   <TabBarNavigator.Item title='Two Days'>
-        //     <ListContainer places={this.state.twoDays} title="2days"/>
-        //   </TabBarNavigator.Item>
-        //
-        //   <TabBarNavigator.Item title='Search'>
-        //     <SearchContainer />
-        //   </TabBarNavigator.Item>
+        <TabBarNavigator>
+          <TabBarNavigator.Item title='ICYMI' defaultTab>
+            <MapContainer />
+          </TabBarNavigator.Item>
+
+          <TabBarNavigator.Item title='Today'>
+            <ListContainer places={this.state.today} title="today"/>
+          </TabBarNavigator.Item>
+
+          <TabBarNavigator.Item title='Yesterday'>
+            <ListContainer places={this.state.yesterday} title="yesterday"/>
+          </TabBarNavigator.Item>
+
+          <TabBarNavigator.Item title='Two Days'>
+            <ListContainer places={this.state.twoDays} title="2days"/>
+          </TabBarNavigator.Item>
+
+          <TabBarNavigator.Item title='Search'>
+            <SearchContainer />
+          </TabBarNavigator.Item>
         //
         // </TabBarNavigator>
-        <View>
-          <SetIntervalContainer
-          startDateChanged={this.startDateChanged.bind(this)}
-          endDateChanged={this.endDateChanged.bind(this)}
-          onPressButton = {this.selectionButtonPressed.bind(this)}
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-          />
-        </View>
+        // <View>
+        //   <SetIntervalContainer
+        //   startDateChanged={this.startDateChanged.bind(this)}
+        //   endDateChanged={this.endDateChanged.bind(this)}
+        //   onPressButton = {this.selectionButtonPressed.bind(this)}
+        //   startDate={this.state.startDate}
+        //   endDate={this.state.endDate}
+        //   />
+        // </View>
 
       );
     }
