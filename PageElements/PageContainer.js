@@ -143,8 +143,8 @@ class InCaseFrontend extends Component {
             <TwoDaysContainer places={this.state.twoDays} title="2days"/>
           </TabBarNavigator.Item>
 
-          <TabBarNavigator.Item title='Search'>
-            <SearchContainer />
+          <TabBarNavigator.Item title='Favorites'>
+            <FavoriteContainer />
           </TabBarNavigator.Item>
 
           </TabBarNavigator>

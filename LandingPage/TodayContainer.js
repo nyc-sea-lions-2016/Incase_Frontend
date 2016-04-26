@@ -61,7 +61,7 @@ class TodayContainer extends Component {
     return (
       <View style={styles.container}>
         <View>
-          <TouchableHighlight onPress={this.pressSearch.bind(this)} date={today} >
+          <TouchableHighlight onPress={this.pressSearch.bind(this)} >
             <Text style={styles.filterText}> Filter Results </Text>
           </TouchableHighlight>
         </View>
