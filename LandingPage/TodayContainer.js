@@ -107,6 +107,7 @@ class TodayContainer extends Component {
     },
 
     button: {
+      alignSelf: "center",
       width: 100,
       height: 20,
       backgroundColor: "yellow",

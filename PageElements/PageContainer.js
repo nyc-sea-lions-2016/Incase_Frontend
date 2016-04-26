@@ -19,11 +19,7 @@ import YesterdayContainer from '../LandingPage/YesterdayContainer';
 import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
-<<<<<<< HEAD
 import SearchContainer from '../LandingPage/SearchContainer'
-=======
-import SearchContainer from '../LandingPage/SearchContainer';
->>>>>>> DEVELOPMENT
 import PlaceContainer from '../PlacePage/PlaceContainer'
 
 
