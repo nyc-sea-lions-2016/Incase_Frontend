@@ -9,6 +9,7 @@ import React, {
   View
 } from 'react-native';
 
+
 import SearchListContainer from '../SearchListPage/SearchListContainer';
 import FavoriteContainer from '../LandingPage/FavoriteContainer';
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
@@ -18,16 +19,15 @@ import YesterdayContainer from '../LandingPage/YesterdayContainer';
 import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
+<<<<<<< HEAD
 import SearchContainer from '../LandingPage/SearchContainer'
+=======
+import SearchContainer from '../LandingPage/SearchContainer';
+>>>>>>> DEVELOPMENT
 import PlaceContainer from '../PlacePage/PlaceContainer'
 
+
 var BackgroundGeolocation = require('react-native-background-geolocation');
-
-// FAV_API_URL = 'http://localhost:3000/places/favorites'
-// TODAY_API_URL = 'http://localhost:3000/places/today'
-// YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
-// TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
-
 
 
 var new_location = BackgroundGeolocation
@@ -147,8 +147,8 @@ class InCaseFrontend extends Component {
             <TwoDaysContainer places={this.state.twoDays} title="2days" navigator={navigator}/>
           </TabBarNavigator.Item>
 
-          <TabBarNavigator.Item title='Search'>
-            <SearchContainer />
+          <TabBarNavigator.Item title='Favorites'>
+            <FavoriteContainer />
           </TabBarNavigator.Item>
 
           </TabBarNavigator>
