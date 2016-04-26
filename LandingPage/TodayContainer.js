@@ -107,10 +107,14 @@ class TodayContainer extends Component {
     },
 
     button: {
+      paddingTop: 2,
+      marginTop: 10,
+      borderRadius: 5,
+      alignItems: "center",
       alignSelf: "center",
-      width: 100,
+      width: 120,
       height: 20,
-      backgroundColor: "yellow",
+      backgroundColor: "#35d37c",
     }
   })
 
