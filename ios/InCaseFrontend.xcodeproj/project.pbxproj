@@ -460,6 +460,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 3U8K8LH7KN;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -780,10 +781,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/apprentice/Documents/FacebookSDK,
-					"/Users/apprentice/Desktop/Incase_Frontend/node_modules/react-native-background-geolocation/**",
+					"/Users/apprentice/Desktop/ICYMI_frontend/node_modules/react-native-background-geolocation/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -797,6 +800,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = InCaseFrontend;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -804,9 +808,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/apprentice/Documents/FacebookSDK,
-					"/Users/apprentice/Desktop/Incase_Frontend/node_modules/react-native-background-geolocation/**",
+					"/Users/apprentice/Desktop/ICYMI_frontend/node_modules/react-native-background-geolocation/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -820,6 +826,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = InCaseFrontend;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -18,15 +18,22 @@ import YesterdayContainer from '../LandingPage/YesterdayContainer';
 import TwoDaysContainer from '../LandingPage/TwoDaysContainer';
 import MapContainer from '../Maps/MapContainer';
 import TabBarNavigator from 'react-native-tabbar-navigator';
+<<<<<<< HEAD
 import SearchContainer from '../LandingPage/SearchContainer';
 
+=======
+import SearchContainer from '../LandingPage/SearchContainer'
+import PlaceContainer from '../PlacePage/PlaceContainer'
+>>>>>>> build-place-element
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
 
-FAV_API_URL = 'http://localhost:3000/places/favorites'
-TODAY_API_URL = 'http://localhost:3000/places/today'
-YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
-TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
+// FAV_API_URL = 'http://localhost:3000/places/favorites'
+// TODAY_API_URL = 'http://localhost:3000/places/today'
+// YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
+// TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
+
+
 
 var new_location = BackgroundGeolocation
 
@@ -40,6 +47,8 @@ class InCaseFrontend extends Component {
         yesterday: [],
         twoDays: []
       }
+
+
       BackgroundGeolocation.configure({
             desiredAccuracy: 0,
             stationaryRadius: 5,
@@ -85,21 +94,21 @@ class InCaseFrontend extends Component {
       this.setState({message: JSON.stringify(location)});
       console.log('- [js]motionchanged: ', JSON.stringify(location));
       var latlong = location
-  //     fetch('http://localhost:3000/coordinates', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         loc: latlong,
-  //         word: "ioehoihfewresponse"
-  //       })
-  //     })
-  //   .then(latlong)
-  //   .then(function(response) {
-  //     console.log('request succeeded with json response', response)
-  //   }).catch(function(error) {
-  //     console.log('request failed', error)
-  //   })
-  //
-   }.bind(this));
+
+      fetch('https://boiling-refuge-94422.herokuapp.com/places', {
+        method: 'POST',
+        body: JSON.stringify({
+          latlong: location
+        })
+      })
+    .then(function(response) {
+
+      console.log('request succeeded with json response', response)
+    }).catch(function(error) {
+      console.log('request failed', error)
+    })
+
+  }.bind(this));
 
   BackgroundGeolocation.start(function() {
     console.log('- [js] BackgroundGeolocation started successfully');
@@ -108,20 +117,19 @@ class InCaseFrontend extends Component {
     BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
-  //     fetch('http://localhost:3000/coordinates', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         latlong: location
-  //       }),
-  //
-  //     }).then((responseText) => {
-  // console.log(responseText);
-  // })
 
-  // , function(error) {
-  //     alert("Location error: " + error);
-  //         }
-            });
+      fetch('https://boiling-refuge-94422.herokuapp.com/places', {
+        method: 'POST',
+        body: JSON.stringify({
+          latlong: location
+        }),
+
+      }).then((responseText) => {
+  console.log(responseText);
+  })
+    }, function(error) {
+      alert("Location error: " + error);
+          });
          });
   }
 
@@ -152,7 +160,6 @@ class InCaseFrontend extends Component {
       );
     }
   }
-
 
 const styles = StyleSheet.create({
   container: {
