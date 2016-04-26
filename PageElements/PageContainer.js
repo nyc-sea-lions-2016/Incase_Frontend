@@ -146,8 +146,7 @@ class InCaseFrontend extends Component {
           <TabBarNavigator.Item title='Favorites'>
             <FavoriteContainer />
           </TabBarNavigator.Item>
-
-          </TabBarNavigator>
+        </TabBarNavigator>
       );
     }
   }

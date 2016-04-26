@@ -26,7 +26,7 @@ class TodayContainer extends Component {
   }
 
   componentDidMount() {
-      this.fetchTodayData();
+    this.fetchTodayData();
   }
 
   fetchTodayData() {
@@ -35,6 +35,7 @@ class TodayContainer extends Component {
     .then((responseData) => {
       console.log('responseData', responseData);
       this.setState({
+        todayData: responseData,
         today: this.ds.cloneWithRows(responseData)
       });
     })
@@ -42,22 +43,22 @@ class TodayContainer extends Component {
   }
 
   pressSearch(){
+    console.log(this.state.todayData)
     this.props.navigator.push({
       title: 'Search',
-      component: <SearchContainer/>
+      component: <SearchContainer
+      todayData={this.state.todayData}
+      />
     })
   }
 
   renderOne(place) {
     return(
-        <ItemContainer key={place.id} place={place} />
+      <ItemContainer key={place.id} place={place} />
     )
   }
 
   render() {
-    // console.log('props', this.props)
-
-
     return (
       <View style={styles.container}>
         <View>

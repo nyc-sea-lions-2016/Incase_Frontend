@@ -11,19 +11,10 @@ import React, {
     render() {
       return (
         <View style={styles.container}>
-          <View>
-          <Text>Name</Text>
+          <Text>Category | Business Type</Text>
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           />
-          </View>
-
-          <View>
-          <Text>Location</Text>
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          />
-          </View>
         </View>
       )
     }
