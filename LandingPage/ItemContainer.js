@@ -26,7 +26,7 @@ import React, {
                 <Text style={[styles.mainChild, styles.mainAddress]}>{this.props.place.address}</Text>
               </View>
               <View>
-                <Text style={styles.mainChild}>Category</Text>
+                <Text style={styles.mainChild}>#Category</Text>
               </View>
             </View>
           )
@@ -43,10 +43,11 @@ import React, {
         fontFamily: 'Helvetica Neue',
         borderBottomColor: '#ddd',
         borderBottomWidth: StyleSheet.hairlineWidth,
+        backgroundColor: '#fff'
 
     },
     mainName:{
-      fontSize:16,
+      fontSize:14,
       margin:3,
       paddingBottom: 10,
       fontWeight: 'bold',
@@ -55,12 +56,12 @@ import React, {
     mainChild:{
       flex: 1,
       textAlign: 'center',
-      fontSize: 20,
+      fontSize: 16,
       fontFamily: 'Helvetica Neue',
     },
 
     mainAddress:{
-      fontSize: 16,
+      fontSize: 13,
       fontFamily: 'Helvetica Neue',
       margin:3,
       paddingBottom: 10,

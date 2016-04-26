@@ -92,7 +92,7 @@ class TodayContainer extends Component {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#f9f9f9',
     },
     buttonContainer:{
       marginTop:40,
