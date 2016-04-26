@@ -61,9 +61,10 @@ class TodayContainer extends Component {
   renderOne(place) {
     return(
       <View>
-        <ItemContainer key={place.id} place={place} />
-        <TouchableHighlight style={styles.button} onPress={this.pressItem.bind(this, place.id, place)} >
-        <Text>Select Location</Text>
+        <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)} >
+          <View>
+            <ItemContainer style={styles.button} key={place.id} place={place} />
+          </View>
         </TouchableHighlight>
       </View>
     )
