@@ -56,6 +56,11 @@ class InCaseFrontend extends Component {
             activityRecognitionInterval: 10000,
             stopDetectionDelay: 1,  // <--  minutes to delay after motion stops before engaging stop-detection system
             stopTimeout: 2, // 2 minutes
+            function(state){
+              if(!state.enabled){
+                bgGeo.start();
+              }
+            }
 
             // HTTP / SQLite config
       /*
