@@ -9,13 +9,14 @@ import React, {
   View,
 } from 'react-native';
 
+import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
 //const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
 
-const API_URL = 'http://localhost:3000/places/yesterday';
-
+const API_URL = 'http://localhost:3000/places/today';
+const DEFAULT_NUM_ITEMS = 10;
 
 class YesterdayContainer extends Component {
   constructor(props) {
@@ -23,12 +24,22 @@ class YesterdayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       yesterday: this.ds.cloneWithRows([]),
-      yesterdayData: []
+      numItems: DEFAULT_NUM_ITEMS,
+      yesterdayData: [],
+      loaded: false,
     };
   }
 
   componentDidMount() {
       this.fetchYesterdayData();
+  }
+
+  endReached() {
+    var num = this.state.numItems + 10;
+    this.setState({
+      numItems: num,
+      today: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
+    });
   }
 
   fetchYesterdayData() {
@@ -37,7 +48,8 @@ class YesterdayContainer extends Component {
     .then((responseData) => {
       this.setState({
         yesterday: this.ds.cloneWithRows(responseData),
-        yesterdayData: responseData
+        yesterdayData: responseData,
+        loaded: true,
       });
     })
     .done();
@@ -51,6 +63,16 @@ class YesterdayContainer extends Component {
       navigator={this.props.navigator}
       />
     })
+  }
+
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          Loading results...
+        </Text>
+      </View>
+    );
   }
 
   pressItem(id, place) {
@@ -73,6 +95,10 @@ class YesterdayContainer extends Component {
   }
 
   render() {
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
+
     if(this.state.yesterdayData.length == 0){
       return(
         <View style={styles.emptyContainer}>
