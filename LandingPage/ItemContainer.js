@@ -17,6 +17,15 @@ import React, {
     }
 
     render(){
+      if(this.props.place.categories != []){
+        var catNodes = this.props.place.categories.map(function(category){
+          return(
+              <Text key={category.id} style={styles.mainCategory}> {category.category} </Text>
+          )
+        })
+      }else{
+        catNodes = <Text>No Defined Categories for this Location</Text>
+      }
           return (
             <View style={styles.mainParent}>
               <View>
@@ -26,7 +35,7 @@ import React, {
                 <Text style={[styles.mainChild, styles.mainAddress]}>{this.props.place.address}</Text>
               </View>
               <View>
-                <Text style={styles.mainChild}>#Category</Text>
+                <Text>{catNodes}</Text>
               </View>
             </View>
           )
@@ -40,7 +49,7 @@ import React, {
         flexDirection: 'column',
         alignItems: 'center',
         marginTop: 15,
-        fontFamily: 'Helvetica Neue',
+        // fontFamily: 'Helvetica Neue',
         borderBottomColor: '#ddd',
         borderBottomWidth: StyleSheet.hairlineWidth,
         backgroundColor: '#fff'
@@ -57,12 +66,18 @@ import React, {
       flex: 1,
       textAlign: 'center',
       fontSize: 16,
-      fontFamily: 'Helvetica Neue',
+      //fontFamily: 'Helvetica Neue',
     },
 
     mainAddress:{
       fontSize: 13,
-      fontFamily: 'Helvetica Neue',
+      // fontFamily: 'Helvetica Neue',
+      margin:3,
+      // paddingBottom: 10,
+    },
+    mainCategory:{
+      fontSize: 11,
+      // fontFamily: 'Helvetica Neue',
       margin:3,
       paddingBottom: 10,
     }

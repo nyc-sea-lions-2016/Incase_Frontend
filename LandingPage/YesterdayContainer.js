@@ -80,6 +80,7 @@ class YesterdayContainer extends Component {
             </TouchableHighlight>
           </View>
           <ListView
+              enableEmptySections={true}
              dataSource={this.state.yesterday}
              renderRow={this.renderOne}
           />
