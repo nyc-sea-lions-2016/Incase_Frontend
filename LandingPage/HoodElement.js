@@ -78,7 +78,7 @@ import React, {
 
     header: {
       fontSize: 28,
-      marginTop: 70,
+      marginTop: 180,
       marginBottom: 50,
       color: '#FFFFFF'
     },
