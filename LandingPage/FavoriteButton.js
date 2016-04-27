@@ -22,8 +22,6 @@ import React, {
           method: "PUT"
         }
       )
-        .then((response) => response.json())
-        .done();
     }
 
     render(){
