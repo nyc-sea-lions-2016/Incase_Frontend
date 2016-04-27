@@ -24,6 +24,7 @@ import SearchListContainer from '../SearchListPage/SearchListContainer'
         checkTime(ele){
           var ele_date = ele.created_at
           if(this.props.day == 'today'){
+
             return( start < ele_date && end > ele_date)
 
           }else if (this.props.day == 'yesterday') {
