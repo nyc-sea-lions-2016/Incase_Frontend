@@ -62,8 +62,9 @@ class YesterdayContainer extends Component {
   render() {
     if(this.state.yesterdayData.length == 0){
       return(
-        <View style={styles.container}>
-          <Text>Keep on exploring and build up this page!</Text>
+        <View style={styles.emptyContainer}>
+          <Text style={styles.bold}>Nothing to see here</Text>
+          <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
         </View>
       )
     } else {
@@ -95,6 +96,19 @@ class YesterdayContainer extends Component {
 }
 
   var styles = StyleSheet.create({
+    emptyContainer:{
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
+    },
+    normal:{
+      fontSize:15,
+    },
+    bold:{
+      fontWeight: 'bold',
+      fontSize:16,
+    },
     container: {
       flex: 1,
       justifyContent: 'center',
