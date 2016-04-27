@@ -15,7 +15,7 @@ import SearchContainer from './SearchContainer'
 //const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
 
 const API_URL = 'http://localhost:3000/places/yesterday';
-
+const DEFAULT_NUM_ITEMS = 10;
 
 class YesterdayContainer extends Component {
   constructor(props) {

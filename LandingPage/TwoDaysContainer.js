@@ -15,7 +15,7 @@ import SearchContainer from './SearchContainer'
 
 // const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
 const API_URL ='http://localhost:3000/places/two_days';
-
+const DEFAULT_NUM_ITEMS = 10;
 
 class TwoDaysContainer extends Component {
   constructor(props) {
@@ -23,13 +23,24 @@ class TwoDaysContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       twoDays: this.ds.cloneWithRows([]),
-      twoDaysData: []
+      twoDaysData: [],
+      numItems: DEFAULT_NUM_ITEMS,
+      loaded: false,
     };
   }
 
   componentDidMount() {
     this.fetchTwoDaysData();
   }
+
+  endReached() {
+    var num = this.state.numItems + 10;``
+    this.setState({
+      numItems: num,
+      twoDays: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
+    });
+  }
+
 
   fetchTwoDaysData() {
     fetch(API_URL)
@@ -38,7 +49,8 @@ class TwoDaysContainer extends Component {
       console.log('responseData', responseData);
       this.setState({
         twoDaysData: responseData,
-        twoDays: this.ds.cloneWithRows([responseData])
+        twoDays: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
+        loaded: true,
       });
     })
     .done();
@@ -55,6 +67,17 @@ class TwoDaysContainer extends Component {
     })
   }
 
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+      <Text>
+      Loading results...
+      </Text>
+      </View>
+    );
+  }
+
+
   renderOne(place) {
     return (
       <ItemContainer key={place.id} place={place} />
@@ -62,6 +85,10 @@ class TwoDaysContainer extends Component {
   }
 
   render() {
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
+
     if(this.state.twoDaysData.length == 0){
       return(
         <View style={styles.emptyContainer}>
@@ -72,13 +99,9 @@ class TwoDaysContainer extends Component {
     } else {
       return (
         <View style={styles.container}>
-
-
         <View style={styles.buttonContainer}>
         <TouchableHighlight
         onPress={this.pressSearch.bind(this)}
-        onPressIn={this._onPressIn}
-        onPressOut={this._onPressOut}
         style={styles.touchable}>
         <View style={styles.button}>
         <Text style={styles.welcome}> Filter Results </Text>
@@ -87,8 +110,10 @@ class TwoDaysContainer extends Component {
         </View>
         <ListView
         dataSource={this.state.twoDays}
-        renderRow={this.renderOne}
-        enableEmptySections={true}
+        onEndReachedThreshold={10}
+        onEndReached={this.endReached.bind(this)}
+        enableEmptySections={true} // This will stop the warning for sempty sections headers
+        renderRow={this.renderOne.bind(this)}
         />
         </View>
       );
