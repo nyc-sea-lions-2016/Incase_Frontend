@@ -17,8 +17,7 @@ import React, {
       return (
         <View style={styles.container}>
           <PlaceElement
-          name={this.props.name}
-          address={this.props.address}
+            place={this.props.place}
           />
         </View>
       );

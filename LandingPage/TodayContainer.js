@@ -15,6 +15,8 @@ import SearchContainer from './SearchContainer';
 
 
 const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
+//'http://localhost:3000/places/today';
+
 
 
 class TodayContainer extends Component {
@@ -34,7 +36,7 @@ class TodayContainer extends Component {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      console.log('responseData', responseData);
+      // console.log('responseData', responseData);
       this.setState({
         today: this.ds.cloneWithRows(responseData)
       });
@@ -51,11 +53,10 @@ class TodayContainer extends Component {
 
   pressItem(id, place) {
       this.props.navigator.push({
-      component: <PlaceContainer
-      name={place.name}
-      address={place.address}
-      />
-    })
+        component: <PlaceContainer
+          place={place}
+          />
+      })
   }
 
   renderOne(place) {
