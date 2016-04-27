@@ -10,6 +10,7 @@ import React, {
   View
 } from 'react-native';
 
+
 import SearchListContainer from '../SearchListPage/SearchListContainer';
 import FavoriteContainer from '../LandingPage/FavoriteContainer';
 import SetIntervalContainer from '../SetIntervalPage/SetIntervalContainer';
@@ -24,12 +25,6 @@ import PlaceContainer from '../PlacePage/PlaceContainer'
 
 
 var BackgroundGeolocation = require('react-native-background-geolocation');
-
-// FAV_API_URL = 'http://localhost:3000/places/favorites'
-// TODAY_API_URL = 'http://localhost:3000/places/today'
-// YESTERDAY_API_URL = 'http://localhost:3000/places/yesterday'
-// TWO_DAYS_API_URL = 'http://localhost:3000/places/two_days'
-
 
 const menuIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAACTpAAAk6QFQJOf4AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAADNQTFRF////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8YBMDAAAABB0Uk5TAAIbOj9CWHCSk6iv0OLr+siXxmsAAAB3SURBVFjD7ZdBEoAgDAOjqIAK9P+v9Q8sBw/ZOxkGmk4imQWkek9Tk5QDkfUygVcBsUCEOjvfVZhA0V7AHXrZbWXzF7bzmubcpKMRL7VDD3Pjo8EEhpdqBH9E/I14kPAoG/MPcMDAEQeHLC/VBQK4cODKg0uX4XzbbX55M39OswAAAABJRU5ErkJggg==';
 const calendarImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAADjkAAA45AHsVibFAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAadQTFRF////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAIAAAIAAAHAAAHAAAHAAAGAAAGBgAGBQAFBQAFBQAFBQAFBQAFBAAEBAAEBAAEBAAEBAAEBAAEBAAEBAAEBAAEBAAEBAAEBAAEAwADAwADAwADAwADAwADAwADAwADAwADAwADAwADAwADAwAFAgAFAgAFAgAFAgAFAgAEAgAEAgAEAgAEAgAEBAIEBAIEBAIEBAIEBAIEBAIEBAIEBAIEBAIEAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIFAwIFAwIFAwIFAwIFAwIFAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAgEEAgEEAgEEBAEEBAEEAwEDAwEFAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEEAwEE7KCv4wAAAIx0Uk5TAAECAwQFBgcICQoLDQ4PEBITFBUWGBkaHB8gISIjJCYoKi4vMDE1Nzk6Oz4/QEFCREVHSEpNTk9QUVJZWlteYWlucHF0eHt+f4CBgoOFhoiJkZOUlZeYmZucnaChoqOmqa+wsrO0tba3uLu8vb7HycrMzc/Q2Nnd4uPl6Onr7O3u8fP09fb4+fv8/f6+bMyNAAACeElEQVRYw+3W/VcMURzH8XdSG8km2QoptZ4SIQ8JaUNPKykqSWKX0ipCm7A9idTu94/2w8zszDYztXf3B52Oz09z53u/rzPnzJ07F6zxRdZFYh24pCMmsh7x4Z4eERFJVDhXKxIiItKzBTAoIiLid676tergDgQKvVpyTKDAa4vHBHL0W4UAVL2NawU5aAJdYssDEzii34q/qQLGklO8qoDIGLCaDbAKrGUDrO0+YEC7qHUGarWLgS2AZhERmfc4A555ERFpdgV8UNfe2dlaBo/tQDeUtXZ1tdfBURfgurm6p+3AhFltcgFm8owZDXE7sFFvVD2fXAB5VwlATsuiOGThjtZ/IiJugMSj4VBoeklcsjgVCoWj1qfbDCjnP7CDgKA3owSTgJ+M4t+VQNUFPeUA1BjDEoASY1TjDgwar6cNgElj2JSyjUz+Q2AhkQ1w9eEBiq/1/coY0FP+YiI7AEozBvJrjlmhFlWgMioSuZGbBMJ2oH1Wj7aDPzWGFwF4JSIiXxv0yYfXFJfy/g3tcRJ9+wB4KYrAueQ2Ej0P3BJVoM2yE80F34syML75V/fFDjT16qkD4K4xPAnkr6b2f64YUXuNgdT+0QIUgEYoXra2rwdAARgChq39sXpUgLE9cN/aP6NtWOkC4b1wO2HpH/KgAkx5oOGP2f6t0ZidHvChEGpXzP7hIpSAWS8c/55sn79iWVkjaSykR6VwJpbsf1bE1oBTbv5OfgCXUyvpAfeMQ9lyWx7qQG6/sfT6D9mKo9sDPuPIO17tUDW/xrMu/Zd+aO1LgWp7TgX1/eCnyFyvY57Htz3irACvszkjPQFOxzLtjn/sLuUvPcrCUot1SioAAAAASUVORK5CYII=';
@@ -140,7 +135,6 @@ class InCaseFrontend extends Component {
           <TabBarNavigator.Item title='ICYMI' icon={{uri: worldImg, scale:2}}>
             <MapContainer />
           </TabBarNavigator.Item>
-
           <TabBarNavigator.Item title='Today' icon={{uri: menuIcon, scale:2}}>
             <TodayContainer places={this.state.today} title="today"/>
           </TabBarNavigator.Item>
@@ -154,7 +148,7 @@ class InCaseFrontend extends Component {
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Favorites' icon={{uri: favoriteImg, scale:2}}>
-            <SearchContainer />
+            <FavoriteContainer />
           </TabBarNavigator.Item>
 
           </TabBarNavigator>

@@ -16,6 +16,7 @@ import SearchContainer from './SearchContainer'
 
 const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/today';
 
+
 class TodayContainer extends Component {
   constructor(props) {
     super(props);
@@ -61,9 +62,16 @@ class TodayContainer extends Component {
   }
 
   render() {
+<<<<<<< HEAD
+=======
+    // console.log('props', this.props)
+
+
+>>>>>>> 6da7a5afaacf56b01d06196dccbc0df595a41cbe
     return (
 
       <View style={styles.container}>
+<<<<<<< HEAD
 
         <View style={styles.buttonContainer}>
           <TouchableHighlight
@@ -72,6 +80,11 @@ class TodayContainer extends Component {
             <View style={styles.button}>
               <Text style={styles.welcome}> Filter Results </Text>
             </View>
+=======
+        <View>
+          <TouchableHighlight onPress={this.pressSearch.bind(this)} >
+            <Text style={styles.filterText}> Filter Results </Text>
+>>>>>>> 6da7a5afaacf56b01d06196dccbc0df595a41cbe
           </TouchableHighlight>
         </View>
         <ListView

@@ -12,7 +12,9 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/yesterday';
+
+const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
+
 
 class YesterdayContainer extends Component {
   constructor(props) {
@@ -62,6 +64,7 @@ class YesterdayContainer extends Component {
     } else {
       return (
         <View style={styles.container}>
+
 
           <View style={styles.buttonContainer}>
             <TouchableHighlight

@@ -12,7 +12,8 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/two_days';
+const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
+
 
 class TwoDaysContainer extends Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class TwoDaysContainer extends Component {
     } else {
       return (
         <View style={styles.container}>
+<<<<<<< HEAD
 
           <View style={styles.buttonContainer}>
             <TouchableHighlight
@@ -73,6 +75,11 @@ class TwoDaysContainer extends Component {
               <View style={styles.button}>
                 <Text style={styles.welcome}> Filter Results </Text>
               </View>
+=======
+          <View>
+            <TouchableHighlight onPress={this.pressSearch.bind(this)} >
+              <Text style={styles.filterText}> Filter Results </Text>
+>>>>>>> 6da7a5afaacf56b01d06196dccbc0df595a41cbe
             </TouchableHighlight>
           </View>
           <ListView
