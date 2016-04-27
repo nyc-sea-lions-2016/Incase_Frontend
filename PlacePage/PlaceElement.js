@@ -33,7 +33,7 @@ import React, {
             <View style={styles.detailsContainer}>
 
             <TouchableHighlight>
-              <FavoriteButton favorite={this.props.place.favorite}/>
+              <FavoriteButton favorite={this.props.place.favorite} id={this.props.place.id}/>
             </TouchableHighlight>
 
               <View style={styles.detailsContainer}>
