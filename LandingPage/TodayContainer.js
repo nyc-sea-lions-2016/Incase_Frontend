@@ -148,18 +148,18 @@ class TodayContainer extends Component {
       fontSize: 18,
       textAlign: 'center',
       margin: 10,
-      color: '#FFFFFF'
-
+      color: '#FFFFFF',
     },
+
     button: {
       backgroundColor: '#35d37c',
       height: 40,
       width: 200,
       borderRadius:10,
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     touchable: {
-      borderRadius: 10
+      borderRadius: 10,
     },
   })
 

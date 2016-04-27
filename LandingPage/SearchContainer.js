@@ -32,10 +32,10 @@ class SearchContainer extends Component {
 
 var styles = StyleSheet.create({
   container: {
-    top: 25,
     justifyContent: "center",
     flex: 1,
     alignItems: "center",
+    backgroundColor: '#2199e8',
   }
 })
 
