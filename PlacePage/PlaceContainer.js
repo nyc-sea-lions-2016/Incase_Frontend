@@ -18,6 +18,7 @@ import React, {
         <View style={styles.container}>
           <PlaceElement
             place={this.props.place}
+            navigator={this.props.navigator}
           />
         </View>
       );

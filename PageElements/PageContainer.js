@@ -157,7 +157,6 @@ class InCaseFrontend extends Component {
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Favorites' icon={{uri: favoriteImg, scale:2} }>
-
             <FavoriteContainer places={this.state.favorites} navigator={navigator}/>
           </TabBarNavigator.Item>
         </TabBarNavigator>

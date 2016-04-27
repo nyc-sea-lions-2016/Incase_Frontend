@@ -4,30 +4,39 @@ import React, {
   Component,
   Text,
   View,
+  TouchableHighlight,
   Image
   } from 'react-native';
 
-  import FavoriteButton from '../LandingPage/Favorite_Button'
+  import FavoriteButton from '../LandingPage/FavoriteButton'
 
   class PlaceElement extends Component {
     constructor(props) {
       super(props);
+      this.state = {
+        fav: ""
+      }
     }
 
-
-    pressFavorite(){
-      fetch('http://localhost:3000/places/'+this.props.id +'/edit')
-        .then((response) => response.json())
-
-        .done();
+    setNativeProps (nativeProps) {
+      this._root.setNativeProps(nativeProps);
     }
 
+    favoriteButtonClicked(){
+      console.log("hit the btutrgniorew")
+      console.log(this)
+      this.setState({
+        fav: this.props.favorite
+      })
+    }
 
     render() {
+      console.log("rerendering ")
       var website = 'No Website for This Location'
       if(this.props.place.website){
         website = this.props.place.website
       }
+
       if(this.props.place.categories != []){
         var catNodes = this.props.place.categories.map(function(category){
           return(
@@ -35,15 +44,21 @@ import React, {
           )
         })
       }
+
       return (
         <View style={styles.container}>
           <Image
             style={styles.placePicture}
             source={require('../images/user_icon.png')}
           />
-          <FavoriteButton onPress={this.pressFavorite} favorite={this.props.place.favorite}/>
             <View style={styles.detailsContainer}>
+
+            <TouchableHighlight onPress={this.favoriteButtonClicked.bind(this)}>
+              <FavoriteButton favorite={this.props.place.favorite} id={this.props.place.id} navigator={this.props.navigator} favoriteButtonClicked={this.favoriteButtonClicked.bind(this)}/>
+            </TouchableHighlight>
+
               <View style={styles.detailsContainer}>
+
               <Text style={styles.placeName}>{this.props.place.name}</Text>
             </View>
 
@@ -59,15 +74,17 @@ import React, {
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Phone  </Text>
-                <Text style={styles.details}> numbaaaahs </Text>
+                <Text style={styles.details}> phone number placehoder </Text>
               </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Website </Text>
                 <Text style={styles.details}> Website </Text>
               </View>
+
             </View>
-          </View>
+
+        </View>
       );
     }
   }
