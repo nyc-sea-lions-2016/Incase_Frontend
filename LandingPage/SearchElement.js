@@ -8,24 +8,28 @@ import React, {
   View
   } from 'react-native';
 
-import HoodIndex from './HoodIndex'
-import TimeElement from './TimeElement'
+import HoodElement from './HoodElement'
+import StartTimeElement from './StartTimeElement'
 
   class SearchElement extends Component {
     constructor(props){
-
       super(props);
     }
+
     pressHood(){
       this.props.navigator.push({
-        title: 'Neighborhood Search',
-        component: <HoodIndex/>
+        title: 'Category Search',
+        component: <HoodElement todayData={this.props.todayData} navigator={this.props.navigator}/>
       })
     }
     pressTime(){
       this.props.navigator.push({
-        title: 'Time Search',
-        component: <TimeElement/>
+        title: 'Start Time Search',
+        component: <StartTimeElement
+          todayData={this.props.todayData}
+          navigator={this.props.navigator}
+          day={this.props.day}
+          />
       })
 
     }
@@ -33,14 +37,13 @@ import TimeElement from './TimeElement'
       return (
         <View style={styles.mainContainer}>
           <TouchableHighlight onPress={this.pressHood.bind(this)}>
-            <Text style={styles.NeighborhoodText}>Neighborhood</Text>
+            <Text style={styles.NeighborhoodText}>Category</Text>
           </TouchableHighlight>
 
           <TouchableHighlight onPress={this.pressTime.bind(this)}>
             <Text style={styles.TimeText}>Time</Text>
           </TouchableHighlight>
         </View>
-
       )
     }
   }

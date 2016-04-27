@@ -12,29 +12,46 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/favorites';
+
+const API_URL = 'http://localhost:3000/places/favorites';
+// const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/favorites';
+const DEFAULT_NUM_ITEMS = 10;
 
 class FavoriteContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { favorites: []}
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      favorites:this.ds.cloneWithRows([]),
+      numItems: DEFAULT_NUM_ITEMS,
+      loaded: false,
     }
+  }
 
-    componentDidMount() {
-        this.fetchFavoriteData();
-    }
+  componentDidMount() {
+    this.fetchFavoriteData();
+  }
 
-    fetchFavoriteData() {
-      fetch(API_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log('responseData', responseData);
-        this.setState({
-          favorites: responseData
-        });
-      })
-      .done();
-    }
+  endReached() {
+    var num = this.state.numItems + 10;
+    this.setState({
+      numItems: num,
+      favorites: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
+    });
+  }
+
+  fetchFavoriteData() {
+    fetch(API_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        favoritesData: responseData,
+        favorites: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
+        loaded: true,
+      });
+    })
+    .done();
+  }
 
   pressSearch(){
     this.props.navigator.push({
@@ -43,42 +60,102 @@ class FavoriteContainer extends Component {
     })
   }
 
-  render() {
-    var listNodes = this.state.favorites.map(function(place){
-      return(
-          <ItemContainer key={place.id} place={place} />
-      )
-    })
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+      <Text>
+      Loading results...
+      </Text>
+      </View>
+    );
+  }
 
-    if(this.state.favorites.length == 0){
+  renderOne(place) {
+    return (
+      <ItemContainer key={place.id} place={place} />
+    )
+  }
+
+  render() {
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
+
+    if(this.state.favoritesData.length == 0){
       return(
-        <View style={styles.container}>
-          <Text>Add some places you would like to explore to build up this page!</Text>
+        <View style={styles.emptyContainer}>
+        <Text style={styles.bold}>Nothing to see here</Text>
+        <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
         </View>
       )
     } else {
       return (
         <View style={styles.container}>
-          <View>
-            <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-              <Text> Click me to filter your results </Text>
-            </TouchableHighlight>
-          </View>
-          {listNodes}
+        <View style={styles.buttonContainer}>
+        <TouchableHighlight
+        onPress={this.pressSearch.bind(this)}
+        style={styles.touchable}>
+        <View style={styles.button}>
+        <Text style={styles.welcome}> Filter Results </Text>
+        </View>
+        </TouchableHighlight>
+        </View>
+        <ListView
+        dataSource={this.state.favorites}
+        onEndReachedThreshold={10}
+        onEndReached={this.endReached.bind(this)}
+        enableEmptySections={true} // This will stop the warning for sempty sections headers
+        renderRow={this.renderOne.bind(this)}
+        />
         </View>
       );
     }
   }
 }
 
-  var styles = StyleSheet.create({
-    container: {
-      top: 25,
-      flex: 1,
-      paddingTop:40,
-      backgroundColor: "#409ce9",
-    }
-  })
+var styles = StyleSheet.create({
+  emptyContainer:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  normal:{
+    fontSize:15,
+  },
+  bold:{
+    fontWeight: 'bold',
+    fontSize:16,
+  },
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  buttonContainer:{
+    marginTop:40,
+    marginBottom:15,
+  },
+  welcome: {
+    fontSize: 18,
+    textAlign: 'center',
+    margin: 10,
+    color: '#FFFFFF'
+
+  },
+  button: {
+    backgroundColor: '#35d37c',
+    height: 40,
+    width: 200,
+    borderRadius:10,
+    justifyContent: 'center'
+  },
+  touchable: {
+    borderRadius: 10
+  },
+})
 
 
 module.exports = FavoriteContainer

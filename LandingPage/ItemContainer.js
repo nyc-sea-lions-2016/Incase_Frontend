@@ -7,54 +7,93 @@ import React, {
   View
 } from 'react-native';
 
-  class ItemContainer extends Component {
-    constructor(props){
-      super(props);
+class ItemContainer extends Component {
+  constructor(props){
+    super(props);
+  }
+
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({place: nextProps})
+  }
+
+  render(){
+    if(this.props.place.categories !== []){
+      var catNodes = this.props.place.categories.map(function(category){
+        return(
+          <Text key={category.id} style={[itemStyle.mainType]}> {category.category} </Text>
+        )
+      })
     }
-
-    componentWillReceiveProps(nextProps) {
-      this.setState({place: nextProps})
-    }
-
-    render(){
-          return (
-            <View style={styles.mainContainer}>
-              <View>
-                <Text style={styles.BoxTitleText}>{this.props.place.name}</Text>
-              </View>
-              <View>
-                <Text style={styles.BoxBodyText}>{this.props.place.address}</Text>
-              </View>
-            </View>
-          )
-      }
-    }
+    return (
+      <View style={itemStyle.mainParent} ref={component => this._root = component}>
+      <View>
+      <Text style={[itemStyle.mainChild, itemStyle.mainName]}>{this.props.place.name}</Text>
+      </View>
+      <View>
+      <Text style={[itemStyle.mainChild, itemStyle.mainType]}>{this.props.place.address}</Text>
+      </View>
+      <View>
+      <Text style={[itemStyle.mainChild, itemStyle.mainName]}>{catNodes}</Text>
+      </View>
+      </View>
+    )
+  }
+}
 
 
-  const styles = StyleSheet.create({
-    mainContainer: {
-      alignSelf: "center",
-      width:300,
-      borderWidth: 1,
-      marginTop: 60,
-      paddingTop:10,
-      paddingBottom:20,
-      paddingLeft:20,
-      paddingRight:20,
-      flex:1,
-      backgroundColor: 'orange',
-    },
+const itemStyle = StyleSheet.create({
+  mainParent: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderBottomColor: '#ddd',
+    paddingLeft: 50,
+    paddingRight: 50,
+    paddingTop:15,
+    paddingBottom:15,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    backgroundColor: '#fff'
 
-    BoxTitleText:{
-    fontWeight:'bold',
-    fontSize:20,
-    marginBottom:10
-    },
+  },
+  mainName:{
+    fontSize:14,
+    margin:3,
+    paddingBottom: 10,
+    fontWeight: 'bold',
+    paddingTop:10,
 
-    BoxBodyText:{
-    fontSize:16
-    }
-  })
+  },
+  mainChild:{
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  mainType:{
+    margin:3,
+    flex: 3,
+    flexDirection: 'row',
+  },
+  mainAddress:{
+    fontSize: 13,
+    margin:3,
+  },
+  mainCategory:{
+    fontSize: 11,
+    margin:3,
+    paddingBottom: 10,
+  },
+  button: {
+    borderRadius:10,
+    justifyContent: 'center'
+  },
+  touchable: {
+    borderRadius: 10
+  },
+})
 
 
 
