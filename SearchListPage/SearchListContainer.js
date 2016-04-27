@@ -39,6 +39,7 @@ class SearchListContainer extends Component {
     )
   }
     render() {
+      
       return(
         <View>
           <ListView
