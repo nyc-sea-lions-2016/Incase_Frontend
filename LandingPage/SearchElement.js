@@ -45,8 +45,6 @@ import TimeElement from './TimeElement'
   }
 
   const styles = StyleSheet.create({
-
-
     NeighborhoodText:{
     fontWeight:'bold',
     color:'#fff',
