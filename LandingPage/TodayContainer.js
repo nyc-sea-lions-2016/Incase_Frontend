@@ -31,7 +31,7 @@ class TodayContainer extends Component {
   }
 
   componentDidMount() {
-      this.fetchTodayData();
+    this.fetchTodayData();
   }
 
 
@@ -41,6 +41,7 @@ class TodayContainer extends Component {
     .then((responseData) => {
       // console.log('responseData', responseData);
       this.setState({
+        todayData: responseData,
         today: this.ds.cloneWithRows(responseData)
       });
     })
@@ -54,12 +55,16 @@ class TodayContainer extends Component {
   }
 
   pressSearch(){
+    console.log(this.state.todayData)
     this.props.navigator.push({
       title: 'Search',
-      component: <SearchContainer/>
+      component: <SearchContainer
+      todayData={this.state.todayData}
+      navigator={this.props.navigator}
+      />
     })
   }
-<<<<<<< HEAD
+
 
   pressItem(id, place) {
       this.props.navigator.push({
@@ -69,10 +74,9 @@ class TodayContainer extends Component {
       })
   }
 
-=======
->>>>>>> 06fa6bfae5aeb665e0b584ac8a9c45c3456c4a5c
   renderOne(place) {
     return(
+
       <View>
         <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)} >
           <View>
@@ -80,6 +84,7 @@ class TodayContainer extends Component {
           </View>
         </TouchableHighlight>
       </View>
+
     )
   }
 
@@ -96,20 +101,12 @@ class TodayContainer extends Component {
             </View>
           </TouchableHighlight>
         </View>
-<<<<<<< HEAD
-
-          <ListView
-             dataSource={this.state.today}
-             renderRow={this.renderOne.bind(this)}
-          />
-=======
         <ListView
            dataSource={this.state.today}
            renderRow={this.renderOne}
            loadData={this.reloadContainer}
            minDisplayTime={4}
         />
->>>>>>> 06fa6bfae5aeb665e0b584ac8a9c45c3456c4a5c
       </View>
     );
   }
@@ -122,7 +119,7 @@ class TodayContainer extends Component {
       alignItems: 'center',
       backgroundColor: '#f9f9f9',
     },
-<<<<<<< HEAD
+
     filterText: {
       fontWeight:'bold',
       color:'#fff',
@@ -146,30 +143,7 @@ class TodayContainer extends Component {
       backgroundColor: "#35d37c",
     }
   })
-=======
-    buttonContainer:{
-      marginTop:40,
-      marginBottom:15,
-    },
-    welcome: {
-      fontSize: 18,
-      textAlign: 'center',
-      margin: 10,
-      color: '#FFFFFF'
 
-    },
-    button: {
-      backgroundColor: '#35d37c',
-      height: 40,
-      width: 200,
-      borderRadius:10,
-      justifyContent: 'center'
-    },
-    touchable: {
-    borderRadius: 10
-  },
-})
->>>>>>> 06fa6bfae5aeb665e0b584ac8a9c45c3456c4a5c
 
 
 module.exports = TodayContainer

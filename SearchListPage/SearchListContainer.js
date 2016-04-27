@@ -1,5 +1,6 @@
 import React, {
   StyleSheet,
+  ListView,
   AppRegistry,
   DatePickerIOS,
   Component,
@@ -9,12 +10,27 @@ import React, {
   } from 'react-native';
 
 class SearchListContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      searchItem: this.ds.cloneWithRows([]),
+    };
+  }
+
+  renderOne(searchItem) {
+    return (
+      <ItemContainer key={searchItem.id} item={searchItem} />
+    )
+  }
 
     render() {
       return(
         <View>
-        <Text>{this.props.startDate.toLocaleDateString()}</Text>
-        <Text>{this.props.endDate.toLocaleDateString()}</Text>
+          <ListView
+            dataSource={this.state.searchItem}
+            renderRow={this.renderOne}
+          />
         </View>
       )
     }

@@ -20,7 +20,10 @@ class SearchContainer extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <SearchElement navigator={this.props.navigator} />
+        <SearchElement
+        navigator={this.props.navigator}
+        todayData={this.props.todayData}
+        />
       </View>
     )
   }
