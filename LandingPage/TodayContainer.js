@@ -71,8 +71,6 @@ class TodayContainer extends Component {
     })
   }
 
-
-
     renderLoadingView() {
       return (
         <View style={styles.container}>
@@ -103,7 +101,6 @@ class TodayContainer extends Component {
   }
 
   render() {
-
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
@@ -137,7 +134,7 @@ class TodayContainer extends Component {
           </View>
         );
       }
-  }
+    }
 }
 // renderRow={this.renderOne}
 // {/*loadData={this.reloadContainer}*/}

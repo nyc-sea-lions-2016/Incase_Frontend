@@ -12,6 +12,10 @@ import React, {
     constructor(props){
       super(props);
     }
+
+    // onPress={this.pressSearch.bind(this)}
+    // onPressIn={this._onPressIn}
+    // onPressOut={this._onPressOut}
     render(){
       if(this.props.favorite === false){
         return(
