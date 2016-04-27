@@ -50,9 +50,9 @@ class InCaseFrontend extends Component {
             stationaryRadius: 5,
             distanceFilter: 30,
             disableElasticity: false, // <-- [iOS] Default is 'false'.  Set true to disable speed-based distanceFilter elasticity
-            locationUpdateInterval: 5000,
+            locationUpdateInterval: 25000,
             minimumActivityRecognitionConfidence: 80,   // 0-100%.  Minimum activity-confidence for a state-change
-            fastestLocationUpdateInterval: 5000,
+            fastestLocationUpdateInterval: 25000,
             activityRecognitionInterval: 10000,
             stopDetectionDelay: 1,  // <--  minutes to delay after motion stops before engaging stop-detection system
             stopTimeout: 2, // 2 minutes
@@ -95,7 +95,6 @@ class InCaseFrontend extends Component {
       this.setState({message: JSON.stringify(location)});
       //console.log('- [js]motionchanged: ', JSON.stringify(location));
       var latlong = location
-//'https://boiling-refuge-94422.herokuapp.com/places'
 
       fetch('http://localhost:3000/places', {
         method: 'POST',
@@ -119,8 +118,6 @@ class InCaseFrontend extends Component {
     BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
-//'http://localhost:3000/places'
-// 'https://boiling-refuge-94422.herokuapp.com/places'
 
       fetch('http://localhost:3000/places', {
         method: 'POST',
@@ -143,7 +140,7 @@ class InCaseFrontend extends Component {
   render() {
       return (
         <TabBarNavigator>
-          <TabBarNavigator.Item title='ICYMI' icon={{uri: worldImg, scale:2}}>
+          <TabBarNavigator.Item title='ICYMI' icon={{uri: worldImg, scale:2}} defaultTab >
             <MapContainer />
           </TabBarNavigator.Item>
 

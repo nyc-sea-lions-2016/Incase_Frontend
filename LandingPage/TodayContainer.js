@@ -15,22 +15,18 @@ import SearchContainer from './SearchContainer';
 
 //var RefreshableListView = require('react-native-refreshable-listview');
 
-
-const API_URL = 'http://localhost:3000/places/today';
-//'http://localhost:3000/places/today';
-// 'http://boiling-refuge-94422.herokuapp.com/places/today'
-
-
+// const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
+const API_URL ='http://localhost:3000/places/today';
+const DEFAULT_NUM_ITEMS = 10;
 
 class TodayContainer extends Component {
-  setNativeProps (nativeProps) {
-    this._root.setNativeProps(nativeProps);
-  }
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       today: this.ds.cloneWithRows([]),
+      numItems: DEFAULT_NUM_ITEMS,
+      loaded: false,
     };
   }
 
@@ -38,28 +34,29 @@ class TodayContainer extends Component {
     this.fetchTodayData();
   }
 
+  endReached() {
+    var num = this.state.numItems + 10;``
+    this.setState({
+      numItems: num,
+      today: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
+    });
+  }
+
 
   fetchTodayData() {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      // console.log('responseData', responseData);
       this.setState({
         todayData: responseData,
-        today: this.ds.cloneWithRows(responseData)
+        today: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
+        loaded: true,
       });
     })
     .done();
   }
 
-  reloadContainer() {
-    // returns a Promise of reload completion
-    // for a Promise-free version see ControlledRefreshableListView below
-     this.fetchTodayData()
-  }
-
   pressSearch(){
-    console.log(this.state.todayData)
     this.props.navigator.push({
       title: 'Search',
       component: <SearchContainer
@@ -69,7 +66,16 @@ class TodayContainer extends Component {
     })
   }
 
-//
+    renderLoadingView() {
+      return (
+        <View style={styles.container}>
+          <Text>
+            Loading results...
+          </Text>
+        </View>
+      );
+    }
+
   pressItem(id, place) {
       this.props.navigator.push({
         title: 'Today List',
@@ -92,28 +98,42 @@ class TodayContainer extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <TouchableHighlight
-            onPress={this.pressSearch.bind(this)}
-            style={styles.touchable}>
-            <View style={styles.button}>
-              <Text style={styles.welcome}> Filter Results </Text>
-            </View>
-          </TouchableHighlight>
-        </View>
-        <ListView
-           dataSource={this.state.today}
-           renderRow={this.renderOne.bind(this)}
-        />
-      </View>
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
 
-    );
-  }
+      if(this.state.today.length == 0){
+        return(
+          <View style={styles.emptyContainer}>
+            <Text style={styles.bold}>Nothing to see here</Text>
+            <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+          </View>
+        )
+      } else {
+        return (
+          <View style={styles.container}>
+            <View style={styles.buttonContainer}>
+              <TouchableHighlight
+                onPress={this.pressSearch.bind(this)}
+                style={styles.touchable}>
+                <View style={styles.button}>
+                  <Text style={styles.welcome}> Filter Results </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+            <ListView
+               dataSource={this.state.today}
+               onEndReachedThreshold={10}
+               onEndReached={this.endReached.bind(this)}
+               enableEmptySections={true} // This will stop the warning for sempty sections headers
+               renderRow={this.renderOne.bind(this)}
+            />
+          </View>
+        );
+      }
+    }
 }
-// {/*loadData={this.reloadContainer}*/}
-// {/*minDisplayTime={4}*/}
+
 
   var styles = StyleSheet.create({
     container: {
@@ -122,29 +142,27 @@ class TodayContainer extends Component {
       alignItems: 'center',
       backgroundColor: '#f9f9f9',
     },
-
-    filterText: {
-      fontWeight:'bold',
-      color:'#fff',
-      textAlign:'left',
-      fontSize:20,
-      marginBottom:10,
-      borderWidth: 1,
-      padding: 10,
-      borderRadius:10,
-      textAlign: 'center',
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
     },
+    welcome: {
+      fontSize: 18,
+      textAlign: 'center',
+      margin: 10,
+      color: '#FFFFFF'
 
+    },
     button: {
-      paddingTop: 2,
-      marginTop: 10,
-      borderRadius: 5,
-      alignItems: "center",
-      alignSelf: "center",
-      width: 120,
-      height: 20,
-      backgroundColor: "#35d37c",
-    }
+      backgroundColor: '#35d37c',
+      height: 40,
+      width: 200,
+      borderRadius:10,
+      justifyContent: 'center'
+    },
+    touchable: {
+      borderRadius: 10
+    },
   })
 
 

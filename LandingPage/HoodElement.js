@@ -21,7 +21,9 @@ import React, {
     }
 
     checkCat(ele){
-      return this.state.text === ele.categories[0].category
+      for(var i = 0; i < ele.categories.length; i++){
+        return this.state.text.toLowerCase() === ele.categories[i].category
+      }
     }
 
     checkCategory(){

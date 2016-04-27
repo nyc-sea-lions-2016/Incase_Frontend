@@ -13,8 +13,8 @@ import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
 
-const API_URL = 'http://localhost:3000/places/favorites';
-// 'http://boiling-refuge-94422.herokuapp.com/places/favorites';
+//const API_URL = 'http://localhost:3000/places/favorites';
+const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/favorites';
 
 
 class FavoriteContainer extends Component {
@@ -31,7 +31,6 @@ class FavoriteContainer extends Component {
       fetch(API_URL)
       .then((response) => response.json())
       .then((responseData) => {
-        console.log('responseData', responseData);
         this.setState({
           favorites: responseData
         });

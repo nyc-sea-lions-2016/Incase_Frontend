@@ -9,15 +9,14 @@ import React, {
   View,
 } from 'react-native';
 
+import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
+//const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
 
 const API_URL = 'http://localhost:3000/places/yesterday';
-
-// 'http://boiling-refuge-94422.herokuapp.com/places/yesterday'
-
-
+const DEFAULT_NUM_ITEMS = 10;
 
 class YesterdayContainer extends Component {
   constructor(props) {
@@ -25,6 +24,9 @@ class YesterdayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       yesterday: this.ds.cloneWithRows([]),
+      numItems: DEFAULT_NUM_ITEMS,
+      yesterdayData: [],
+      loaded: false,
     };
   }
 
@@ -32,13 +34,22 @@ class YesterdayContainer extends Component {
       this.fetchYesterdayData();
   }
 
+  endReached() {
+    var num = this.state.numItems + 10;
+    this.setState({
+      numItems: num,
+      today: this.ds.cloneWithRows(this.state.yesterdayData.slice(0, num))
+    });
+  }
+
   fetchYesterdayData() {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      console.log('responseData', responseData);
       this.setState({
-        yesterday: this.ds.cloneWithRows(responseData)
+        yesterday: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
+        yesterdayData: responseData,
+        loaded: true,
       });
     })
     .done();
@@ -47,21 +58,53 @@ class YesterdayContainer extends Component {
   pressSearch(){
     this.props.navigator.push({
       title: 'Search',
-      component: <SearchContainer/>
+      component: <SearchContainer
+      todayData={this.state.yesterdayData}
+      navigator={this.props.navigator}
+      day={'yesterday'}
+      />
+    })
+  }
+
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          Loading results...
+        </Text>
+      </View>
+    );
+  }
+
+  pressItem(id, place) {
+    this.props.navigator.push({
+      title: 'Yesterday List',
+      component: <PlaceContainer
+      place={place}
+      />
     })
   }
 
   renderOne(place) {
     return (
-      <ItemContainer key={place.id} place={place} />
+      <View>
+        <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
+          <ItemContainer key={place.id} place={place} />
+        </TouchableHighlight>
+      </View>
     )
   }
 
   render() {
-    if(this.state.yesterday.length == 0){
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
+
+    if(this.state.yesterdayData.length == 0){
       return(
-        <View style={styles.container}>
-          <Text>Keep on exploring and build up this page!</Text>
+        <View style={styles.emptyContainer}>
+          <Text style={styles.bold}>Nothing to see here</Text>
+          <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
         </View>
       )
     } else {
@@ -81,8 +124,10 @@ class YesterdayContainer extends Component {
             </TouchableHighlight>
           </View>
           <ListView
-             dataSource={this.state.yesterday}
-             renderRow={this.renderOne}
+            dataSource={this.state.yesterday}
+            enableEmptySections={true}
+             enableEmptySections={true}
+             renderRow={this.renderOne.bind(this)}
           />
         </View>
       );
@@ -91,15 +136,24 @@ class YesterdayContainer extends Component {
 }
 
   var styles = StyleSheet.create({
-    container: {
+    emptyContainer:{
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#f9f9f9',
     },
-    buttonContainer:{
-      marginTop:40,
-      marginBottom:15,
+    normal:{
+      fontSize:15,
+    },
+    bold:{
+      fontWeight: 'bold',
+      fontSize:16,
+    },
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
     },
     welcome: {
       fontSize: 18,
@@ -107,6 +161,10 @@ class YesterdayContainer extends Component {
       margin: 10,
       color: '#FFFFFF'
 
+    },
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
     },
     button: {
       backgroundColor: '#35d37c',

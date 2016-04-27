@@ -37,6 +37,14 @@ import React, {
         website = this.props.place.website
       }
 
+      if(this.props.place.categories != []){
+        var catNodes = this.props.place.categories.map(function(category){
+          return(
+              <Text key={category.id} style={styles.mainCategory}> {category.category} </Text>
+          )
+        })
+      }
+
       return (
         <View style={styles.container}>
           <Image
@@ -50,13 +58,19 @@ import React, {
             </TouchableHighlight>
 
               <View style={styles.detailsContainer}>
-                <Text style={styles.placeName}>{this.props.place.name}</Text>
-              </View>
 
-              <View style={styles.detailsContainer}>
-                <Text style={styles.header}> Address </Text>
-                <Text style={styles.placeAddress}>{this.props.place.address}</Text>
-              </View>
+              <Text style={styles.placeName}>{this.props.place.name}</Text>
+            </View>
+
+            <View style={styles.detailsContainer}>
+              <Text style={styles.header}> Type: </Text>
+              <Text style={styles.placeAddress}> {catNodes} </Text>
+            </View>
+
+            <View style={styles.detailsContainer}>
+              <Text style={styles.header}> Address </Text>
+              <Text style={styles.placeAddress}>{this.props.place.address}</Text>
+            </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Phone  </Text>

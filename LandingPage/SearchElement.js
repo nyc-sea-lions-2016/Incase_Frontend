@@ -8,8 +8,8 @@ import React, {
   View
   } from 'react-native';
 
-import HoodIndex from './HoodIndex'
-import TimeElement from './TimeElement'
+import HoodElement from './HoodElement'
+import StartTimeElement from './StartTimeElement'
 
   class SearchElement extends Component {
     constructor(props){
@@ -19,13 +19,17 @@ import TimeElement from './TimeElement'
     pressHood(){
       this.props.navigator.push({
         title: 'Category Search',
-        component: <HoodIndex todayData={this.props.todayData} navigator={this.props.navigator}/>
+        component: <HoodElement todayData={this.props.todayData} navigator={this.props.navigator}/>
       })
     }
     pressTime(){
       this.props.navigator.push({
-        title: 'Time Search',
-        component: <TimeElement/>
+        title: 'Start Time Search',
+        component: <StartTimeElement
+          todayData={this.props.todayData}
+          navigator={this.props.navigator}
+          day={this.props.day}
+          />
       })
 
     }
