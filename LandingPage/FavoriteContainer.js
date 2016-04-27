@@ -31,7 +31,6 @@ class FavoriteContainer extends Component {
       fetch(API_URL)
       .then((response) => response.json())
       .then((responseData) => {
-        console.log('responseData', responseData);
         this.setState({
           favorites: responseData
         });

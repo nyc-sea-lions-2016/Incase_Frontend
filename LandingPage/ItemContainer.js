@@ -41,7 +41,6 @@ import React, {
         alignItems: 'center',
         marginTop: 15,
         marginLeft: 30,
-        fontFamily: 'Helvetica Neue',
         borderBottomColor: '#ddd',
         borderBottomWidth: StyleSheet.hairlineWidth,
         backgroundColor: '#fff'
@@ -58,12 +57,10 @@ import React, {
       flex: 1,
       textAlign: 'center',
       fontSize: 16,
-      fontFamily: 'Helvetica Neue',
     },
 
     mainAddress:{
       fontSize: 13,
-      fontFamily: 'Helvetica Neue',
       margin:3,
       paddingBottom: 10,
     }

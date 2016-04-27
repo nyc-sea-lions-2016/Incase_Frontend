@@ -82,6 +82,7 @@ class TwoDaysContainer extends Component {
           <ListView
              dataSource={this.state.twoDays}
              renderRow={this.renderOne}
+             enableEmptySections={true}
           />
         </View>
       );

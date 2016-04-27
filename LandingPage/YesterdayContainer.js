@@ -35,7 +35,6 @@ class YesterdayContainer extends Component {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      console.log('responseData', responseData);
       this.setState({
         yesterday: this.ds.cloneWithRows(responseData)
       });
@@ -82,6 +81,7 @@ class YesterdayContainer extends Component {
           <ListView
              dataSource={this.state.yesterday}
              renderRow={this.renderOne}
+             enableEmptySections={true}
           />
         </View>
       );

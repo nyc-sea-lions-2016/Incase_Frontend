@@ -27,7 +27,8 @@ class TodayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       today: this.ds.cloneWithRows([]),
-      numItems: DEFAULT_NUM_ITEMS
+      numItems: DEFAULT_NUM_ITEMS,
+      loaded: false,
     };
   }
 
@@ -36,13 +37,11 @@ class TodayContainer extends Component {
   }
 
   endReached() {
-    console.log('abcdefg', 'end Reached');
-    var num = this.state.numItems + 10;
+    var num = this.state.numItems + 10;``
     this.setState({
       numItems: num,
       today: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
     });
-    console.log(this.state);
   }
 
 
@@ -50,18 +49,16 @@ class TodayContainer extends Component {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      console.log('responseData Brian', responseData);
-      console.log('offset', this.state.offset);
       this.setState({
         todayData: responseData,
-        today: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS))
+        today: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
+        loaded: true,
       });
     })
     .done();
   }
 
   pressSearch(){
-    console.log(this.state.todayData)
     this.props.navigator.push({
       title: 'Search',
       component: <SearchContainer
@@ -80,6 +77,18 @@ class TodayContainer extends Component {
   //     })
   // }
 
+    renderLoadingView() {
+      return (
+        <View style={styles.container}>
+          <Text>
+            Loading results...
+          </Text>
+        </View>
+      );
+    }
+
+
+
   renderOne(place) {
     return(
 // onPress={this.pressItem.bind(this, place.id, place)
@@ -95,6 +104,11 @@ class TodayContainer extends Component {
   }
 
   render() {
+
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
+
     return (
 
       <View style={styles.container}>
@@ -110,8 +124,9 @@ class TodayContainer extends Component {
         <ListView
            dataSource={this.state.today}
            renderRow={this.renderOne}
-           onEndReachedThreshold={8}
+           onEndReachedThreshold={10}
            onEndReached={this.endReached.bind(this)}
+           enableEmptySections={true} // This will stop the warning for sempty sections headers
         />
       </View>
     );
