@@ -21,7 +21,8 @@ import React, {
     }
 
     render(){
-      if(this.props.place.categories != []){
+      if(this.props.place.categories !== []){
+        console.log("this a place array: ", this.props.place)
         var catNodes = this.props.place.categories.map(function(category){
           return(
               <Text key={category.id} style={styles.mainCategory}> {category.category} </Text>

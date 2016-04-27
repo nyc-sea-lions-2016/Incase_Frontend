@@ -12,14 +12,16 @@ import React, {
     constructor(props){
       super(props);
     }
+
+    // onPress={this.pressSearch.bind(this)}
+    // onPressIn={this._onPressIn}
+    // onPressOut={this._onPressOut}
     render(){
       if(this.props.favorite === false){
         return(
           <View style={styles.buttonContainer}>
             <TouchableHighlight
-              onPress={this.pressSearch.bind(this)}
-              onPressIn={this._onPressIn}
-              onPressOut={this._onPressOut}
+
               style={styles.touchable}>
               <View style={styles.button}>
                 <Text style={styles.welcome}> Save This Place </Text>
