@@ -28,7 +28,7 @@ class TwoDaysContainer extends Component {
   }
 
   componentDidMount() {
-      this.fetchTwoDaysData();
+    this.fetchTwoDaysData();
   }
 
   fetchTwoDaysData() {
@@ -65,8 +65,8 @@ class TwoDaysContainer extends Component {
     if(this.state.twoDaysData.length == 0){
       return(
         <View style={styles.emptyContainer}>
-          <Text style={styles.bold}>Nothing to see here</Text>
-          <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+        <Text style={styles.bold}>Nothing to see here</Text>
+        <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
         </View>
       )
     } else {
@@ -74,71 +74,71 @@ class TwoDaysContainer extends Component {
         <View style={styles.container}>
 
 
-          <View style={styles.buttonContainer}>
-            <TouchableHighlight
-              onPress={this.pressSearch.bind(this)}
-              onPressIn={this._onPressIn}
-              onPressOut={this._onPressOut}
-              style={styles.touchable}>
-              <View style={styles.button}>
-                <Text style={styles.welcome}> Filter Results </Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <ListView
-             dataSource={this.state.twoDays}
-             renderRow={this.renderOne}
-             enableEmptySections={true}
-          />
+        <View style={styles.buttonContainer}>
+        <TouchableHighlight
+        onPress={this.pressSearch.bind(this)}
+        onPressIn={this._onPressIn}
+        onPressOut={this._onPressOut}
+        style={styles.touchable}>
+        <View style={styles.button}>
+        <Text style={styles.welcome}> Filter Results </Text>
+        </View>
+        </TouchableHighlight>
+        </View>
+        <ListView
+        dataSource={this.state.twoDays}
+        renderRow={this.renderOne}
+        enableEmptySections={true}
+        />
         </View>
       );
     }
   }
 }
 
-  var styles = StyleSheet.create({
-    emptyContainer:{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-    },
-    normal:{
-      fontSize:15,
-    },
-    bold:{
-      fontWeight: 'bold',
-      fontSize:16,
-    },
+var styles = StyleSheet.create({
+  emptyContainer:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  normal:{
+    fontSize:15,
+  },
+  bold:{
+    fontWeight: 'bold',
+    fontSize:16,
+  },
 
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-    },
-    buttonContainer:{
-      marginTop:40,
-      marginBottom:15,
-    },
-    welcome: {
-      fontSize: 18,
-      textAlign: 'center',
-      margin: 10,
-      color: '#FFFFFF'
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  buttonContainer:{
+    marginTop:40,
+    marginBottom:15,
+  },
+  welcome: {
+    fontSize: 18,
+    textAlign: 'center',
+    margin: 10,
+    color: '#FFFFFF'
 
-    },
-    button: {
-      backgroundColor: '#35d37c',
-      height: 40,
-      width: 200,
-      borderRadius:10,
-      justifyContent: 'center'
-    },
-    touchable: {
-      borderRadius: 10
-    },
-  })
+  },
+  button: {
+    backgroundColor: '#35d37c',
+    height: 40,
+    width: 200,
+    borderRadius:10,
+    justifyContent: 'center'
+  },
+  touchable: {
+    borderRadius: 10
+  },
+})
 
 
 module.exports = TwoDaysContainer

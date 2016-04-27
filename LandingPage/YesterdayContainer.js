@@ -28,7 +28,7 @@ class YesterdayContainer extends Component {
   }
 
   componentDidMount() {
-      this.fetchYesterdayData();
+    this.fetchYesterdayData();
   }
 
   fetchYesterdayData() {
@@ -63,8 +63,8 @@ class YesterdayContainer extends Component {
     if(this.state.yesterdayData.length == 0){
       return(
         <View style={styles.emptyContainer}>
-          <Text style={styles.bold}>Nothing to see here</Text>
-          <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+        <Text style={styles.bold}>Nothing to see here</Text>
+        <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
         </View>
       )
     } else {
@@ -72,71 +72,71 @@ class YesterdayContainer extends Component {
         <View style={styles.container}>
 
 
-          <View style={styles.buttonContainer}>
-            <TouchableHighlight
-              onPress={this.pressSearch.bind(this)}
-              onPressIn={this._onPressIn}
-              onPressOut={this._onPressOut}
-              style={styles.touchable}>
-              <View style={styles.button}>
-                <Text style={styles.welcome}> Filter Results </Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <ListView
-              enableEmptySections={true}
-             dataSource={this.state.yesterday}
-             renderRow={this.renderOne}
-             enableEmptySections={true}
-          />
+        <View style={styles.buttonContainer}>
+        <TouchableHighlight
+        onPress={this.pressSearch.bind(this)}
+        onPressIn={this._onPressIn}
+        onPressOut={this._onPressOut}
+        style={styles.touchable}>
+        <View style={styles.button}>
+        <Text style={styles.welcome}> Filter Results </Text>
+        </View>
+        </TouchableHighlight>
+        </View>
+        <ListView
+        enableEmptySections={true}
+        dataSource={this.state.yesterday}
+        renderRow={this.renderOne}
+        enableEmptySections={true}
+        />
         </View>
       );
     }
   }
 }
 
-  var styles = StyleSheet.create({
-    emptyContainer:{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-    },
-    normal:{
-      fontSize:15,
-    },
-    bold:{
-      fontWeight: 'bold',
-      fontSize:16,
-    },
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-    },
-    welcome: {
-      fontSize: 18,
-      textAlign: 'center',
-      margin: 10,
-      color: '#FFFFFF'
+var styles = StyleSheet.create({
+  emptyContainer:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  normal:{
+    fontSize:15,
+  },
+  bold:{
+    fontWeight: 'bold',
+    fontSize:16,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  welcome: {
+    fontSize: 18,
+    textAlign: 'center',
+    margin: 10,
+    color: '#FFFFFF'
 
-    },
-    buttonContainer:{
-      marginTop:40,
-      marginBottom:15,
-    },
-    button: {
-      backgroundColor: '#35d37c',
-      height: 40,
-      width: 200,
-      borderRadius:10,
-      justifyContent: 'center'
-    },
-    touchable: {
-      borderRadius: 10
-    },
-  })
+  },
+  buttonContainer:{
+    marginTop:40,
+    marginBottom:15,
+  },
+  button: {
+    backgroundColor: '#35d37c',
+    height: 40,
+    width: 200,
+    borderRadius:10,
+    justifyContent: 'center'
+  },
+  touchable: {
+    borderRadius: 10
+  },
+})
 
 
 module.exports = YesterdayContainer
