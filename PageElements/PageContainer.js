@@ -95,9 +95,9 @@ class InCaseFrontend extends Component {
       this.setState({message: JSON.stringify(location)});
       //console.log('- [js]motionchanged: ', JSON.stringify(location));
       var latlong = location
-//'http://localhost:3000/places'
 
-      fetch('https://boiling-refuge-94422.herokuapp.com/places', {
+// 'https://boiling-refuge-94422.herokuapp.com/places'
+      fetch('http://localhost:3000/places', {
         method: 'POST',
         body: JSON.stringify({
           latlong: location
@@ -119,9 +119,9 @@ class InCaseFrontend extends Component {
     BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
-//'http://localhost:3000/places'
 
-      fetch('https://boiling-refuge-94422.herokuapp.com/places', {
+//'https://boiling-refuge-94422.herokuapp.com/places'
+      fetch('http://localhost:3000/places', {
         method: 'POST',
         body: JSON.stringify({
           latlong: location
@@ -142,7 +142,7 @@ class InCaseFrontend extends Component {
   render() {
       return (
         <TabBarNavigator>
-          <TabBarNavigator.Item title='ICYMI' icon={{uri: worldImg, scale:2}}>
+          <TabBarNavigator.Item title='ICYMI' icon={{uri: worldImg, scale:2}} defaultTab>
             <MapContainer />
           </TabBarNavigator.Item>
 

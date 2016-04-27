@@ -13,9 +13,9 @@ import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
 
-const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
-//'http://localhost:3000/places/yesterday';
+//const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
 
+const API_URL = 'http://localhost:3000/places/yesterday';
 
 
 class YesterdayContainer extends Component {
@@ -96,16 +96,16 @@ class YesterdayContainer extends Component {
       alignItems: 'center',
       backgroundColor: '#f9f9f9',
     },
-    buttonContainer:{
-      marginTop:40,
-      marginBottom:15,
-    },
     welcome: {
       fontSize: 18,
       textAlign: 'center',
       margin: 10,
       color: '#FFFFFF'
 
+    },
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
     },
     button: {
       backgroundColor: '#35d37c',

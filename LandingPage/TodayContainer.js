@@ -16,8 +16,8 @@ import SearchContainer from './SearchContainer';
 //var RefreshableListView = require('react-native-refreshable-listview');
 
 
-const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
-//'http://localhost:3000/places/today';
+//const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
+const API_URL = 'http://localhost:3000/places/today';
 
 
 
@@ -55,7 +55,7 @@ class TodayContainer extends Component {
   }
 
   pressSearch(){
-    console.log(this.state.todayData)
+    //console.log(this.state.todayData)
     this.props.navigator.push({
       title: 'Search',
       component: <SearchContainer
@@ -65,20 +65,20 @@ class TodayContainer extends Component {
     })
   }
 
-
-  pressItem(id, place) {
-      this.props.navigator.push({
-        component: <PlaceContainer
-          place={place}
-          />
-      })
-  }
-
+// FIX IN MORNING
+  // pressItem(id, place) {
+  //     this.props.navigator.push({
+  //       component: <PlaceContainer
+  //         place={place}
+  //         />
+  //     })
+  // }
+  //onPress={this.pressItem.bind(this, place.id, place)}
   renderOne(place) {
     return(
 
       <View>
-        <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)} >
+        <TouchableHighlight  >
           <View>
             <ItemContainer style={styles.button} key={place.id} place={place} />
           </View>
@@ -89,26 +89,36 @@ class TodayContainer extends Component {
   }
 
   render() {
-    return (
+      if(this.state.today.length == 0){
+        return(
+          <View style={styles.emptyContainer}>
+            <Text style={styles.bold}>Nothing to see here</Text>
+            <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+          </View>
+        )
+      } else {
+        return (
+          <View style={styles.container}>
 
-      <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <TouchableHighlight
-            onPress={this.pressSearch.bind(this)}
-            style={styles.touchable}>
-            <View style={styles.button}>
-              <Text style={styles.welcome}> Filter Results </Text>
+
+            <View style={styles.buttonContainer}>
+              <TouchableHighlight
+                onPress={this.pressSearch.bind(this)}
+                onPressIn={this._onPressIn}
+                onPressOut={this._onPressOut}
+                style={styles.touchable}>
+                <View style={styles.button}>
+                  <Text style={styles.welcome}> Filter Results </Text>
+                </View>
+              </TouchableHighlight>
             </View>
-          </TouchableHighlight>
-        </View>
-        <ListView
-           dataSource={this.state.today}
-           renderRow={this.renderOne}
-           loadData={this.reloadContainer}
-           minDisplayTime={4}
-        />
-      </View>
-    );
+            <ListView
+               dataSource={this.state.today}
+               renderRow={this.renderOne}
+            />
+          </View>
+        );
+      }
   }
 }
 
