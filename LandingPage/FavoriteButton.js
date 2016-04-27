@@ -19,7 +19,10 @@ import React, {
 
     pressFavorite(){
       console.log("hit the favorite button")
-      fetch('http://localhost:3000/places/'+this.props.id +'/edit')
+      fetch('http://localhost:3000/places/'+this.props.id,{
+          method: "PUT"
+        }
+      )
         .then((response) => response.json())
         .done();
     }

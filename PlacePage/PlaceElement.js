@@ -19,13 +19,6 @@ import React, {
       this._root.setNativeProps(nativeProps);
     }
 
-    pressFavorite(){
-      console.log("hit the favorite button")
-      fetch('http://localhost:3000/places/'+this.props.id +'/edit')
-        .then((response) => response.json())
-        .done();
-    }
-
     render() {
       var website = 'No Website for This Location'
       if(this.props.place.website){
@@ -39,7 +32,7 @@ import React, {
           />
             <View style={styles.detailsContainer}>
 
-            <TouchableHighlight onPress={this.pressFavorite.bind(this)}>
+            <TouchableHighlight>
               <FavoriteButton favorite={this.props.place.favorite}/>
             </TouchableHighlight>
 
