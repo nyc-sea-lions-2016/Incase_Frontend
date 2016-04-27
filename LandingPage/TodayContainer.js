@@ -15,13 +15,16 @@ import SearchContainer from './SearchContainer';
 
 //var RefreshableListView = require('react-native-refreshable-listview');
 
-
 // const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
 const API_URL ='http://localhost:3000/places/today';
 const DEFAULT_NUM_ITEMS = 10;
 
 
+
 class TodayContainer extends Component {
+  setNativeProps (nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -68,14 +71,7 @@ class TodayContainer extends Component {
     })
   }
 
-  //
-  // pressItem(id, place) {
-  //     this.props.navigator.push({
-  //       component: <PlaceContainer
-  //         place={place}
-  //         />
-  //     })
-  // }
+
 
     renderLoadingView() {
       return (
@@ -87,19 +83,22 @@ class TodayContainer extends Component {
       );
     }
 
-
+  pressItem(id, place) {
+      this.props.navigator.push({
+        title: 'Today List',
+        component: <PlaceContainer
+        place={place}
+          />
+      })
+  }
 
   renderOne(place) {
     return(
-// onPress={this.pressItem.bind(this, place.id, place)
-      <View>
-        <TouchableHighlight>
-          <View>
-            <ItemContainer style={styles.button} key={place.id} place={place} />
-          </View>
-        </TouchableHighlight>
+      <View >
+      <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
+        <ItemContainer style={styles.button} key={place.id} place={place}/>
+      </TouchableHighlight>
       </View>
-
     )
   }
 
@@ -109,29 +108,40 @@ class TodayContainer extends Component {
       return this.renderLoadingView();
     }
 
-    return (
-
-      <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <TouchableHighlight
-            onPress={this.pressSearch.bind(this)}
-            style={styles.touchable}>
-            <View style={styles.button}>
-              <Text style={styles.welcome}> Filter Results </Text>
+      if(this.state.today.length == 0){
+        return(
+          <View style={styles.emptyContainer}>
+            <Text style={styles.bold}>Nothing to see here</Text>
+            <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+          </View>
+        )
+      } else {
+        return (
+          <View style={styles.container}>
+            <View style={styles.buttonContainer}>
+              <TouchableHighlight
+                onPress={this.pressSearch.bind(this)}
+                style={styles.touchable}>
+                <View style={styles.button}>
+                  <Text style={styles.welcome}> Filter Results </Text>
+                </View>
+              </TouchableHighlight>
             </View>
-          </TouchableHighlight>
-        </View>
-        <ListView
-           dataSource={this.state.today}
-           renderRow={this.renderOne}
-           onEndReachedThreshold={10}
-           onEndReached={this.endReached.bind(this)}
-           enableEmptySections={true} // This will stop the warning for sempty sections headers
-        />
-      </View>
-    );
+            <ListView
+               dataSource={this.state.today}
+               onEndReachedThreshold={10}
+               onEndReached={this.endReached.bind(this)}
+               enableEmptySections={true} // This will stop the warning for sempty sections headers
+               renderRow={this.renderOne.bind(this)}
+            />
+          </View>
+        );
+      }
   }
 }
+// renderRow={this.renderOne}
+// {/*loadData={this.reloadContainer}*/}
+// {/*minDisplayTime={4}*/}
 
   var styles = StyleSheet.create({
     container: {

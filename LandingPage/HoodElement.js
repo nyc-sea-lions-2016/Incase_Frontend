@@ -21,7 +21,9 @@ import React, {
     }
 
     checkCat(ele){
-      return this.state.text === ele.categories[0].category
+      for(var i = 0; i < ele.categories.length; i++){
+        return this.state.text.toLowerCase() === ele.categories[i].category
+      }
     }
 
     checkCategory(){
@@ -29,6 +31,7 @@ import React, {
     }
 
     submitForm(){
+      console.log(this.checkCategory())
       this.props.navigator.push({
         title: 'Search Results',
         component: <SearchListContainer
@@ -58,12 +61,6 @@ import React, {
         </View>
       )
     }
-
-    // submitForm = () => {
-    //   debugger;
-    //   console.log(this.state.text)
-    //   const { text } = this.state.text
-    // }
 }
 
   const styles = StyleSheet.create({

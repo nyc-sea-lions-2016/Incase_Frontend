@@ -12,13 +12,24 @@ import React, {
       super(props);
     }
 
+    setNativeProps(nativeProps) {
+      this._root.setNativeProps(nativeProps);
+    }
+
     componentWillReceiveProps(nextProps) {
       this.setState({place: nextProps})
     }
 
     render(){
+      if(this.props.place.categories != []){
+        var catNodes = this.props.place.categories.map(function(category){
+          return(
+              <Text key={category.id} style={styles.mainCategory}> {category.category} </Text>
+          )
+        })
+      }
           return (
-            <View style={styles.mainParent}>
+            <View style={styles.mainParent} ref={component => this._root = component}>
               <View>
                 <Text style={[styles.mainChild, styles.mainName]}>{this.props.place.id} {this.props.place.name}</Text>
               </View>
@@ -26,7 +37,7 @@ import React, {
                 <Text style={[styles.mainChild, styles.mainAddress]}>{this.props.place.address}</Text>
               </View>
               <View>
-                <Text style={styles.mainChild}>#Category</Text>
+                <Text>{catNodes}</Text>
               </View>
             </View>
           )
@@ -61,6 +72,10 @@ import React, {
 
     mainAddress:{
       fontSize: 13,
+      margin:3,
+    },
+    mainCategory:{
+      fontSize: 11,
       margin:3,
       paddingBottom: 10,
     }

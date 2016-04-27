@@ -12,10 +12,12 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-
 // const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
 const API_URL ='http://localhost:3000/places/today';
 
+//const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
+
+const API_URL = 'http://localhost:3000/places/yesterday';
 
 
 class YesterdayContainer extends Component {
@@ -24,6 +26,7 @@ class YesterdayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       yesterday: this.ds.cloneWithRows([]),
+      yesterdayData: []
     };
   }
 
@@ -36,7 +39,8 @@ class YesterdayContainer extends Component {
     .then((response) => response.json())
     .then((responseData) => {
       this.setState({
-        yesterday: this.ds.cloneWithRows(responseData)
+        yesterday: this.ds.cloneWithRows(responseData),
+        yesterdayData: responseData
       });
     })
     .done();
@@ -45,7 +49,10 @@ class YesterdayContainer extends Component {
   pressSearch(){
     this.props.navigator.push({
       title: 'Search',
-      component: <SearchContainer/>
+      component: <SearchContainer
+      todayData={this.state.yesterdayData}
+      navigator={this.props.navigator}
+      />
     })
   }
 
@@ -79,6 +86,7 @@ class YesterdayContainer extends Component {
             </TouchableHighlight>
           </View>
           <ListView
+              enableEmptySections={true}
              dataSource={this.state.yesterday}
              renderRow={this.renderOne}
              enableEmptySections={true}
@@ -96,16 +104,16 @@ class YesterdayContainer extends Component {
       alignItems: 'center',
       backgroundColor: '#f9f9f9',
     },
-    buttonContainer:{
-      marginTop:40,
-      marginBottom:15,
-    },
     welcome: {
       fontSize: 18,
       textAlign: 'center',
       margin: 10,
       color: '#FFFFFF'
 
+    },
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
     },
     button: {
       backgroundColor: '#35d37c',

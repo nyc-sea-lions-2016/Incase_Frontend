@@ -786,7 +786,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/apprentice/Documents/FacebookSDK,
-					"/Users/MacBiers/Desktop/Incase_Frontend/node_modules/react-native-background-geolocation/**",
+					"/Users/apprentice/Desktop/Incase_Frontend/node_modules/react-native-background-geolocation/**",
 
 				);
 				HEADER_SEARCH_PATHS = (
@@ -813,8 +813,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/apprentice/Documents/FacebookSDK,
-					"/Users/MacBiers/Desktop/Incase_Frontend/node_modules/react-native-background-geolocation/**",
-
+					"/Users/apprentice/Desktop/Incase_Frontend/node_modules/react-native-background-geolocation/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

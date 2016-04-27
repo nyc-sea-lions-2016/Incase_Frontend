@@ -28,6 +28,13 @@ import React, {
       if(this.props.place.website){
         website = this.props.place.website
       }
+      if(this.props.place.categories != []){
+        var catNodes = this.props.place.categories.map(function(category){
+          return(
+              <Text key={category.id} style={styles.mainCategory}> {category.category} </Text>
+          )
+        })
+      }
       return (
         <View style={styles.container}>
           <Image
@@ -38,12 +45,17 @@ import React, {
             <View style={styles.detailsContainer}>
               <View style={styles.detailsContainer}>
               <Text style={styles.placeName}>{this.props.place.name}</Text>
-              </View>
+            </View>
 
-              <View style={styles.detailsContainer}>
-                <Text style={styles.header}> Address </Text>
-                <Text style={styles.placeAddress}>{this.props.place.address}</Text>
-              </View>
+            <View style={styles.detailsContainer}>
+              <Text style={styles.header}> Type: </Text>
+              <Text style={styles.placeAddress}> {catNodes} </Text>
+            </View>
+
+            <View style={styles.detailsContainer}>
+              <Text style={styles.header}> Address </Text>
+              <Text style={styles.placeAddress}>{this.props.place.address}</Text>
+            </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Phone  </Text>
@@ -52,7 +64,7 @@ import React, {
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Website </Text>
-                <Text style={styles.details}> {website} </Text>
+                <Text style={styles.details}> Website </Text>
               </View>
             </View>
           </View>

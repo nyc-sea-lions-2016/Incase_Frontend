@@ -12,9 +12,16 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
+<<<<<<< HEAD
 // const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
 
 const API_URL ='http://localhost:3000/places/two_days';
+=======
+
+//const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
+
+const API_URL = 'http://localhost:3000/places/two_days';
+>>>>>>> 73fe04fcd0b1c367bb5a7ac62eeb2f286022804d
 
 
 class TwoDaysContainer extends Component {
@@ -23,6 +30,7 @@ class TwoDaysContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       twoDays: this.ds.cloneWithRows([]),
+      twoDaysData: []
     };
   }
 
@@ -36,16 +44,21 @@ class TwoDaysContainer extends Component {
     .then((responseData) => {
       console.log('responseData', responseData);
       this.setState({
-        twoDays: responseData
+        twoDaysData: responseData,
+        twoDays: this.ds.cloneWithRows([responseData])
       });
     })
     .done();
   }
 
   pressSearch(){
+    //console.log(this.state.todayData)
     this.props.navigator.push({
       title: 'Search',
-      component: <SearchContainer/>
+      component: <SearchContainer
+      todayData={this.state.twoDaysData}
+      navigator={this.props.navigator}
+      />
     })
   }
 

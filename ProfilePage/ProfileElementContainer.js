@@ -23,7 +23,6 @@ class ProfileElementContainer extends Component {
 
 const profileElementStyles = StyleSheet.create({
   container: {
-    // backgroundColor: "green",
     marginBottom: 40,
     paddingBottom: 10,
     flex: 1,
