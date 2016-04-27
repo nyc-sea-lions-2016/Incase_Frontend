@@ -19,12 +19,7 @@ import SearchContainer from './SearchContainer';
 const API_URL ='http://localhost:3000/places/today';
 const DEFAULT_NUM_ITEMS = 10;
 
-
-
 class TodayContainer extends Component {
-  setNativeProps (nativeProps) {
-    this._root.setNativeProps(nativeProps);
-  }
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

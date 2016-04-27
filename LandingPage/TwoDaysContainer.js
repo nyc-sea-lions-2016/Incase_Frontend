@@ -9,13 +9,14 @@ import React, {
   View,
 } from 'react-native';
 
+import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
 
 // const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
 const API_URL ='http://localhost:3000/places/two_days';
-
+const DEFAULT_NUM_ITEMS = 10;
 
 class TwoDaysContainer extends Component {
   constructor(props) {
@@ -23,7 +24,9 @@ class TwoDaysContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       twoDays: this.ds.cloneWithRows([]),
-      twoDaysData: []
+      twoDaysData: [],
+      numItems: DEFAULT_NUM_ITEMS,
+      loaded: false,
     };
   }
 
@@ -31,14 +34,22 @@ class TwoDaysContainer extends Component {
       this.fetchTwoDaysData();
   }
 
+  endReached() {
+    var num = this.state.numItems + 10;
+    this.setState({
+      numItems: num,
+      today: this.ds.cloneWithRows(this.state.twoDaysData.slice(0, num))
+    });
+  }
+
   fetchTwoDaysData() {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      console.log('responseData', responseData);
       this.setState({
         twoDaysData: responseData,
-        twoDays: this.ds.cloneWithRows([responseData])
+        twoDays: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
+        loaded: true,
       });
     })
     .done();
@@ -55,13 +66,40 @@ class TwoDaysContainer extends Component {
     })
   }
 
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          Loading results...
+        </Text>
+      </View>
+    );
+  }
+
+  pressItem(id, place) {
+      this.props.navigator.push({
+        title: 'Two Days List',
+        component: <PlaceContainer
+        place={place}
+          />
+      })
+  }
+
   renderOne(place) {
     return (
-      <ItemContainer key={place.id} place={place} />
+      <View >
+        <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
+          <ItemContainer style={styles.button} key={place.id} place={place}/>
+        </TouchableHighlight>
+      </View>
     )
   }
 
   render() {
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
+
     if(this.state.twoDaysData.length == 0){
       return(
         <View style={styles.emptyContainer}>
@@ -87,7 +125,9 @@ class TwoDaysContainer extends Component {
           </View>
           <ListView
              dataSource={this.state.twoDays}
-             renderRow={this.renderOne}
+             onEndReachedThreshold={10}
+             onEndReached={this.endReached.bind(this)}
+             renderRow={this.renderOne.bind(this)}
              enableEmptySections={true}
           />
         </View>
