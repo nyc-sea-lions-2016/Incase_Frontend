@@ -4,16 +4,31 @@ import React, {
   Component,
   Text,
   View,
+  TouchableHighlight,
   Image
 } from 'react-native';
 
-import FavoriteButton from '../LandingPage/Favorite_Button'
+  import FavoriteButton from '../LandingPage/FavoriteButton'
 
-class PlaceElement extends Component {
-  constructor(props) {
-    super(props);
-  }
+  class PlaceElement extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        fav: ""
+      }
+    }
 
+    setNativeProps (nativeProps) {
+      this._root.setNativeProps(nativeProps);
+    }
+
+    favoriteButtonClicked(){
+      console.log("hit the btutrgniorew")
+      console.log(this)
+      this.setState({
+        fav: this.props.favorite
+      })
+    }
 
   pressFavorite(){
     fetch('http://localhost:3000/places/'+this.props.id +'/edit')
@@ -21,7 +36,6 @@ class PlaceElement extends Component {
 
     .done();
   }
-
 
   render() {
     var website = 'No Website for This Location'
@@ -41,7 +55,9 @@ class PlaceElement extends Component {
       style={placeStyle.placePicture}
       source={require('../images/user_icon.png')}
       />
-      <FavoriteButton onPress={this.pressFavorite} favorite={this.props.place.favorite}/>
+      <TouchableHighlight onPress={this.favoriteButtonClicked.bind(this)}>
+        <FavoriteButton favorite={this.props.place.favorite} id={this.props.place.id} navigator={this.props.navigator} favoriteButtonClicked={this.favoriteButtonClicked.bind(this)}/>
+      </TouchableHighlight>
         <View>
         <Text style={[placeStyle.mainChild, placeStyle.mainName]}>{this.props.place.name}</Text>
         </View>
