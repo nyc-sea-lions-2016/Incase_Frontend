@@ -31,11 +31,13 @@ import TimeElement from './TimeElement'
     }
     render() {
       return (
-      <View>
+      <View style={styles.container}>
 
         <View style={styles.buttonContainer}>
-          <TouchableHighlight onPress={this.pressHood.bind(this)}>
-            <View style={styles.button}>
+          <TouchableHighlight
+          style={styles.button}
+          onPress={this.pressHood.bind(this)}>
+            <View>
               <Text style={styles.NeighborhoodText}>Category</Text>
             </View>
           </TouchableHighlight>
@@ -44,10 +46,10 @@ import TimeElement from './TimeElement'
 
         <View style={styles.buttonContainer}>
           <TouchableHighlight
-          style={styles.touchable}
+          style={styles.button}
           onPress={this.pressTime.bind(this)}
           >
-            <View style={styles.button}>
+            <View>
               <Text style={styles.TimeText}>Time</Text>
             </View>
           </TouchableHighlight>
@@ -57,25 +59,27 @@ import TimeElement from './TimeElement'
     }
   }
 
-  const styles = StyleSheet.create({
+  var styles = StyleSheet.create({
+    container: {
+      paddingBottom: 80,
+    },
+
     NeighborhoodText:{
     color:'#fff',
     textAlign:'center',
     fontSize:20,
-    marginBottom:30,
     padding: 10,
     },
 
     TimeText:{
       color:'#fff',
       fontSize:20,
-      marginBottom:10,
       padding: 10,
       textAlign: 'center',
     },
 
     buttonContainer: {
-      marginTop: 50,
+      marginTop: 100,
     },
 
     button: {
