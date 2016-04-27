@@ -24,20 +24,20 @@ class ItemContainer extends Component {
     if(this.props.place.categories !== []){
       var catNodes = this.props.place.categories.map(function(category){
         return(
-          <Text key={category.id} style={styles.mainCategory}> {category.category} </Text>
+          <Text key={category.id} style={[itemStyle.mainType]}> {category.category} </Text>
         )
       })
     }
     return (
-      <View style={styles.mainParent} ref={component => this._root = component}>
+      <View style={itemStyle.mainParent} ref={component => this._root = component}>
       <View>
-      <Text style={[styles.mainChild, styles.mainName]}>{this.props.place.name}</Text>
+      <Text style={[itemStyle.mainChild, itemStyle.mainName]}>{this.props.place.name}</Text>
       </View>
       <View>
-      <Text style={[styles.mainChild, styles.mainAddress]}>{this.props.place.address}</Text>
+      <Text style={[itemStyle.mainChild, itemStyle.mainType]}>{this.props.place.address}</Text>
       </View>
       <View>
-      <Text>{catNodes}</Text>
+      <Text style={[itemStyle.mainChild, itemStyle.mainName]}>{catNodes}</Text>
       </View>
       </View>
     )
@@ -45,14 +45,16 @@ class ItemContainer extends Component {
 }
 
 
-const styles = StyleSheet.create({
+const itemStyle = StyleSheet.create({
   mainParent: {
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 15,
-    marginLeft: 30,
     borderBottomColor: '#ddd',
+    paddingLeft: 50,
+    paddingRight: 50,
+    paddingTop:15,
+    paddingBottom:15,
     borderBottomWidth: StyleSheet.hairlineWidth,
     backgroundColor: '#fff'
 
@@ -62,6 +64,7 @@ const styles = StyleSheet.create({
     margin:3,
     paddingBottom: 10,
     fontWeight: 'bold',
+    paddingTop:10,
 
   },
   mainChild:{
@@ -69,7 +72,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
   },
-
+  mainType:{
+    margin:3,
+    flex: 3,
+    flexDirection: 'row',
+  },
   mainAddress:{
     fontSize: 13,
     margin:3,
@@ -78,7 +85,14 @@ const styles = StyleSheet.create({
     fontSize: 11,
     margin:3,
     paddingBottom: 10,
-  }
+  },
+  button: {
+    borderRadius:10,
+    justifyContent: 'center'
+  },
+  touchable: {
+    borderRadius: 10
+  },
 })
 
 

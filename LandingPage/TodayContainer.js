@@ -35,7 +35,7 @@ class TodayContainer extends Component {
   }
 
   endReached() {
-    var num = this.state.numItems + 10;``
+    var num = this.state.numItems + 10;
     this.setState({
       numItems: num,
       today: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
@@ -62,28 +62,28 @@ class TodayContainer extends Component {
       component: <SearchContainer
       todayData={this.state.todayData}
       navigator={this.props.navigator}
+      day={'today'}
       />
     })
   }
 
-    renderLoadingView() {
-      return (
-        <View style={styles.container}>
-          <Text>
-            Loading results...
-          </Text>
-        </View>
-      );
-    }
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+      <Text>
+      Loading results...
+      </Text>
+      </View>
+    );
+  }
 
   pressItem(id, place) {
-      this.props.navigator.push({
-        title: 'Today List',
-        component: <PlaceContainer
-        place={place}
-        navigator={this.props.navigator}
-          />
-      })
+    this.props.navigator.push({
+      title: place.name,
+      component: <PlaceContainer
+      place={place}
+      />
+    })
   }
 
   renderOne(place) {
@@ -91,7 +91,7 @@ class TodayContainer extends Component {
     return(
       <View >
       <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
-        <ItemContainer style={styles.button} key={place.id} place={place}/>
+      <ItemContainer key={place.id} place={place}/>
       </TouchableHighlight>
       </View>
     )
@@ -102,68 +102,68 @@ class TodayContainer extends Component {
       return this.renderLoadingView();
     }
 
-      if(this.state.today.length == 0){
-        return(
-          <View style={styles.emptyContainer}>
-            <Text style={styles.bold}>Nothing to see here</Text>
-            <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
-          </View>
-        )
-      } else {
-        return (
-          <View style={styles.container}>
-            <View style={styles.buttonContainer}>
-              <TouchableHighlight
-                onPress={this.pressSearch.bind(this)}
-                style={styles.touchable}>
-                <View style={styles.button}>
-                  <Text style={styles.welcome}> Filter Results </Text>
-                </View>
-              </TouchableHighlight>
-            </View>
-            <ListView
-               dataSource={this.state.today}
-               onEndReachedThreshold={10}
-               onEndReached={this.endReached.bind(this)}
-               enableEmptySections={true} // This will stop the warning for sempty sections headers
-               renderRow={this.renderOne.bind(this)}
-            />
-          </View>
-        );
-      }
+    if(this.state.today.length == 0){
+      return(
+        <View style={styles.emptyContainer}>
+        <Text style={styles.bold}>Nothing to see here</Text>
+        <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+        <TouchableHighlight
+        onPress={this.pressSearch.bind(this)}
+        style={styles.touchable}>
+        <View style={styles.button}>
+        <Text style={styles.welcome}> Filter Results </Text>
+        </View>
+        </TouchableHighlight>
+        </View>
+        <ListView
+        dataSource={this.state.today}
+        onEndReachedThreshold={10}
+        onEndReached={this.endReached.bind(this)}
+        enableEmptySections={true} // This will stop the warning for sempty sections headers
+        renderRow={this.renderOne.bind(this)}
+        />
+        </View>
+      );
     }
+  }
 }
 
 
-  var styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-    },
-    buttonContainer:{
-      marginTop:40,
-      marginBottom:15,
-    },
-    welcome: {
-      fontSize: 18,
-      textAlign: 'center',
-      margin: 10,
-      color: '#FFFFFF'
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  buttonContainer:{
+    marginTop:40,
+    marginBottom:15,
+  },
+  welcome: {
+    fontSize: 18,
+    textAlign: 'center',
+    margin: 10,
+    color: '#FFFFFF'
 
-    },
-    button: {
-      backgroundColor: '#35d37c',
-      height: 40,
-      width: 200,
-      borderRadius:10,
-      justifyContent: 'center'
-    },
-    touchable: {
-      borderRadius: 10
-    },
-  })
+  },
+  button: {
+    backgroundColor: '#35d37c',
+    height: 40,
+    width: 200,
+    borderRadius:10,
+    justifyContent: 'center'
+  },
+  touchable: {
+    borderRadius: 10
+  },
+})
 
 
 

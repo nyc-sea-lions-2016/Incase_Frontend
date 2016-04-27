@@ -31,7 +31,15 @@ class TwoDaysContainer extends Component {
   }
 
   componentDidMount() {
-      this.fetchTwoDaysData();
+    this.fetchTwoDaysData();
+  }
+
+  endReached() {
+    var num = this.state.numItems + 10;``
+    this.setState({
+      numItems: num,
+      twoDays: this.ds.cloneWithRows(this.state.twoDaysData.slice(0, num))
+    });
   }
 
   endReached() {
@@ -62,15 +70,16 @@ class TwoDaysContainer extends Component {
       component: <SearchContainer
       todayData={this.state.twoDaysData}
       navigator={this.props.navigator}
+      day={'twoDays'}
       />
     })
   }
 
   renderLoadingView() {
     return (
-      <View style={styles.container}>
+      <View style={twoDayContainerStyle.container}>
         <Text>
-          Loading results...
+        Loading results...
         </Text>
       </View>
     );
@@ -102,85 +111,81 @@ class TwoDaysContainer extends Component {
 
     if(this.state.twoDaysData.length == 0){
       return(
-        <View style={styles.emptyContainer}>
-          <Text style={styles.bold}>Nothing to see here</Text>
-          <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+        <View style={twoDayContainerStyle.emptyContainer}>
+        <Text style={twoDayContainerStyle.bold}>Nothing to see here</Text>
+        <Text style={twoDayContainerStyle.normal}>Keep on exploring and build up this page!</Text>
         </View>
       )
     } else {
       return (
-        <View style={styles.container}>
-
-
-          <View style={styles.buttonContainer}>
-            <TouchableHighlight
-              onPress={this.pressSearch.bind(this)}
-              onPressIn={this._onPressIn}
-              onPressOut={this._onPressOut}
-              style={styles.touchable}>
-              <View style={styles.button}>
-                <Text style={styles.welcome}> Filter Results </Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <ListView
-             dataSource={this.state.twoDays}
-             onEndReachedThreshold={10}
-             onEndReached={this.endReached.bind(this)}
-             renderRow={this.renderOne.bind(this)}
-             enableEmptySections={true}
-          />
+        <View style={twoDayContainerStyle.container}>
+        <View style={twoDayContainerStyle.buttonContainer}>
+        <TouchableHighlight
+        onPress={this.pressSearch.bind(this)}
+        style={twoDayContainerStyle.touchable}>
+        <View style={twoDayContainerStyle.button}>
+        <Text style={twoDayContainerStyle.welcome}> Filter Results </Text>
+        </View>
+        </TouchableHighlight>
+        </View>
+        <ListView
+        dataSource={this.state.twoDays}
+        onEndReachedThreshold={10}
+        onEndReached={this.endReached.bind(this)}
+        enableEmptySections={true} // This will stop the warning for sempty sections headers
+        renderRow={this.renderOne.bind(this)}
+        />
         </View>
       );
     }
   }
 }
 
-  var styles = StyleSheet.create({
-    emptyContainer:{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-    },
-    normal:{
-      fontSize:15,
-    },
-    bold:{
-      fontWeight: 'bold',
-      fontSize:16,
-    },
+var twoDayContainerStyle = StyleSheet.create({
+  emptyContainer:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  normal:{
+    fontSize:15,
+  },
+  bold:{
+    fontWeight: 'bold',
+    fontSize:16,
+  },
 
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-    },
-    buttonContainer:{
-      marginTop:40,
-      marginBottom:15,
-    },
-    welcome: {
-      fontSize: 18,
-      textAlign: 'center',
-      margin: 10,
-      color: '#FFFFFF'
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  buttonContainer:{
+    marginTop:40,
+    marginBottom:15,
+  },
+  welcome: {
+    fontSize: 18,
+    textAlign: 'center',
+    margin: 10,
+    color: '#FFFFFF'
 
-    },
-    button: {
-      backgroundColor: '#35d37c',
-      height: 40,
-      width: 200,
-      borderRadius:10,
-      justifyContent: 'center'
-    },
-    touchable: {
-      borderRadius: 10
-    },
-  })
+  },
+  button: {
+    backgroundColor: '#35d37c',
+    height: 40,
+    width: 200,
+    borderRadius:10,
+    justifyContent: 'center'
+  },
+  touchable: {
+    borderRadius: 10
+  },
+})
 
 
 module.exports = TwoDaysContainer
-// style={styles.container}
+// style={twoDayContainerStyle.container}
 // AppRegistry.registerComponent('InCaseFrontend', () => InCaseFrontend);
