@@ -38,7 +38,7 @@ class YesterdayContainer extends Component {
     var num = this.state.numItems + 10;
     this.setState({
       numItems: num,
-      today: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
+      today: this.ds.cloneWithRows(this.state.yesterdayData.slice(0, num))
     });
   }
 
@@ -47,7 +47,7 @@ class YesterdayContainer extends Component {
     .then((response) => response.json())
     .then((responseData) => {
       this.setState({
-        yesterday: this.ds.cloneWithRows(responseData),
+        yesterday: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
         yesterdayData: responseData,
         loaded: true,
       });
