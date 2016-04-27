@@ -36,7 +36,9 @@ import React, {
       }else{
         return(
           <View>
-              <Text>Now Come Visit!</Text>
+            <TouchableHighlight onPress={this.pressFavorite.bind(this)}>
+              <Text>Remove from Favorites</Text>
+            </TouchableHighlight>
           </View>
         )
       }
