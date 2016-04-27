@@ -53,9 +53,22 @@ class YesterdayContainer extends Component {
     })
   }
 
+  pressItem(id, place) {
+    this.props.navigator.push({
+      title: 'Yesterday List',
+      component: <PlaceContainer
+      place={place}
+      />
+    })
+  }
+
   renderOne(place) {
     return (
-      <ItemContainer key={place.id} place={place} />
+      <View>
+        <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
+          <ItemContainer key={place.id} place={place} />
+        </TouchableHighlight>
+      </View>
     )
   }
 
@@ -84,10 +97,10 @@ class YesterdayContainer extends Component {
             </TouchableHighlight>
           </View>
           <ListView
-              enableEmptySections={true}
-             dataSource={this.state.yesterday}
-             renderRow={this.renderOne}
+            dataSource={this.state.yesterday}
+            enableEmptySections={true}
              enableEmptySections={true}
+             renderRow={this.renderOne.bind(this)}
           />
         </View>
       );
