@@ -12,8 +12,12 @@ import React, {
     constructor(props){
       super(props);
     }
+
+    setNativeProps (nativeProps) {
+      this._root.setNativeProps(nativeProps);
+    }
+
     render(){
-      console.log('this.props.favorite =', this.props.favorite)
       if(this.props.favorite === false){
         return(
           <View>

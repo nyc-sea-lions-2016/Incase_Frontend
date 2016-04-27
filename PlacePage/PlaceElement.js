@@ -4,6 +4,7 @@ import React, {
   Component,
   Text,
   View,
+  TouchableHighlight,
   Image
   } from 'react-native';
 
@@ -14,13 +15,16 @@ import React, {
       super(props);
     }
 
+    setNativeProps (nativeProps) {
+      this._root.setNativeProps(nativeProps);
+    }
 
     pressFavorite(){
+      console.log("hit the favorite button")
       fetch('http://localhost:3000/places/'+this.props.id +'/edit')
         .then((response) => response.json())
         .done();
     }
-
 
     render() {
       var website = 'No Website for This Location'
@@ -34,7 +38,10 @@ import React, {
             source={require('../images/user_icon.png')}
           />
             <View style={styles.detailsContainer}>
-            <FavoriteButton onPress={this.pressFavorite} favorite={this.props.place.favorite}/>
+
+            <TouchableHighlight onPress={this.pressFavorite}>
+              <FavoriteButton favorite={this.props.place.favorite}/>
+            </TouchableHighlight>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.placeName}>{this.props.place.name}</Text>
