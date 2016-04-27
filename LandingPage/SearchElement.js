@@ -9,7 +9,7 @@ import React, {
   } from 'react-native';
 
 import HoodElement from './HoodElement'
-import TimeElement from './TimeElement'
+import StartTimeElement from './StartTimeElement'
 
   class SearchElement extends Component {
     constructor(props){
@@ -24,8 +24,12 @@ import TimeElement from './TimeElement'
     }
     pressTime(){
       this.props.navigator.push({
-        title: 'Time Search',
-        component: <TimeElement/>
+        title: 'Start Time Search',
+        component: <StartTimeElement
+          todayData={this.props.todayData}
+          navigator={this.props.navigator}
+          day={this.props.day}
+          />
       })
 
     }

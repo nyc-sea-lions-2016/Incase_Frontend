@@ -9,6 +9,7 @@ import React, {
   View,
 } from 'react-native';
 
+import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
@@ -41,6 +42,14 @@ class YesterdayContainer extends Component {
     });
   }
 
+  endReached() {
+    var num = this.state.numItems + 10;
+    this.setState({
+      numItems: num,
+      today: this.ds.cloneWithRows(this.state.yesterdayData.slice(0, num))
+    });
+  }
+
   fetchYesterdayData() {
     fetch(API_URL)
     .then((response) => response.json())
@@ -60,6 +69,26 @@ class YesterdayContainer extends Component {
       component: <SearchContainer
       todayData={this.state.yesterdayData}
       navigator={this.props.navigator}
+      day={'yesterday'}
+      />
+    })
+  }
+
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          Loading results...
+        </Text>
+      </View>
+    );
+  }
+
+  pressItem(id, place) {
+    this.props.navigator.push({
+      title: 'Yesterday List',
+      component: <PlaceContainer
+      place={place}
       />
     })
   }
@@ -76,7 +105,11 @@ class YesterdayContainer extends Component {
 
   renderOne(place) {
     return (
-      <ItemContainer key={place.id} place={place} />
+      <View>
+        <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
+          <ItemContainer key={place.id} place={place} />
+        </TouchableHighlight>
+      </View>
     )
   }
 
