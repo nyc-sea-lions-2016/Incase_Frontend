@@ -24,14 +24,22 @@ class YesterdayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       yesterday: this.ds.cloneWithRows([]),
-      numItems: DEFAULT_NUM_ITEMS,
       yesterdayData: [],
+      numItems: DEFAULT_NUM_ITEMS,
       loaded: false,
     };
   }
 
   componentDidMount() {
-      this.fetchYesterdayData();
+    this.fetchYesterdayData();
+  }
+
+  endReached() {
+    var num = this.state.numItems + 10;``
+    this.setState({
+      numItems: num,
+      today: this.ds.cloneWithRows(this.state.yesterdayData.slice(0, num))
+    });
   }
 
   endReached() {
@@ -47,8 +55,8 @@ class YesterdayContainer extends Component {
     .then((response) => response.json())
     .then((responseData) => {
       this.setState({
-        yesterday: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
         yesterdayData: responseData,
+        yesterday: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
         loaded: true,
       });
     })
@@ -61,6 +69,7 @@ class YesterdayContainer extends Component {
       component: <SearchContainer
       todayData={this.state.yesterdayData}
       navigator={this.props.navigator}
+      day={'yesterday'}
       />
     })
   }
@@ -84,6 +93,16 @@ class YesterdayContainer extends Component {
     })
   }
 
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+      <Text>
+      Loading results...
+      </Text>
+      </View>
+    );
+  }
+
   renderOne(place) {
     return (
       <View>
@@ -102,80 +121,78 @@ class YesterdayContainer extends Component {
     if(this.state.yesterdayData.length == 0){
       return(
         <View style={styles.emptyContainer}>
-          <Text style={styles.bold}>Nothing to see here</Text>
-          <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+        <Text style={styles.bold}>Nothing to see here</Text>
+        <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
         </View>
       )
     } else {
       return (
         <View style={styles.container}>
-
-
-          <View style={styles.buttonContainer}>
-            <TouchableHighlight
-              onPress={this.pressSearch.bind(this)}
-              onPressIn={this._onPressIn}
-              onPressOut={this._onPressOut}
-              style={styles.touchable}>
-              <View style={styles.button}>
-                <Text style={styles.welcome}> Filter Results </Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <ListView
-            dataSource={this.state.yesterday}
-            enableEmptySections={true}
-             enableEmptySections={true}
-             renderRow={this.renderOne.bind(this)}
-          />
+        <View style={styles.buttonContainer}>
+        <TouchableHighlight
+        onPress={this.pressSearch.bind(this)}
+        style={styles.touchable}>
+        <View style={styles.button}>
+        <Text style={styles.welcome}> Filter Results </Text>
+        </View>
+        </TouchableHighlight>
+        </View>
+        <ListView
+        enableEmptySections={true}
+        dataSource={this.state.yesterday}
+        onEndReachedThreshold={10}
+        onEndReached={this.endReached.bind(this)}
+        enableEmptySections={true} // This will stop the warning for sempty sections headers
+        renderRow={this.renderOne.bind(this)}
+        />
         </View>
       );
     }
   }
 }
 
-  var styles = StyleSheet.create({
-    emptyContainer:{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-    },
-    normal:{
-      fontSize:15,
-    },
-    bold:{
-      fontWeight: 'bold',
-      fontSize:16,
-    },
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-    },
-    welcome: {
-      fontSize: 18,
-      textAlign: 'center',
-      margin: 10,
-      color: '#FFFFFF'
+var styles = StyleSheet.create({
+  emptyContainer:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  normal:{
+    fontSize:15,
+  },
+  bold:{
+    fontWeight: 'bold',
+    fontSize:16,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+  },
+  welcome: {
+    fontSize: 18,
+    textAlign: 'center',
+    margin: 10,
+    color: '#FFFFFF'
 
-    },
-    buttonContainer:{
-      marginTop:40,
-      marginBottom:15,
-    },
-    button: {
-      backgroundColor: '#35d37c',
-      height: 40,
-      width: 200,
-      borderRadius:10,
-      justifyContent: 'center'
-    },
-    touchable: {
-      borderRadius: 10
-    },
-  })
+  },
+  buttonContainer:{
+    marginTop:40,
+    marginBottom:15,
+  },
+  button: {
+    backgroundColor: '#35d37c',
+    height: 40,
+    width: 200,
+    borderRadius:10,
+    justifyContent: 'center'
+  },
+  touchable: {
+    borderRadius: 10
+  },
+})
 
 
 module.exports = YesterdayContainer
