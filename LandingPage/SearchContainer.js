@@ -10,12 +10,11 @@ import React, {
 } from 'react-native';
 
 import SearchElement from '../LandingPage/SearchElement'
-import TimeElement from '../LandingPage/TimeElement'
+import StartTimeElement from '../LandingPage/StartTimeElement'
 
 class SearchContainer extends Component {
   constructor(props){
     super(props);
-    console.log(this.props.todayData);
   }
 
   render() {
@@ -24,6 +23,7 @@ class SearchContainer extends Component {
         <SearchElement
         navigator={this.props.navigator}
         todayData={this.props.todayData}
+        day={this.props.day}
         />
       </View>
     )

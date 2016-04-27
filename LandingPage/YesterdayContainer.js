@@ -49,6 +49,7 @@ class YesterdayContainer extends Component {
       component: <SearchContainer
       todayData={this.state.yesterdayData}
       navigator={this.props.navigator}
+      day={'yesterday'}
       />
     })
   }

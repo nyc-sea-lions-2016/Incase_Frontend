@@ -31,7 +31,7 @@ class ItemContainer extends Component {
     return (
       <View style={styles.mainParent} ref={component => this._root = component}>
       <View>
-      <Text style={[styles.mainChild, styles.mainName]}>{this.props.place.id} {this.props.place.name}</Text>
+      <Text style={[styles.mainChild, styles.mainName]}>{this.props.place.name}</Text>
       </View>
       <View>
       <Text style={[styles.mainChild, styles.mainAddress]}>{this.props.place.address}</Text>
