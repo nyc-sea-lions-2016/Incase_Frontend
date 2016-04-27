@@ -13,17 +13,30 @@ import React, {
   class PlaceElement extends Component {
     constructor(props) {
       super(props);
+      this.state = {
+        fav: ""
+      }
     }
 
     setNativeProps (nativeProps) {
       this._root.setNativeProps(nativeProps);
     }
 
+    favoriteButtonClicked(){
+      console.log("hit the btutrgniorew")
+      console.log(this)
+      this.setState({
+        fav: this.props.favorite
+      })
+    }
+
     render() {
+      console.log("rerendering ")
       var website = 'No Website for This Location'
       if(this.props.place.website){
         website = this.props.place.website
       }
+
       return (
         <View style={styles.container}>
           <Image
@@ -32,8 +45,8 @@ import React, {
           />
             <View style={styles.detailsContainer}>
 
-            <TouchableHighlight>
-              <FavoriteButton favorite={this.props.place.favorite} id={this.props.place.id}/>
+            <TouchableHighlight onPress={this.favoriteButtonClicked.bind(this)}>
+              <FavoriteButton favorite={this.props.place.favorite} id={this.props.place.id} navigator={this.props.navigator} favoriteButtonClicked={this.favoriteButtonClicked.bind(this)}/>
             </TouchableHighlight>
 
               <View style={styles.detailsContainer}>

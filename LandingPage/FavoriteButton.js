@@ -11,30 +11,37 @@ import React, {
   class FavoriteButton extends Component {
     constructor(props){
       super(props);
+      this.state = {
+        fav: this.props.favorite
+      }
     }
 
     setNativeProps (nativeProps) {
       this._root.setNativeProps(nativeProps);
     }
 
+    componentWillReceiveProps(nextProps){
+      this.setState({fav: nextProps})
+    }
+
     pressFavorite(){
-      fetch('http://localhost:3000/places/'+ this.props.id +"" ,{
+      fetch('http://localhost:3000/places/'+ this.props.id + "", {
           method: "PUT"
         }
       )
-      // insert logic to return confirmation of change in status here
+      this.props.favoriteButtonClicked()
     }
 
-    pressUnfavorite(){
-      fetch('http://localhost:3000/places/'+ this.props.id +"" ,{
-          method: "PUT"
-        }
-      )
-      // insert logic to return confirmation of change in status here
-    }
-
+    // pressUnfavorite(){
+    //   fetch('http://localhost:3000/places/'+ this.props.id + "", {
+    //       method: "PUT"
+    //     }
+    //   )
+    //   this.props.favoriteButtonClicked()
+    // }
+    // was this props.favorite
     render(){
-      if(this.props.favorite === false){
+      if(this.state.fav === false){
         return(
           <View>
             <TouchableHighlight onPress={this.pressFavorite.bind(this)}>
@@ -45,7 +52,7 @@ import React, {
       }else{
         return(
           <View>
-            <TouchableHighlight onPress={this.pressUnfavorite.bind(this)}>
+            <TouchableHighlight onPress={this.pressFavorite.bind(this)}>
               <Text>Remove from Favorites</Text>
             </TouchableHighlight>
           </View>

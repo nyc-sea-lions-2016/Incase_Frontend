@@ -75,11 +75,13 @@ class TodayContainer extends Component {
         title: 'Today List',
         component: <PlaceContainer
         place={place}
+        navigator={this.props.navigator}
           />
       })
   }
 
   renderOne(place) {
+    console.log("place", place)
     return(
       <View >
       <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
