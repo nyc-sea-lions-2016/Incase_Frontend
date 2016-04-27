@@ -7,7 +7,7 @@ import React, {
   Image
   } from 'react-native';
 
-  import FavoriteButton from '../LandingPage/Favorite_Button'
+  import FavoriteButton from '../LandingPage/FavoriteButton'
 
   class PlaceElement extends Component {
     constructor(props) {
@@ -18,7 +18,6 @@ import React, {
     pressFavorite(){
       fetch('http://localhost:3000/places/'+this.props.id +'/edit')
         .then((response) => response.json())
-
         .done();
     }
 
@@ -34,10 +33,11 @@ import React, {
             style={styles.placePicture}
             source={require('../images/user_icon.png')}
           />
-          <FavoriteButton onPress={this.pressFavorite} favorite={this.props.place.favorite}/>
             <View style={styles.detailsContainer}>
+            <FavoriteButton onPress={this.pressFavorite} favorite={this.props.place.favorite}/>
+
               <View style={styles.detailsContainer}>
-              <Text style={styles.placeName}>{this.props.place.name}</Text>
+                <Text style={styles.placeName}>{this.props.place.name}</Text>
               </View>
 
               <View style={styles.detailsContainer}>
@@ -47,15 +47,17 @@ import React, {
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Phone  </Text>
-                <Text style={styles.details}> numbaaaahs </Text>
+                <Text style={styles.details}> phone number placehoder </Text>
               </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Website </Text>
                 <Text style={styles.details}> Website </Text>
               </View>
+
             </View>
-          </View>
+
+        </View>
       );
     }
   }

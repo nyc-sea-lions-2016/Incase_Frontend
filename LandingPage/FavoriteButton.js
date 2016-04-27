@@ -13,6 +13,7 @@ import React, {
       super(props);
     }
     render(){
+      console.log('this.props.favorite =', this.props.favorite)
       if(this.props.favorite === false){
         return(
           <View>
