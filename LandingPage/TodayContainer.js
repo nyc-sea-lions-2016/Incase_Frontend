@@ -70,27 +70,6 @@ class TodayContainer extends Component {
     })
   }
 
-<<<<<<< HEAD
-// FIX IN MORNING
-  // pressItem(id, place) {
-  //     this.props.navigator.push({
-  //       component: <PlaceContainer
-  //         place={place}
-  //         />
-  //     })
-  // }
-  //onPress={this.pressItem.bind(this, place.id, place)}
-  renderOne(place) {
-    return(
-
-      <View>
-        <TouchableHighlight  >
-          <View>
-            <ItemContainer style={styles.button} key={place.id} place={place} />
-          </View>
-        </TouchableHighlight>
-=======
-//
   pressItem(id, place) {
       this.props.navigator.push({
         title: 'Today List',
@@ -106,44 +85,11 @@ class TodayContainer extends Component {
       <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
         <ItemContainer style={styles.button} key={place.id} place={place}/>
       </TouchableHighlight>
->>>>>>> 39a32ea8feafd83c0f2528c8da6420bf30e01b35
       </View>
     )
   }
 
   render() {
-<<<<<<< HEAD
-      if(this.state.today.length == 0){
-        return(
-          <View style={styles.emptyContainer}>
-            <Text style={styles.bold}>Nothing to see here</Text>
-            <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
-          </View>
-        )
-      } else {
-        return (
-          <View style={styles.container}>
-
-
-            <View style={styles.buttonContainer}>
-              <TouchableHighlight
-                onPress={this.pressSearch.bind(this)}
-                onPressIn={this._onPressIn}
-                onPressOut={this._onPressOut}
-                style={styles.touchable}>
-                <View style={styles.button}>
-                  <Text style={styles.welcome}> Filter Results </Text>
-                </View>
-              </TouchableHighlight>
-            </View>
-            <ListView
-               dataSource={this.state.today}
-               renderRow={this.renderOne}
-            />
-          </View>
-        );
-      }
-=======
     return (
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
@@ -158,15 +104,14 @@ class TodayContainer extends Component {
         <ListView
            dataSource={this.state.today}
            renderRow={this.renderOne.bind(this)}
+           loadData={this.reloadContainer}
+           minDisplayTime={4}
         />
       </View>
-
     );
->>>>>>> 39a32ea8feafd83c0f2528c8da6420bf30e01b35
   }
 }
-// {/*loadData={this.reloadContainer}*/}
-// {/*minDisplayTime={4}*/}
+
 
   var styles = StyleSheet.create({
     container: {

@@ -31,7 +31,6 @@ import React, {
     }
 
     submitForm(){
-      console.log(this.checkCategory())
       this.props.navigator.push({
         title: 'Search Results',
         component: <SearchListContainer
