@@ -13,9 +13,8 @@ import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
 
-//const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
-
-const API_URL = 'http://localhost:3000/places/two_days';
+// const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
+const API_URL ='http://localhost:3000/places/two_days';
 
 
 class TwoDaysContainer extends Component {
@@ -89,6 +88,7 @@ class TwoDaysContainer extends Component {
           <ListView
              dataSource={this.state.twoDays}
              renderRow={this.renderOne}
+             enableEmptySections={true}
           />
         </View>
       );

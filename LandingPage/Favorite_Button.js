@@ -21,7 +21,6 @@ import React, {
         return(
           <View style={styles.buttonContainer}>
             <TouchableHighlight
-
               style={styles.touchable}>
               <View style={styles.button}>
                 <Text style={styles.welcome}> Save This Place </Text>
