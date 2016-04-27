@@ -134,36 +134,36 @@ class TodayContainer extends Component {
   }
 }
 
+  var styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
+    },
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
+    },
+    welcome: {
+      fontSize: 18,
+      textAlign: 'center',
+      margin: 10,
+      color: '#FFFFFF',
+    },
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f9f9f9',
-  },
-  buttonContainer:{
-    marginTop:40,
-    marginBottom:15,
-  },
-  welcome: {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#FFFFFF'
+    button: {
+      backgroundColor: '#35d37c',
+      height: 40,
+      width: 200,
+      borderRadius:10,
+      justifyContent: 'center',
+    },
+    touchable: {
+      borderRadius: 10,
+    },
+  })
 
-  },
-  button: {
-    backgroundColor: '#35d37c',
-    height: 40,
-    width: 200,
-    borderRadius:10,
-    justifyContent: 'center'
-  },
-  touchable: {
-    borderRadius: 10
-  },
-})
 
 
 

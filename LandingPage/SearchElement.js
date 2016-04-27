@@ -35,43 +35,66 @@ import StartTimeElement from './StartTimeElement'
     }
     render() {
       return (
-        <View style={styles.mainContainer}>
-          <TouchableHighlight onPress={this.pressHood.bind(this)}>
-            <Text style={styles.NeighborhoodText}>Category</Text>
-          </TouchableHighlight>
+      <View style={styles.container}>
 
-          <TouchableHighlight onPress={this.pressTime.bind(this)}>
-            <Text style={styles.TimeText}>Time</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+          style={styles.button}
+          onPress={this.pressHood.bind(this)}>
+            <View>
+              <Text style={styles.NeighborhoodText}>Category</Text>
+            </View>
           </TouchableHighlight>
         </View>
+
+
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+          style={styles.button}
+          onPress={this.pressTime.bind(this)}
+          >
+            <View>
+              <Text style={styles.TimeText}>Time</Text>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
       )
     }
   }
 
-  const styles = StyleSheet.create({
-
+  var styles = StyleSheet.create({
+    container: {
+      paddingBottom: 80,
+    },
 
     NeighborhoodText:{
-    fontWeight:'bold',
     color:'#fff',
-    textAlign:'left',
+    textAlign:'center',
     fontSize:20,
-    marginBottom:30,
-    borderWidth: 1,
     padding: 10,
-    borderRadius:10,
     },
 
     TimeText:{
-      fontWeight:'bold',
       color:'#fff',
-      textAlign:'left',
       fontSize:20,
-      marginBottom:10,
-      borderWidth: 1,
       padding: 10,
-      borderRadius:10,
       textAlign: 'center',
+    },
+
+    buttonContainer: {
+      marginTop: 100,
+    },
+
+    button: {
+      height: 40,
+      width: 200,
+      borderRadius: 10,
+      backgroundColor: '#35d37c',
+    },
+
+    touchable: {
+      borderRadius: 10,
     }
   })
 
