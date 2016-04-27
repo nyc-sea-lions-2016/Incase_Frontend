@@ -24,6 +24,7 @@ class YesterdayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       yesterday: this.ds.cloneWithRows([]),
+      yesterdayData: []
     };
   }
 
@@ -35,9 +36,9 @@ class YesterdayContainer extends Component {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      console.log('responseData', responseData);
       this.setState({
-        yesterday: this.ds.cloneWithRows(responseData)
+        yesterday: this.ds.cloneWithRows(responseData),
+        yesterdayData: responseData
       });
     })
     .done();
@@ -46,7 +47,10 @@ class YesterdayContainer extends Component {
   pressSearch(){
     this.props.navigator.push({
       title: 'Search',
-      component: <SearchContainer/>
+      component: <SearchContainer
+      todayData={this.state.yesterdayData}
+      navigator={this.props.navigator}
+      />
     })
   }
 

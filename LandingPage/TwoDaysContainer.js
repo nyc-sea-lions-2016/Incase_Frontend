@@ -23,6 +23,7 @@ class TwoDaysContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       twoDays: this.ds.cloneWithRows([]),
+      twoDaysData: []
     };
   }
 
@@ -36,16 +37,21 @@ class TwoDaysContainer extends Component {
     .then((responseData) => {
       console.log('responseData', responseData);
       this.setState({
-        twoDays: responseData
+        twoDaysData: responseData,
+        twoDays: this.ds.cloneWithRows([responseData])
       });
     })
     .done();
   }
 
   pressSearch(){
+    //console.log(this.state.todayData)
     this.props.navigator.push({
       title: 'Search',
-      component: <SearchContainer/>
+      component: <SearchContainer
+      todayData={this.state.twoDaysData}
+      navigator={this.props.navigator}
+      />
     })
   }
 

@@ -23,8 +23,6 @@ import React, {
               <Text key={category.id} style={styles.mainCategory}> {category.category} </Text>
           )
         })
-      }else{
-        catNodes = <Text>No Defined Categories for this Location</Text>
       }
           return (
             <View style={styles.mainParent}>
