@@ -46,16 +46,16 @@ import React, {
 
     render() {
       return (
-        <View style={styles.container}>
-          <Text>Category | Business Type</Text>
+        <View style={styles.mainContainer}>
+          <Text style={styles.header}>Category | Business Type</Text>
           <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            style={{height: 40, backgroundColor: '#FFFFFF', marginBottom: 50}}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
           />
 
           <TouchableHighlight onPress={this.submitForm.bind(this)}>
-            <Text>Submit</Text>
+            <Text style={styles.submitText}>Submit</Text>
           </TouchableHighlight>
         </View>
       )
@@ -64,7 +64,9 @@ import React, {
 
   const styles = StyleSheet.create({
     mainContainer: {
-      width:300,
+      backgroundColor: '#2199e8',
+      alignItems: "center",
+      color: '#FFFFFF',
       paddingTop:10,
       paddingBottom:20,
       paddingLeft:20,
@@ -72,18 +74,19 @@ import React, {
       flex:1,
     },
 
-    BoxTitleText:{
-    fontWeight:'bold',
-    color:'#fff',
-    textAlign:'left',
-    fontSize:20,
-    marginBottom:10
+    header: {
+      fontSize: 28,
+      marginTop: 30,
+      marginBottom: 50,
+      color: '#FFFFFF'
     },
 
-    BoxBodyText:{
-    color:'#fff',
-    fontSize:16
+    submitText: {
+      fontSize: 20,
+      color: '#FFFFFF'
     }
+
+
   })
 
 
