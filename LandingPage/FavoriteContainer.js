@@ -12,7 +12,10 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/favorites';
+
+//const API_URL = 'http://localhost:3000/places/favorites';
+const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/favorites';
+
 
 class FavoriteContainer extends Component {
   constructor(props) {
@@ -28,7 +31,6 @@ class FavoriteContainer extends Component {
       fetch(API_URL)
       .then((response) => response.json())
       .then((responseData) => {
-        console.log('responseData', responseData);
         this.setState({
           favorites: responseData
         });
@@ -61,7 +63,7 @@ class FavoriteContainer extends Component {
         <View style={styles.container}>
           <View>
             <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-              <Text> Click me to filter your results </Text>
+              <Text style={styles.filterText}> Filter Results </Text>
             </TouchableHighlight>
           </View>
           {listNodes}
@@ -77,6 +79,17 @@ class FavoriteContainer extends Component {
       flex: 1,
       paddingTop:40,
       backgroundColor: "#409ce9",
+    },
+    filterText:{
+      fontWeight:'bold',
+      color:'#fff',
+      textAlign:'left',
+      fontSize:20,
+      marginBottom:10,
+      borderWidth: 1,
+      padding: 10,
+      borderRadius:10,
+      textAlign: 'center'
     }
   })
 

@@ -9,10 +9,15 @@ import React, {
   View,
 } from 'react-native';
 
+import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
-import SearchContainer from './SearchContainer'
+import SearchContainer from './SearchContainer';
 
-const API_URL = 'https://boiling-refuge-94422.herokuapp.com/places/today';
+//var RefreshableListView = require('react-native-refreshable-listview');
+
+// const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
+const API_URL ='http://localhost:3000/places/today';
+const DEFAULT_NUM_ITEMS = 10;
 
 class TodayContainer extends Component {
   constructor(props) {
@@ -20,20 +25,32 @@ class TodayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       today: this.ds.cloneWithRows([]),
+      numItems: DEFAULT_NUM_ITEMS,
+      loaded: false,
     };
   }
 
   componentDidMount() {
-      this.fetchTodayData();
+    this.fetchTodayData();
   }
+
+  endReached() {
+    var num = this.state.numItems + 10;``
+    this.setState({
+      numItems: num,
+      today: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
+    });
+  }
+
 
   fetchTodayData() {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      console.log('responseData', responseData);
       this.setState({
-        today: this.ds.cloneWithRows(responseData)
+        todayData: responseData,
+        today: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
+        loaded: true,
       });
     })
     .done();
@@ -42,55 +59,112 @@ class TodayContainer extends Component {
   pressSearch(){
     this.props.navigator.push({
       title: 'Search',
-      component: <SearchContainer/>
+      component: <SearchContainer
+      todayData={this.state.todayData}
+      navigator={this.props.navigator}
+      />
     })
   }
 
+    renderLoadingView() {
+      return (
+        <View style={styles.container}>
+          <Text>
+            Loading results...
+          </Text>
+        </View>
+      );
+    }
+
+  pressItem(id, place) {
+      this.props.navigator.push({
+        title: 'Today List',
+        component: <PlaceContainer
+        place={place}
+        navigator={this.props.navigator}
+          />
+      })
+  }
+
   renderOne(place) {
+    console.log("place", place)
     return(
-        <ItemContainer key={place.id} place={place} />
+      <View >
+      <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
+        <ItemContainer style={styles.button} key={place.id} place={place}/>
+      </TouchableHighlight>
+      </View>
     )
   }
 
   render() {
-    // console.log('props', this.props)
-    console.log('state', this.state)
-    return (
-      <View style={styles.container}>
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
 
-        <View>
-          <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-            <Text> Filter Results </Text>
-          </TouchableHighlight>
-        </View>
-        <ListView
-           dataSource={this.state.today}
-           renderRow={this.renderOne}
-        />
-      </View>
-    );
-  }
+      if(this.state.today.length == 0){
+        return(
+          <View style={styles.emptyContainer}>
+            <Text style={styles.bold}>Nothing to see here</Text>
+            <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+          </View>
+        )
+      } else {
+        return (
+          <View style={styles.container}>
+            <View style={styles.buttonContainer}>
+              <TouchableHighlight
+                onPress={this.pressSearch.bind(this)}
+                style={styles.touchable}>
+                <View style={styles.button}>
+                  <Text style={styles.welcome}> Filter Results </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+            <ListView
+               dataSource={this.state.today}
+               onEndReachedThreshold={10}
+               onEndReached={this.endReached.bind(this)}
+               enableEmptySections={true} // This will stop the warning for sempty sections headers
+               renderRow={this.renderOne.bind(this)}
+            />
+          </View>
+        );
+      }
+    }
 }
+
 
   var styles = StyleSheet.create({
     container: {
-      top: 25,
       flex: 1,
-      paddingTop:40,
-      backgroundColor: "#409ce9",
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
     },
-    filterText:{
-      fontWeight:'bold',
-      color:'#fff',
-      textAlign:'left',
-      fontSize:20,
-      marginBottom:10,
-      borderWidth: 1,
-      padding: 10,
-      borderRadius:10,
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
+    },
+    welcome: {
+      fontSize: 18,
       textAlign: 'center',
-    }
+      margin: 10,
+      color: '#FFFFFF'
+
+    },
+    button: {
+      backgroundColor: '#35d37c',
+      height: 40,
+      width: 200,
+      borderRadius:10,
+      justifyContent: 'center'
+    },
+    touchable: {
+      borderRadius: 10
+    },
   })
+
 
 
 module.exports = TodayContainer

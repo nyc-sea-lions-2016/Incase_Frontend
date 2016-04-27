@@ -4,15 +4,47 @@ import React, {
   Component,
   Text,
   View,
+  TouchableHighlight,
   Image
   } from 'react-native';
+
+  import FavoriteButton from '../LandingPage/FavoriteButton'
 
   class PlaceElement extends Component {
     constructor(props) {
       super(props);
-}
+      this.state = {
+        fav: ""
+      }
+    }
+
+    setNativeProps (nativeProps) {
+      this._root.setNativeProps(nativeProps);
+    }
+
+    favoriteButtonClicked(){
+      console.log("hit the btutrgniorew")
+      console.log(this)
+      this.setState({
+        fav: this.props.favorite
+      })
+    }
 
     render() {
+      console.log("rerendering ")
+      var website = 'No Website for This Location'
+      if(this.props.place.website){
+        website = this.props.place.website
+      }
+
+      if(this.props.place.categories != []){
+        var catNodes = this.props.place.categories.map(function(category){
+          return(
+              <Text key={category.id} style={styles.mainCategory}> {category.category} </Text>
+          )
+        })
+      }
+
       return (
         <View style={styles.container}>
           <Image
@@ -20,30 +52,43 @@ import React, {
             source={require('../images/user_icon.png')}
           />
             <View style={styles.detailsContainer}>
-              <View style={styles.detailsContainer}>
-              <Text style={styles.placeName}> Sample Place Name </Text>
-              </View>
+
+            <TouchableHighlight onPress={this.favoriteButtonClicked.bind(this)}>
+              <FavoriteButton favorite={this.props.place.favorite} id={this.props.place.id} navigator={this.props.navigator} favoriteButtonClicked={this.favoriteButtonClicked.bind(this)}/>
+            </TouchableHighlight>
 
               <View style={styles.detailsContainer}>
-                <Text style={styles.header}> Address </Text>
-                <Text style={styles.placeAddress}> 123 Main Street, New York, NY 19283 </Text>
-              </View>
+
+              <Text style={styles.placeName}>{this.props.place.name}</Text>
+            </View>
+
+            <View style={styles.detailsContainer}>
+              <Text style={styles.header}> Type: </Text>
+              <Text style={styles.placeAddress}> {catNodes} </Text>
+            </View>
+
+            <View style={styles.detailsContainer}>
+              <Text style={styles.header}> Address </Text>
+              <Text style={styles.placeAddress}>{this.props.place.address}</Text>
+            </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Phone  </Text>
-                <Text style={styles.details}> 123-456-789 </Text>
+                <Text style={styles.details}> phone number placehoder </Text>
               </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Website </Text>
-                <Text style={styles.details}> www.example.com </Text>
+                <Text style={styles.details}> Website </Text>
               </View>
+
             </View>
-          </View>
+
+        </View>
       );
     }
   }
-
+// {this.props.place.phone}
   const styles = StyleSheet.create({
     detailsContainer:{
       borderBottomColor: "#bbbbbb",
