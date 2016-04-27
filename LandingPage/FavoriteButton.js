@@ -17,11 +17,18 @@ import React, {
       this._root.setNativeProps(nativeProps);
     }
 
+    pressFavorite(){
+      console.log("hit the favorite button")
+      fetch('http://localhost:3000/places/'+this.props.id +'/edit')
+        .then((response) => response.json())
+        .done();
+    }
+
     render(){
       if(this.props.favorite === false){
         return(
           <View>
-            <TouchableHighlight>
+            <TouchableHighlight onPress={this.pressFavorite.bind(this)}>
               <Text>Click me to Favorite</Text>
             </TouchableHighlight>
           </View>

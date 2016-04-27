@@ -39,7 +39,7 @@ import React, {
           />
             <View style={styles.detailsContainer}>
 
-            <TouchableHighlight onPress={this.pressFavorite}>
+            <TouchableHighlight onPress={this.pressFavorite.bind(this)}>
               <FavoriteButton favorite={this.props.place.favorite}/>
             </TouchableHighlight>
 
