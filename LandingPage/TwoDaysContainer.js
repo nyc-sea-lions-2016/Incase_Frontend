@@ -69,7 +69,7 @@ class TwoDaysContainer extends Component {
 
   renderLoadingView() {
     return (
-      <View style={styles.container}>
+      <View style={twoDayContainerStyle.container}>
       <Text>
       Loading results...
       </Text>
@@ -91,20 +91,20 @@ class TwoDaysContainer extends Component {
 
     if(this.state.twoDaysData.length == 0){
       return(
-        <View style={styles.emptyContainer}>
-        <Text style={styles.bold}>Nothing to see here</Text>
-        <Text style={styles.normal}>Keep on exploring and build up this page!</Text>
+        <View style={twoDayContainerStyle.emptyContainer}>
+        <Text style={twoDayContainerStyle.bold}>Nothing to see here</Text>
+        <Text style={twoDayContainerStyle.normal}>Keep on exploring and build up this page!</Text>
         </View>
       )
     } else {
       return (
-        <View style={styles.container}>
-        <View style={styles.buttonContainer}>
+        <View style={twoDayContainerStyle.container}>
+        <View style={twoDayContainerStyle.buttonContainer}>
         <TouchableHighlight
         onPress={this.pressSearch.bind(this)}
-        style={styles.touchable}>
-        <View style={styles.button}>
-        <Text style={styles.welcome}> Filter Results </Text>
+        style={twoDayContainerStyle.touchable}>
+        <View style={twoDayContainerStyle.button}>
+        <Text style={twoDayContainerStyle.welcome}> Filter Results </Text>
         </View>
         </TouchableHighlight>
         </View>
@@ -121,7 +121,7 @@ class TwoDaysContainer extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+var twoDayContainerStyle = StyleSheet.create({
   emptyContainer:{
     flex: 1,
     justifyContent: 'center',
@@ -167,5 +167,5 @@ var styles = StyleSheet.create({
 
 
 module.exports = TwoDaysContainer
-// style={styles.container}
+// style={twoDayContainerStyle.container}
 // AppRegistry.registerComponent('InCaseFrontend', () => InCaseFrontend);

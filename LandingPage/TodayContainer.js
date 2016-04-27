@@ -83,7 +83,7 @@ class TodayContainer extends Component {
 
   pressItem(id, place) {
     this.props.navigator.push({
-      title: 'Today List',
+      title: place.name,
       component: <PlaceContainer
       place={place}
       />
@@ -94,7 +94,7 @@ class TodayContainer extends Component {
     return(
       <View >
       <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
-      <ItemContainer style={styles.button} key={place.id} place={place}/>
+      <ItemContainer key={place.id} place={place}/>
       </TouchableHighlight>
       </View>
     )

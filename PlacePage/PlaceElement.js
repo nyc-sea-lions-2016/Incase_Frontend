@@ -5,138 +5,114 @@ import React, {
   Text,
   View,
   Image
-  } from 'react-native';
+} from 'react-native';
 
-  import FavoriteButton from '../LandingPage/Favorite_Button'
+import FavoriteButton from '../LandingPage/Favorite_Button'
 
-  class PlaceElement extends Component {
-    constructor(props) {
-      super(props);
-    }
-
-
-    pressFavorite(){
-      fetch('http://localhost:3000/places/'+this.props.id +'/edit')
-        .then((response) => response.json())
-
-        .done();
-    }
-
-
-    render() {
-      var website = 'No Website for This Location'
-      if(this.props.place.website){
-        website = this.props.place.website
-      }
-      if(this.props.place.categories != []){
-        var catNodes = this.props.place.categories.map(function(category){
-          return(
-              <Text key={category.id} style={styles.mainCategory}> {category.category} </Text>
-          )
-        })
-      }
-      return (
-        <View style={styles.container}>
-          <Image
-            style={styles.placePicture}
-            source={require('../images/user_icon.png')}
-          />
-          <FavoriteButton onPress={this.pressFavorite} favorite={this.props.place.favorite}/>
-            <View style={styles.detailsContainer}>
-              <View style={styles.detailsContainer}>
-              <Text style={styles.placeName}>{this.props.place.name}</Text>
-            </View>
-
-            <View style={styles.detailsContainer}>
-              <Text style={styles.header}> Type: </Text>
-              <Text style={styles.placeAddress}> {catNodes} </Text>
-            </View>
-
-            <View style={styles.detailsContainer}>
-              <Text style={styles.header}> Address </Text>
-              <Text style={styles.placeAddress}>{this.props.place.address}</Text>
-            </View>
-
-              <View style={styles.detailsContainer}>
-                <Text style={styles.header}> Phone  </Text>
-                <Text style={styles.details}> numbaaaahs </Text>
-              </View>
-
-              <View style={styles.detailsContainer}>
-                <Text style={styles.header}> Website </Text>
-                <Text style={styles.details}> Website </Text>
-              </View>
-            </View>
-          </View>
-      );
-    }
+class PlaceElement extends Component {
+  constructor(props) {
+    super(props);
   }
-// {this.props.place.phone}
-  const styles = StyleSheet.create({
-    detailsContainer:{
-      borderBottomColor: "#bbbbbb",
-      borderBottomWidth: 1,
-      borderTopColor: "#bbbbbb",
-      borderTopWidth: 1,
-    },
-    placePicture: {
-      paddingTop: 1,
-      width: 200,
-      height: 200,
-      borderRadius: 100,
-      marginBottom: 15,
-    },
-    container:{
-      paddingTop: 45,
-      width: 300,
-      height: 675,
-      alignItems: "center",
-      justifyContent: "center",
 
-    },
-    details: {
-      alignSelf: "center",
-      fontSize: 18,
-      borderBottomColor: "#bbbbbb",
-      borderBottomWidth: 1,
-      borderTopColor: "#bbbbbb",
-      borderTopWidth: 15,
-      color: "#FFFFFF",
-      paddingBottom: 10,
-      paddingLeft: 10,
-      flex: 1,
-    },
-    placeName: {
-      alignSelf: "center",
-      fontSize: 30,
-      borderBottomColor: "#bbbbbb",
-      borderBottomWidth: 1,
-      borderTopColor: "#bbbbbb",
-      borderTopWidth: 15,
-      color: "#FFFFFF",
-      paddingBottom: 10,
-      paddingLeft: 10,
-      flex: 1,
-    },
-    placeAddress: {
-      alignSelf: "center",
-      fontSize: 18,
-      borderBottomColor: "#bbbbbb",
-      borderBottomWidth: 1,
-      borderTopColor: "#bbbbbb",
-      borderTopWidth: 15,
-      color: "#FFFFFF",
-      paddingBottom: 10,
-      paddingLeft: 10,
-      flex: 1,
-    },
-    header: {
-      fontSize: 25,
-      color: "#FFFFFF",
-      alignSelf: "center",
-      paddingTop: 5,
-      marginBottom: 10,
+
+  pressFavorite(){
+    fetch('http://localhost:3000/places/'+this.props.id +'/edit')
+    .then((response) => response.json())
+
+    .done();
+  }
+
+
+  render() {
+    var website = 'No Website for This Location'
+    if(this.props.place.website){
+      website = this.props.place.website
     }
-  });
+    if(this.props.place.categories != []){
+      var catNodes = this.props.place.categories.map(function(category){
+        return(
+          <Text key={category.id} style={[placeStyle.mainChild, placeStyle.mainType]}> {category.category} </Text>
+        )
+      })
+    }
+    return (
+      <View style={placeStyle.mainParent}>
+      <Image
+      style={placeStyle.placePicture}
+      source={require('../images/user_icon.png')}
+      />
+      <FavoriteButton onPress={this.pressFavorite} favorite={this.props.place.favorite}/>
+        <View>
+        <Text style={[placeStyle.mainChild, placeStyle.mainName]}>{this.props.place.name}</Text>
+        </View>
+        <View>
+        <Text style={[placeStyle.mainChild, placeStyle.mainType]}>Type: {catNodes} </Text>
+        </View>
+        <View>
+        <Text style={[placeStyle.mainChild, placeStyle.mainAddress]}>Address: {this.props.place.address}</Text>
+        </View>
+        <View>
+        <Text style={[placeStyle.mainChild, placeStyle.mainPhone]}>Phone: 646-373-1738</Text>
+        </View>
+        <View>
+        <Text style={[placeStyle.mainChild, placeStyle.mainEmail]}> Website: www.brianbier.co</Text>
+        </View>
+      </View>
+    );
+  }
+}
 
-  module.exports = PlaceElement
+const placeStyle = StyleSheet.create({
+  mainParent: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderBottomColor: '#ddd',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    backgroundColor: 'rgba(143, 185, 243,0.1)'
+  },
+  placePicture: {
+    paddingTop: 1,
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    marginBottom: 15,
+  },
+  mainName:{
+    fontSize:20,
+    margin:3,
+    paddingBottom: 10,
+    paddingTop: 10,
+    fontWeight: 'bold',
+
+  },
+  mainType:{
+    fontSize:18,
+    margin:3,
+    flex: 3,
+    flexDirection: 'row',
+    paddingBottom: 10,
+  },
+  mainChild:{
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  mainAddress:{
+    fontSize: 18,
+    margin:3,
+    paddingBottom: 10,
+  },
+  mainPhone:{
+    fontSize: 18,
+    margin:3,
+    paddingBottom: 10,
+  },
+  mainEmail:{
+    fontSize: 18,
+    margin:3,
+    paddingBottom: 10,
+  }
+});
+
+module.exports = PlaceElement

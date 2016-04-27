@@ -4,34 +4,32 @@ import React, {
   Component,
   Text,
   View
-  } from 'react-native';
+} from 'react-native';
 
-  import PlaceElement from '../PlacePage/PlaceElement'
+import PlaceElement from '../PlacePage/PlaceElement'
 
-  class PlaceContainer extends Component {
-    constructor(props) {
-      super(props);
-    }
-
-    render() {
-      return (
-        <View style={styles.container}>
-          <PlaceElement
-            place={this.props.place}
-          />
-        </View>
-      );
-    }
+class PlaceContainer extends Component {
+  constructor(props) {
+    super(props);
   }
 
-  const styles = StyleSheet.create({
-    container: {
-      paddingTop: 25,
-      justifyContent: "center",
-      flex: 1,
-      alignItems: "center",
-      backgroundColor: '#2199e8',
-    },
-  });
+  render() {
+    return (
+      <View style={styles.container}>
+      <PlaceElement
+      place={this.props.place}
+      />
+      </View>
+    );
+  }
+}
 
-  module.exports = PlaceContainer
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: 'rgba(143, 185, 243,0.1)'
+  },
+});
+
+module.exports = PlaceContainer
