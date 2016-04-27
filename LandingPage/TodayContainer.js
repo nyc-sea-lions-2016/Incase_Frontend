@@ -16,9 +16,9 @@ import SearchContainer from './SearchContainer';
 //var RefreshableListView = require('react-native-refreshable-listview');
 
 
-const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
-//'http://localhost:3000/places/today';
-
+// const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
+const API_URL ='http://localhost:3000/places/today';
+const DEFAULT_NUM_ITEMS = 10;
 
 
 class TodayContainer extends Component {
@@ -27,6 +27,7 @@ class TodayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       today: this.ds.cloneWithRows([]),
+      numItems: DEFAULT_NUM_ITEMS
     };
   }
 
@@ -34,24 +35,29 @@ class TodayContainer extends Component {
     this.fetchTodayData();
   }
 
+  endReached() {
+    console.log('abcdefg', 'end Reached');
+    var num = this.state.numItems + 10;
+    this.setState({
+      numItems: num,
+      today: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
+    });
+    console.log(this.state);
+  }
+
 
   fetchTodayData() {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      // console.log('responseData', responseData);
+      console.log('responseData Brian', responseData);
+      console.log('offset', this.state.offset);
       this.setState({
         todayData: responseData,
-        today: this.ds.cloneWithRows(responseData)
+        today: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS))
       });
     })
     .done();
-  }
-
-  reloadContainer() {
-    // returns a Promise of reload completion
-    // for a Promise-free version see ControlledRefreshableListView below
-     this.fetchTodayData()
   }
 
   pressSearch(){
@@ -65,20 +71,20 @@ class TodayContainer extends Component {
     })
   }
 
-
-  pressItem(id, place) {
-      this.props.navigator.push({
-        component: <PlaceContainer
-          place={place}
-          />
-      })
-  }
+  //
+  // pressItem(id, place) {
+  //     this.props.navigator.push({
+  //       component: <PlaceContainer
+  //         place={place}
+  //         />
+  //     })
+  // }
 
   renderOne(place) {
     return(
-
+// onPress={this.pressItem.bind(this, place.id, place)
       <View>
-        <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)} >
+        <TouchableHighlight>
           <View>
             <ItemContainer style={styles.button} key={place.id} place={place} />
           </View>
@@ -104,8 +110,8 @@ class TodayContainer extends Component {
         <ListView
            dataSource={this.state.today}
            renderRow={this.renderOne}
-           loadData={this.reloadContainer}
-           minDisplayTime={4}
+           onEndReachedThreshold={8}
+           onEndReached={this.endReached.bind(this)}
         />
       </View>
     );
@@ -119,29 +125,27 @@ class TodayContainer extends Component {
       alignItems: 'center',
       backgroundColor: '#f9f9f9',
     },
-
-    filterText: {
-      fontWeight:'bold',
-      color:'#fff',
-      textAlign:'left',
-      fontSize:20,
-      marginBottom:10,
-      borderWidth: 1,
-      padding: 10,
-      borderRadius:10,
-      textAlign: 'center',
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
     },
+    welcome: {
+      fontSize: 18,
+      textAlign: 'center',
+      margin: 10,
+      color: '#FFFFFF'
 
+    },
     button: {
-      paddingTop: 2,
-      marginTop: 10,
-      borderRadius: 5,
-      alignItems: "center",
-      alignSelf: "center",
-      width: 120,
-      height: 20,
-      backgroundColor: "#35d37c",
-    }
+      backgroundColor: '#35d37c',
+      height: 40,
+      width: 200,
+      borderRadius:10,
+      justifyContent: 'center'
+    },
+    touchable: {
+      borderRadius: 10
+    },
   })
 
 

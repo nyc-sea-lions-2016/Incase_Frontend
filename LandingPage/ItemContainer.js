@@ -20,7 +20,7 @@ import React, {
           return (
             <View style={styles.mainParent}>
               <View>
-                <Text style={[styles.mainChild, styles.mainName]}>{this.props.place.name}</Text>
+                <Text style={[styles.mainChild, styles.mainName]}>{this.props.place.id} {this.props.place.name}</Text>
               </View>
               <View>
                 <Text style={[styles.mainChild, styles.mainAddress]}>{this.props.place.address}</Text>
@@ -40,6 +40,7 @@ import React, {
         flexDirection: 'column',
         alignItems: 'center',
         marginTop: 15,
+        marginLeft: 30,
         fontFamily: 'Helvetica Neue',
         borderBottomColor: '#ddd',
         borderBottomWidth: StyleSheet.hairlineWidth,
