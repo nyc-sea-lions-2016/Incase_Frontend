@@ -12,9 +12,6 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-// const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
-const API_URL ='http://localhost:3000/places/today';
-
 //const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
 
 const API_URL = 'http://localhost:3000/places/yesterday';
@@ -63,7 +60,7 @@ class YesterdayContainer extends Component {
   }
 
   render() {
-    if(this.state.yesterday.length == 0){
+    if(this.state.yesterdayData.length == 0){
       return(
         <View style={styles.container}>
           <Text>Keep on exploring and build up this page!</Text>

@@ -12,16 +12,9 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-<<<<<<< HEAD
+
 // const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
-
 const API_URL ='http://localhost:3000/places/two_days';
-=======
-
-//const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/two_days';
-
-const API_URL = 'http://localhost:3000/places/two_days';
->>>>>>> 73fe04fcd0b1c367bb5a7ac62eeb2f286022804d
 
 
 class TwoDaysContainer extends Component {
@@ -69,7 +62,8 @@ class TwoDaysContainer extends Component {
   }
 
   render() {
-    if(this.state.twoDays.length == 0){
+    if(this.state.twoDaysData.length == 0){
+      console.log('you should see me')
       return(
         <View style={styles.emptyContainer}>
           <Text style={styles.bold}>Nothing to see here</Text>
@@ -77,6 +71,7 @@ class TwoDaysContainer extends Component {
         </View>
       )
     } else {
+      console.log('you should not see me')
       return (
         <View style={styles.container}>
 
