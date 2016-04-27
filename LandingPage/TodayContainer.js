@@ -136,9 +136,7 @@ class TodayContainer extends Component {
       }
     }
 }
-// renderRow={this.renderOne}
-// {/*loadData={this.reloadContainer}*/}
-// {/*minDisplayTime={4}*/}
+
 
   var styles = StyleSheet.create({
     container: {

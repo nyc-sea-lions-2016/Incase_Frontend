@@ -5,6 +5,7 @@ import React, {
   Text,
   TextInput,
   DatePickerIOS,
+  TouchableHighlight,
   TouchableWithoutFeedback,
   TouchableOpacity,
   View
@@ -15,6 +16,7 @@ import React, {
         super(props);
 
         this.state = {
+          inputtedTime: new Date(),
           date: new Date(),
           datePickerMode: 'hidden',
         }
@@ -26,6 +28,11 @@ import React, {
       onDateChange( date ){
         this.setState( { date: date } );
       }
+
+      sortTime() {
+
+      }
+
       render() {
 
         var datePicker = (
@@ -35,11 +42,11 @@ import React, {
               <Text>Done</Text>
             </TouchableOpacity>
 
-            <DatePickerIOS
-                      date={this.state.date}
-                      mode="datetime"
-                      onDateChange={ this.onDateChange.bind(this) }
-                    />
+              <DatePickerIOS
+              date={this.state.date}
+              mode="datetime"
+              onDateChange={ this.onDateChange.bind(this) }
+            />
           </View>
         );
 
@@ -47,14 +54,23 @@ import React, {
           <View style={styles.container}>
 
             <View style={{ padding: 20, marginTop: 100 }}>
-
-              <Text>Date</Text>
+              <Text>Start Date</Text>
               <TouchableWithoutFeedback onPress={ this.toggleDatePicker.bind(this) }>
                 <View style={ styles.input }>
                   <Text>{ this.state.date.getMonth() }/{ this.state.date.getDate() }/{ this.state.date.getFullYear() }</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
+
+            <View style={{ padding: 20, marginTop: 100 }}>
+              <Text>End Date</Text>
+              <TouchableWithoutFeedback onPress={ this.toggleDatePicker.bind(this) }>
+                <View style={ styles.input }>
+                  <Text>{ this.state.date.getMonth() }/{ this.state.date.getDate() }/{ this.state.date.getFullYear() }</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+
             { this.state.datePickerMode == 'visible' ? datePicker : <View/> }
           </View>
         );

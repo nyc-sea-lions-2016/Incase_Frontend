@@ -15,6 +15,7 @@ import TimeElement from '../LandingPage/TimeElement'
 class SearchContainer extends Component {
   constructor(props){
     super(props);
+    console.log(this.props.todayData);
   }
 
   render() {

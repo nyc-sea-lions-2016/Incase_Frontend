@@ -25,7 +25,7 @@ import TimeElement from './TimeElement'
     pressTime(){
       this.props.navigator.push({
         title: 'Time Search',
-        component: <TimeElement/>
+        component: <TimeElement todayData={this.props.todayData} navigator={this.props.navigator}/>
       })
 
     }
