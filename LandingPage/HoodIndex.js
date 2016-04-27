@@ -13,7 +13,7 @@ class HoodIndex extends Component {
   render(){
     return (
       <View>
-        <HoodElement/>
+        <HoodElement todayData={this.props.todayData} navigator={this.props.navigator}/>
       </View>
     )
   }

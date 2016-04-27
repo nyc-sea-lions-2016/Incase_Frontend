@@ -147,22 +147,22 @@ class InCaseFrontend extends Component {
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Today' icon={{uri: menuIcon, scale:2}}>
-            <TodayContainer places={this.state.today} title="today"/>
+            <TodayContainer places={this.state.today} title="today" navigator={navigator}/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Yesterday' icon={{uri:calendarImg, scale:2}}>
-            <YesterdayContainer places={this.state.yesterday} title="yesterday"/>
+            <YesterdayContainer places={this.state.yesterday} title="yesterday" navigator={navigator}/>
           </TabBarNavigator.Item>
 
           <TabBarNavigator.Item title='Two Days' icon={{uri:timeImg, scale:2}}>
-            <TwoDaysContainer places={this.state.twoDays} title="2days"/>
+            <TwoDaysContainer places={this.state.twoDays} title="2days" navigator={navigator}/>
           </TabBarNavigator.Item>
 
-          <TabBarNavigator.Item title='Favorites' icon={{uri: favoriteImg, scale:2}}>
-            <FavoriteContainer />
-          </TabBarNavigator.Item>
+          <TabBarNavigator.Item title='Favorites' icon={{uri: favoriteImg, scale:2} }>
 
-          </TabBarNavigator>
+            <FavoriteContainer places={this.state.favorites} navigator={navigator}/>
+          </TabBarNavigator.Item>
+        </TabBarNavigator>
       );
     }
   }
