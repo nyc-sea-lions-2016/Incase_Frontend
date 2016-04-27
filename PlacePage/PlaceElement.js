@@ -64,7 +64,7 @@ import React, {
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Website </Text>
-                <Text style={styles.details}> {website} </Text>
+                <Text style={styles.details}> Website </Text>
               </View>
             </View>
           </View>

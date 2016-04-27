@@ -26,7 +26,6 @@ class ProfileItemContainer extends Component {
 
 const profileItemStyles = StyleSheet.create({
   container: {
-    // backgroundColor: "orange",
     paddingTop: 25,
     width: 300,
     height: 675,

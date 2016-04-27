@@ -97,6 +97,7 @@ class InCaseFrontend extends Component {
       var latlong = location
 
 // 'https://boiling-refuge-94422.herokuapp.com/places'
+
       fetch('http://localhost:3000/places', {
         method: 'POST',
         body: JSON.stringify({
@@ -120,7 +121,9 @@ class InCaseFrontend extends Component {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
 
+
 //'https://boiling-refuge-94422.herokuapp.com/places'
+
       fetch('http://localhost:3000/places', {
         method: 'POST',
         body: JSON.stringify({

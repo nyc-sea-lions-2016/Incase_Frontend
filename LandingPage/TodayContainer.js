@@ -16,12 +16,17 @@ import SearchContainer from './SearchContainer';
 //var RefreshableListView = require('react-native-refreshable-listview');
 
 
+
 //const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
 const API_URL = 'http://localhost:3000/places/today';
 
 
 
+
 class TodayContainer extends Component {
+  setNativeProps (nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -65,6 +70,7 @@ class TodayContainer extends Component {
     })
   }
 
+<<<<<<< HEAD
 // FIX IN MORNING
   // pressItem(id, place) {
   //     this.props.navigator.push({
@@ -83,12 +89,30 @@ class TodayContainer extends Component {
             <ItemContainer style={styles.button} key={place.id} place={place} />
           </View>
         </TouchableHighlight>
-      </View>
+=======
+//
+  pressItem(id, place) {
+      this.props.navigator.push({
+        title: 'Today List',
+        component: <PlaceContainer
+        place={place}
+          />
+      })
+  }
 
+  renderOne(place) {
+    return(
+      <View >
+      <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
+        <ItemContainer style={styles.button} key={place.id} place={place}/>
+      </TouchableHighlight>
+>>>>>>> 39a32ea8feafd83c0f2528c8da6420bf30e01b35
+      </View>
     )
   }
 
   render() {
+<<<<<<< HEAD
       if(this.state.today.length == 0){
         return(
           <View style={styles.emptyContainer}>
@@ -119,8 +143,30 @@ class TodayContainer extends Component {
           </View>
         );
       }
+=======
+    return (
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            onPress={this.pressSearch.bind(this)}
+            style={styles.touchable}>
+            <View style={styles.button}>
+              <Text style={styles.welcome}> Filter Results </Text>
+            </View>
+          </TouchableHighlight>
+        </View>
+        <ListView
+           dataSource={this.state.today}
+           renderRow={this.renderOne.bind(this)}
+        />
+      </View>
+
+    );
+>>>>>>> 39a32ea8feafd83c0f2528c8da6420bf30e01b35
   }
 }
+// {/*loadData={this.reloadContainer}*/}
+// {/*minDisplayTime={4}*/}
 
   var styles = StyleSheet.create({
     container: {
