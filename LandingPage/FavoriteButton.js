@@ -22,6 +22,15 @@ import React, {
           method: "PUT"
         }
       )
+      // insert logic to return confirmation of change in status here
+    }
+
+    pressUnfavorite(){
+      fetch('http://localhost:3000/places/'+ this.props.id +"" ,{
+          method: "PUT"
+        }
+      )
+      // insert logic to return confirmation of change in status here
     }
 
     render(){
@@ -36,7 +45,7 @@ import React, {
       }else{
         return(
           <View>
-            <TouchableHighlight onPress={this.pressFavorite.bind(this)}>
+            <TouchableHighlight onPress={this.pressUnfavorite.bind(this)}>
               <Text>Remove from Favorites</Text>
             </TouchableHighlight>
           </View>
