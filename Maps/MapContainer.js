@@ -65,14 +65,8 @@ class MapContainer extends Component{
 
 const styles = StyleSheet.create({
   map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    alignItems: 'stretch',
     flex: 1,
-
+    height: 150,
   },
 });
 
