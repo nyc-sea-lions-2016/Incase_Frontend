@@ -40,7 +40,7 @@ class TodayContainer extends Component {
   }
 
   endReached() {
-    var num = this.state.numItems + 10;``
+    var num = this.state.numItems + 10;
     this.setState({
       numItems: num,
       today: this.ds.cloneWithRows(this.state.todayData.slice(0, num))

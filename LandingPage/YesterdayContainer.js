@@ -23,7 +23,9 @@ class YesterdayContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       yesterday: this.ds.cloneWithRows([]),
-      yesterdayData: []
+      yesterdayData: [],
+      numItems: DEFAULT_NUM_ITEMS,
+      loaded: false,
     };
   }
 
@@ -31,13 +33,22 @@ class YesterdayContainer extends Component {
     this.fetchYesterdayData();
   }
 
+  endReached() {
+    var num = this.state.numItems + 10;``
+    this.setState({
+      numItems: num,
+      today: this.ds.cloneWithRows(this.state.yesterdayData.slice(0, num))
+    });
+  }
+
   fetchYesterdayData() {
     fetch(API_URL)
     .then((response) => response.json())
     .then((responseData) => {
       this.setState({
-        yesterday: this.ds.cloneWithRows(responseData),
-        yesterdayData: responseData
+        yesterdayData: responseData,
+        yesterday: this.ds.cloneWithRows(responseData.slice(0, DEFAULT_NUM_ITEMS)),
+        loaded: true,
       });
     })
     .done();
@@ -53,6 +64,16 @@ class YesterdayContainer extends Component {
     })
   }
 
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+      <Text>
+      Loading results...
+      </Text>
+      </View>
+    );
+  }
+
   renderOne(place) {
     return (
       <ItemContainer key={place.id} place={place} />
@@ -60,6 +81,10 @@ class YesterdayContainer extends Component {
   }
 
   render() {
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
+
     if(this.state.yesterdayData.length == 0){
       return(
         <View style={styles.emptyContainer}>
@@ -70,13 +95,9 @@ class YesterdayContainer extends Component {
     } else {
       return (
         <View style={styles.container}>
-
-
         <View style={styles.buttonContainer}>
         <TouchableHighlight
         onPress={this.pressSearch.bind(this)}
-        onPressIn={this._onPressIn}
-        onPressOut={this._onPressOut}
         style={styles.touchable}>
         <View style={styles.button}>
         <Text style={styles.welcome}> Filter Results </Text>
@@ -86,8 +107,10 @@ class YesterdayContainer extends Component {
         <ListView
         enableEmptySections={true}
         dataSource={this.state.yesterday}
-        renderRow={this.renderOne}
-        enableEmptySections={true}
+        onEndReachedThreshold={10}
+        onEndReached={this.endReached.bind(this)}
+        enableEmptySections={true} // This will stop the warning for sempty sections headers
+        renderRow={this.renderOne.bind(this)}
         />
         </View>
       );
