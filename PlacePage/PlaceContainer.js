@@ -16,7 +16,9 @@ import React, {
     render() {
       return (
         <View style={styles.container}>
-          <PlaceElement/>
+          <PlaceElement
+            place={this.props.place}
+          />
         </View>
       );
     }

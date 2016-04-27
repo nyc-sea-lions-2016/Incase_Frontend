@@ -80,7 +80,7 @@ class InCaseFrontend extends Component {
   // This handler fires whenever bgGeo receives a location update.
   BackgroundGeolocation.on('location', function(location) {
     this.setState({message: JSON.stringify(location)});
-    console.log('- [js]location: ', JSON.stringify(location));
+    //console.log('- [js]location: ', JSON.stringify(location));
   }.bind(this));
 
   // This handler fires whenever bgGeo receives an error
@@ -93,8 +93,9 @@ class InCaseFrontend extends Component {
   // This handler fires when movement states changes (stationary->moving; moving->stationary)
   BackgroundGeolocation.on('motionchange', function(location) {
       this.setState({message: JSON.stringify(location)});
-      console.log('- [js]motionchanged: ', JSON.stringify(location));
+      //console.log('- [js]motionchanged: ', JSON.stringify(location));
       var latlong = location
+//'http://localhost:3000/places'
 
       fetch('https://boiling-refuge-94422.herokuapp.com/places', {
         method: 'POST',
@@ -104,20 +105,21 @@ class InCaseFrontend extends Component {
       })
     .then(function(response) {
 
-      console.log('request succeeded with json response', response)
+      //console.log('request succeeded with json response', response)
     }).catch(function(error) {
-      console.log('request failed', error)
+      //console.log('request failed', error)
     })
 
   }.bind(this));
 
   BackgroundGeolocation.start(function() {
-    console.log('- [js] BackgroundGeolocation started successfully');
+    //console.log('- [js] BackgroundGeolocation started successfully');
 
     // Fetch current position
     BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
       // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
       // var latlong = location;
+//'http://localhost:3000/places'
 
       fetch('https://boiling-refuge-94422.herokuapp.com/places', {
         method: 'POST',
@@ -126,7 +128,7 @@ class InCaseFrontend extends Component {
         }),
 
       }).then((responseText) => {
-  console.log(responseText);
+  //console.log(responseText);
   })
     }, function(error) {
       alert("Location error: " + error);
@@ -134,12 +136,16 @@ class InCaseFrontend extends Component {
          });
   }
 
+
+  //
+
   render() {
       return (
         <TabBarNavigator>
           <TabBarNavigator.Item title='ICYMI' icon={{uri: worldImg, scale:2}}>
             <MapContainer />
           </TabBarNavigator.Item>
+
           <TabBarNavigator.Item title='Today' icon={{uri: menuIcon, scale:2}}>
             <TodayContainer places={this.state.today} title="today"/>
           </TabBarNavigator.Item>

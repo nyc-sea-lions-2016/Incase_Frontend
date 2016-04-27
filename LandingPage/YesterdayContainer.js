@@ -14,6 +14,8 @@ import SearchContainer from './SearchContainer'
 
 
 const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
+//'http://localhost:3000/places/yesterday';
+
 
 
 class YesterdayContainer extends Component {

@@ -7,43 +7,59 @@ import React, {
   Image
   } from 'react-native';
 
+  import FavoriteButton from '../LandingPage/Favorite_Button'
+
   class PlaceElement extends Component {
     constructor(props) {
       super(props);
-}
+    }
+
+
+    pressFavorite(){
+      fetch('http://localhost:3000/places/'+this.props.id +'/edit')
+        .then((response) => response.json())
+
+        .done();
+    }
+
 
     render() {
+      var website = 'No Website for This Location'
+      if(this.props.place.website){
+        website = this.props.place.website
+      }
       return (
         <View style={styles.container}>
           <Image
             style={styles.placePicture}
             source={require('../images/user_icon.png')}
           />
+          <FavoriteButton onPress={this.pressFavorite} favorite={this.props.place.favorite}/>
             <View style={styles.detailsContainer}>
               <View style={styles.detailsContainer}>
-              <Text style={styles.placeName}> Sample Place Name </Text>
+              <Text style={styles.placeName}>{this.props.place.name}</Text>
               </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Address </Text>
-                <Text style={styles.placeAddress}> 123 Main Street, New York, NY 19283 </Text>
+                <Text style={styles.placeAddress}>{this.props.place.address}</Text>
               </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Phone  </Text>
-                <Text style={styles.details}> 123-456-789 </Text>
+                <Text style={styles.details}> numbaaaahs </Text>
               </View>
 
               <View style={styles.detailsContainer}>
                 <Text style={styles.header}> Website </Text>
-                <Text style={styles.details}> www.example.com </Text>
+                <Text style={styles.details}> {website} </Text>
               </View>
             </View>
           </View>
       );
     }
   }
-
+// {this.props.place.phone}
   const styles = StyleSheet.create({
     detailsContainer:{
       borderBottomColor: "#bbbbbb",
