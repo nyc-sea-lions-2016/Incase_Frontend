@@ -58,12 +58,6 @@ import React, {
         </View>
       )
     }
-
-    // submitForm = () => {
-    //   debugger;
-    //   console.log(this.state.text)
-    //   const { text } = this.state.text
-    // }
 }
 
   const styles = StyleSheet.create({

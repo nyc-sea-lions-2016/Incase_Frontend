@@ -12,13 +12,17 @@ import React, {
       super(props);
     }
 
+    setNativeProps(nativeProps) {
+      this._root.setNativeProps(nativeProps);
+    }
+
     componentWillReceiveProps(nextProps) {
       this.setState({place: nextProps})
     }
 
     render(){
           return (
-            <View style={styles.mainParent}>
+            <View style={styles.mainParent} ref={component => this._root = component}>
               <View>
                 <Text style={[styles.mainChild, styles.mainName]}>{this.props.place.name}</Text>
               </View>
