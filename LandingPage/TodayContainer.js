@@ -15,8 +15,8 @@ import SearchContainer from './SearchContainer';
 
 //var RefreshableListView = require('react-native-refreshable-listview');
 
-// const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
-const API_URL ='http://localhost:3000/places/today';
+ const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
+//const API_URL ='http://localhost:3000/places/today';
 const DEFAULT_NUM_ITEMS = 10;
 
 class TodayContainer extends Component {
