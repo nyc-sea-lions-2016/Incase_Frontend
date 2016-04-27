@@ -62,7 +62,7 @@ class YesterdayContainer extends Component {
   }
 
   render() {
-    if(this.state.yesterday.length == 0){
+    if(this.state.yesterdayData.length == 0){
       return(
         <View style={styles.container}>
           <Text>Keep on exploring and build up this page!</Text>

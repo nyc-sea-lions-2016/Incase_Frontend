@@ -63,7 +63,7 @@ class TwoDaysContainer extends Component {
   }
 
   render() {
-    if(this.state.twoDays.length == 0){
+    if(this.state.twoDaysData.length == 0){
       return(
         <View style={styles.emptyContainer}>
           <Text style={styles.bold}>Nothing to see here</Text>
