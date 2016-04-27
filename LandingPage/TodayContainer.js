@@ -13,6 +13,8 @@ import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer';
 
+//var RefreshableListView = require('react-native-refreshable-listview');
+
 
 const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
 //'http://localhost:3000/places/today';
@@ -32,6 +34,7 @@ class TodayContainer extends Component {
       this.fetchTodayData();
   }
 
+
   fetchTodayData() {
     fetch(API_URL)
     .then((response) => response.json())
@@ -44,12 +47,19 @@ class TodayContainer extends Component {
     .done();
   }
 
+  reloadContainer() {
+    // returns a Promise of reload completion
+    // for a Promise-free version see ControlledRefreshableListView below
+     this.fetchTodayData()
+  }
+
   pressSearch(){
     this.props.navigator.push({
       title: 'Search',
       component: <SearchContainer/>
     })
   }
+<<<<<<< HEAD
 
   pressItem(id, place) {
       this.props.navigator.push({
@@ -59,6 +69,8 @@ class TodayContainer extends Component {
       })
   }
 
+=======
+>>>>>>> 06fa6bfae5aeb665e0b584ac8a9c45c3456c4a5c
   renderOne(place) {
     return(
       <View>
@@ -73,17 +85,31 @@ class TodayContainer extends Component {
 
   render() {
     return (
+
       <View style={styles.container}>
-        <View>
-          <TouchableHighlight onPress={this.pressSearch.bind(this)} >
-            <Text style={styles.filterText}> Filter Results </Text>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            onPress={this.pressSearch.bind(this)}
+            style={styles.touchable}>
+            <View style={styles.button}>
+              <Text style={styles.welcome}> Filter Results </Text>
+            </View>
           </TouchableHighlight>
         </View>
+<<<<<<< HEAD
 
           <ListView
              dataSource={this.state.today}
              renderRow={this.renderOne.bind(this)}
           />
+=======
+        <ListView
+           dataSource={this.state.today}
+           renderRow={this.renderOne}
+           loadData={this.reloadContainer}
+           minDisplayTime={4}
+        />
+>>>>>>> 06fa6bfae5aeb665e0b584ac8a9c45c3456c4a5c
       </View>
     );
   }
@@ -91,11 +117,12 @@ class TodayContainer extends Component {
 
   var styles = StyleSheet.create({
     container: {
-      top: 25,
       flex: 1,
-      paddingTop:40,
-      backgroundColor: "#409ce9",
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
     },
+<<<<<<< HEAD
     filterText: {
       fontWeight:'bold',
       color:'#fff',
@@ -119,6 +146,30 @@ class TodayContainer extends Component {
       backgroundColor: "#35d37c",
     }
   })
+=======
+    buttonContainer:{
+      marginTop:40,
+      marginBottom:15,
+    },
+    welcome: {
+      fontSize: 18,
+      textAlign: 'center',
+      margin: 10,
+      color: '#FFFFFF'
+
+    },
+    button: {
+      backgroundColor: '#35d37c',
+      height: 40,
+      width: 200,
+      borderRadius:10,
+      justifyContent: 'center'
+    },
+    touchable: {
+    borderRadius: 10
+  },
+})
+>>>>>>> 06fa6bfae5aeb665e0b584ac8a9c45c3456c4a5c
 
 
 module.exports = TodayContainer
