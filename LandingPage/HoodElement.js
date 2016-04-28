@@ -28,7 +28,8 @@ import React, {
             filteredArray.push(this.props.todayData[i])
         }
       }
-      return filteredArray;
+      console.log(filteredArray.slice(0, 50));
+      return filteredArray.slice(0, 50);
     }
 
     submitForm(){
@@ -37,6 +38,7 @@ import React, {
         component: <SearchListContainer
         filteredData={this.checkCategory()}
         text={this.state.text}
+
         />
       })
     }

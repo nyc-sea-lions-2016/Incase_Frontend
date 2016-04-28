@@ -21,7 +21,6 @@ class ItemContainer extends Component {
   }
 
   render(){
-    console.log(this.props.place)
     if(this.props.place.categories.length){
       var catNodes = this.props.place.categories.map(function(category){
         return(

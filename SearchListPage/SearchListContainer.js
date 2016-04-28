@@ -11,12 +11,18 @@ import React, {
 
 import ItemContainer from '../LandingPage/ItemContainer'
 import PlaceContainer from '../PlacePage/PlaceContainer'
+
+const DEFAULT_NUM_ITEMS = 10;
+
 class SearchListContainer extends Component {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      searchItem: this.ds.cloneWithRows(this.props.filteredData)
+      searchItem: this.ds.cloneWithRows(this.props.filteredData),
+      numItems: DEFAULT_NUM_ITEMS,
+      loaded: false,
+      arrayIndex: 0,
     };
   }
 
@@ -29,6 +35,24 @@ class SearchListContainer extends Component {
       })
   }
 
+  endReached() {
+    var num = this.state.numItems + 10;
+    this.setState({
+      numItems: num,
+      searchItem: this.ds.cloneWithRows(this.state.filteredData.slice(0, num)),
+    });
+  }
+
+  renderLoadingView() {
+    return(
+      <View style={styles.container}>
+        <Text>
+          Loading Results...
+        </Text>
+      </View>
+    );
+  }
+
   renderOne(place) {
     return(
       <View >
@@ -38,16 +62,32 @@ class SearchListContainer extends Component {
       </View>
     )
   }
-    render() {
 
+    render() {
+      if(!this.state.loaded) {
+        return this.renderLoadingView();
+      }
+
+      if(this.state.searchItem.length == 0) {
+        return(
+          <View style={styles.emptyContainer}>
+            <Text style={styles.bold}>Your search has not generated any results.</Text>
+            <Text style={styles.normal}>Please search by a different term</Text>
+          </View>
+        )
+      } else {
       return(
         <View>
           <ListView
             dataSource={this.state.searchItem}
+            onEndReachedThreshold={10}
+            onEndReached={this.endReached.bind(this)}
+            enableEmptySections={true}
             renderRow={this.renderOne.bind(this)}
           />
         </View>
       )
+      }
     }
 }
 

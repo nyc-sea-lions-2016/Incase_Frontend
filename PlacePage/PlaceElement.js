@@ -23,8 +23,6 @@ import React, {
     }
 
     favoriteButtonClicked(){
-      console.log("hit the btutrgniorew")
-      console.log(this)
       this.setState({
         fav: this.props.favorite
       })
