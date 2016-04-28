@@ -13,8 +13,8 @@ import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
 
-// const API_URL = 'http://localhost:3000/places/favorites';
-const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/favorites';
+const API_URL = 'http://localhost:3000/places/favorites';
+// const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/favorites';
 const DEFAULT_NUM_ITEMS = 3;
 
 class FavoriteContainer extends Component {
