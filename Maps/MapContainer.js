@@ -23,7 +23,6 @@ class MapContainer extends Component{
   componentDidMount() {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-         //console.log(position);
           this.setState({currentRegion: {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
@@ -35,7 +34,6 @@ class MapContainer extends Component{
         {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
       );
       this.watchID = navigator.geolocation.watchPosition((position) => {
-         //console.log(position);
         this.setState({currentRegion: {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
