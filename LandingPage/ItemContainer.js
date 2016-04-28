@@ -21,7 +21,8 @@ class ItemContainer extends Component {
   }
 
   render(){
-    if(this.props.place.categories !== []){
+    console.log(this.props.place)
+    if(this.props.place.categories.length){
       var catNodes = this.props.place.categories.map(function(category){
         return(
           <Text key={category.id} style={[itemStyle.mainType]}> {category.category} </Text>

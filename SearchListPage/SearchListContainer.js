@@ -39,7 +39,7 @@ class SearchListContainer extends Component {
     )
   }
     render() {
-      
+
       return(
         <View>
           <ListView
@@ -49,9 +49,7 @@ class SearchListContainer extends Component {
         </View>
       )
     }
-
 }
-
 
   var styles = StyleSheet.create({
     container: {
