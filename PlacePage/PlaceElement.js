@@ -23,19 +23,12 @@ import React, {
     }
 
     favoriteButtonClicked(){
-      console.log("hit the btutrgniorew")
-      console.log(this)
       this.setState({
         fav: this.props.favorite
       })
     }
 
-  pressFavorite(){
-    fetch('http://boiling-refuge-94422.herokuapp.com/places/'+this.props.id +'/edit')
-    .then((response) => response.json())
 
-    .done();
-  }
 
   render() {
     var website = 'No Website for This Location'
