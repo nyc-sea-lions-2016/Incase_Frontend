@@ -11,12 +11,14 @@ import React, {
 
 import ItemContainer from '../LandingPage/ItemContainer'
 import PlaceContainer from '../PlacePage/PlaceContainer'
+
+
 class SearchListContainer extends Component {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      searchItem: this.ds.cloneWithRows(this.props.filteredData)
+      searchItem: this.ds.cloneWithRows(this.props.filteredData),
     };
   }
 
@@ -38,8 +40,17 @@ class SearchListContainer extends Component {
       </View>
     )
   }
+
     render() {
-      
+
+      if(this.state.searchItem.length == 0) {
+        return(
+          <View style={styles.emptyContainer}>
+            <Text style={styles.bold}>Your search has not generated any results.</Text>
+            <Text style={styles.normal}>Please search by a different term</Text>
+          </View>
+        )
+      } else {
       return(
         <View>
           <ListView
@@ -48,10 +59,9 @@ class SearchListContainer extends Component {
           />
         </View>
       )
+      }
     }
-
 }
-
 
   var styles = StyleSheet.create({
     container: {
