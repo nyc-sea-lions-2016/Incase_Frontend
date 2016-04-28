@@ -25,7 +25,7 @@ import React, {
     }
 
     pressFavorite(){
-      fetch('http://localhost:3000/places/'+ this.props.id + "", {
+      fetch('http://boiling-refuge-94422.herokuapp.com/places/'+ this.props.id + "", {
           method: "PUT"
         }
       )
