@@ -56,7 +56,10 @@ import React, {
             value={this.state.text}
           />
 
-          <TouchableHighlight onPress={this.submitForm.bind(this)}>
+          <TouchableHighlight
+          onPress={this.submitForm.bind(this)}
+          style={styles.touchable}
+          >
             <View style={styles.button}>
               <Text style={styles.submitText}>Submit</Text>
             </View>
@@ -68,7 +71,7 @@ import React, {
 
   const styles = StyleSheet.create({
     mainContainer: {
-      backgroundColor: '#2199e8',
+      backgroundColor: 'rgba(143, 185, 243, 0.1)',
       alignItems: "center",
       paddingTop:10,
       paddingBottom:20,
@@ -79,9 +82,8 @@ import React, {
 
     header: {
       fontSize: 28,
-      marginTop: 180,
+      marginTop: 80,
       marginBottom: 50,
-      color: '#FFFFFF'
     },
 
     submitText: {
@@ -96,8 +98,11 @@ import React, {
       width: 200,
       borderRadius: 10,
       backgroundColor: '#35d37c',
-    }
+    },
 
+    touchable: {
+      borderRadius: 10,
+    }
 
   })
 

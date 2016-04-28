@@ -73,7 +73,7 @@ import SearchListContainer from '../SearchListPage/SearchListContainer'
           return (
             <View style={styles.container}>
 
-              <View style={{ padding: 20, marginTop: 100 }}>
+              <View style={{ padding: 20}}>
                 <Text style={styles.header}>End Time</Text>
               </View>
               <View style={ styles.datePicker }>
@@ -96,15 +96,13 @@ import SearchListContainer from '../SearchListPage/SearchListContainer'
     const styles = StyleSheet.create({
       container: {
          flex: 1,
-         backgroundColor: '#2199e8',
+         backgroundColor: 'rgba(143, 185, 243,0.1)',
          alignItems: "center",
        },
 
        header: {
          fontSize: 28,
-         marginTop: 20,
          marginBottom: 20,
-         color: '#FFFFFF'
        },
 
        datePicker: {

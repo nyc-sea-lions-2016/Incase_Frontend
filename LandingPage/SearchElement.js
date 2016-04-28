@@ -39,10 +39,11 @@ import StartTimeElement from './StartTimeElement'
 
         <View style={styles.buttonContainer}>
           <TouchableHighlight
-          style={styles.button}
-          onPress={this.pressHood.bind(this)}>
-            <View>
-              <Text style={styles.NeighborhoodText}>Category</Text>
+          onPress={this.pressHood.bind(this)}
+          style={styles.touchable}
+          >
+            <View style={styles.button}>
+              <Text style={styles.text}>Category</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -50,11 +51,11 @@ import StartTimeElement from './StartTimeElement'
 
         <View style={styles.buttonContainer}>
           <TouchableHighlight
-          style={styles.button}
           onPress={this.pressTime.bind(this)}
+          style={styles.touchable}
           >
-            <View>
-              <Text style={styles.TimeText}>Time</Text>
+            <View style={styles.button}>
+              <Text style={styles.text}>Time</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -65,28 +66,24 @@ import StartTimeElement from './StartTimeElement'
 
   var styles = StyleSheet.create({
     container: {
-      paddingBottom: 80,
+      paddingTop: 180,
+      flex: 1,
+      alignItems: 'center',
     },
 
-    NeighborhoodText:{
-    color:'#fff',
-    textAlign:'center',
-    fontSize:20,
-    padding: 10,
-    },
-
-    TimeText:{
+    text:{
       color:'#fff',
       fontSize:20,
-      padding: 10,
       textAlign: 'center',
     },
 
     buttonContainer: {
-      marginTop: 100,
+      marginTop:40,
+      marginBottom:15,
     },
 
     button: {
+      paddingTop: 8,
       height: 40,
       width: 200,
       borderRadius: 10,
