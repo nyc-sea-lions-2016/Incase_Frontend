@@ -35,7 +35,7 @@ class TwoDaysContainer extends Component {
   }
 
   endReached() {
-    var num = this.state.numItems + 10;``
+    var num = this.state.numItems + 10;
     this.setState({
       numItems: num,
       twoDays: this.ds.cloneWithRows(this.state.twoDaysData.slice(0, num))
