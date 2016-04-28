@@ -56,7 +56,6 @@ class TwoDaysContainer extends Component {
   }
 
   pressSearch(){
-    //console.log(this.state.todayData)
     this.props.navigator.push({
       title: 'Search',
       component: <SearchContainer

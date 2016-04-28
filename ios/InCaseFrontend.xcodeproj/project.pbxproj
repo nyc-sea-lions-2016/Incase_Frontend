@@ -787,6 +787,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/apprentice/Documents/FacebookSDK,
 					"/Users/apprentice/Desktop/Incase_Frontend/node_modules/react-native-background-geolocation/**",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
