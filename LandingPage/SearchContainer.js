@@ -10,7 +10,7 @@ import React, {
 } from 'react-native';
 
 import SearchElement from '../LandingPage/SearchElement'
-import TimeElement from '../LandingPage/TimeElement'
+import StartTimeElement from '../LandingPage/StartTimeElement'
 
 class SearchContainer extends Component {
   constructor(props){
@@ -20,7 +20,11 @@ class SearchContainer extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <SearchElement navigator={this.props.navigator} />
+        <SearchElement
+        navigator={this.props.navigator}
+        todayData={this.props.todayData}
+        day={this.props.day}
+        />
       </View>
     )
   }
@@ -28,7 +32,6 @@ class SearchContainer extends Component {
 
 var styles = StyleSheet.create({
   container: {
-    top: 25,
     justifyContent: "center",
     flex: 1,
     alignItems: "center",

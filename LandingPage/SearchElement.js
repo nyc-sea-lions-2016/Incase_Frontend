@@ -8,67 +8,93 @@ import React, {
   View
   } from 'react-native';
 
-import HoodIndex from './HoodIndex'
-import TimeElement from './TimeElement'
+import HoodElement from './HoodElement'
+import StartTimeElement from './StartTimeElement'
 
   class SearchElement extends Component {
     constructor(props){
-
       super(props);
     }
+
     pressHood(){
       this.props.navigator.push({
-        title: 'Neighborhood Search',
-        component: <HoodIndex/>
+        title: 'Category Search',
+        component: <HoodElement todayData={this.props.todayData} navigator={this.props.navigator}/>
       })
     }
     pressTime(){
       this.props.navigator.push({
-        title: 'Time Search',
-        component: <TimeElement/>
+        title: 'Start Time Search',
+        component: <StartTimeElement
+          todayData={this.props.todayData}
+          navigator={this.props.navigator}
+          day={this.props.day}
+          />
       })
 
     }
     render() {
       return (
-        <View style={styles.mainContainer}>
-          <TouchableHighlight onPress={this.pressHood.bind(this)}>
-            <Text style={styles.NeighborhoodText}>Neighborhood</Text>
-          </TouchableHighlight>
+      <View style={styles.container}>
 
-          <TouchableHighlight onPress={this.pressTime.bind(this)}>
-            <Text style={styles.TimeText}>Time</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+          style={styles.button}
+          onPress={this.pressHood.bind(this)}>
+            <View>
+              <Text style={styles.NeighborhoodText}>Category</Text>
+            </View>
           </TouchableHighlight>
         </View>
 
+
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+          style={styles.button}
+          onPress={this.pressTime.bind(this)}
+          >
+            <View>
+              <Text style={styles.TimeText}>Time</Text>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
       )
     }
   }
 
-  const styles = StyleSheet.create({
-
+  var styles = StyleSheet.create({
+    container: {
+      paddingBottom: 80,
+    },
 
     NeighborhoodText:{
-    fontWeight:'bold',
     color:'#fff',
-    textAlign:'left',
+    textAlign:'center',
     fontSize:20,
-    marginBottom:30,
-    borderWidth: 1,
     padding: 10,
-    borderRadius:10,
     },
 
     TimeText:{
-      fontWeight:'bold',
       color:'#fff',
-      textAlign:'left',
       fontSize:20,
-      marginBottom:10,
-      borderWidth: 1,
       padding: 10,
-      borderRadius:10,
       textAlign: 'center',
+    },
+
+    buttonContainer: {
+      marginTop: 100,
+    },
+
+    button: {
+      height: 40,
+      width: 200,
+      borderRadius: 10,
+      backgroundColor: '#35d37c',
+    },
+
+    touchable: {
+      borderRadius: 10,
     }
   })
 
