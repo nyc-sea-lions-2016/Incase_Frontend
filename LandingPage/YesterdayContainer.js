@@ -13,9 +13,9 @@ import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
-//const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
+const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/yesterday';
 
-const API_URL = 'http://localhost:3000/places/yesterday';
+//const API_URL = 'http://localhost:3000/places/yesterday';
 const DEFAULT_NUM_ITEMS = 10;
 
 class YesterdayContainer extends Component {
@@ -35,18 +35,10 @@ class YesterdayContainer extends Component {
   }
 
   endReached() {
-    var num = this.state.numItems + 10;``
-    this.setState({
-      numItems: num,
-      today: this.ds.cloneWithRows(this.state.yesterdayData.slice(0, num))
-    });
-  }
-
-  endReached() {
     var num = this.state.numItems + 10;
     this.setState({
       numItems: num,
-      today: this.ds.cloneWithRows(this.state.yesterdayData.slice(0, num))
+      yesterday: this.ds.cloneWithRows(this.state.yesterdayData.slice(0, num))
     });
   }
 

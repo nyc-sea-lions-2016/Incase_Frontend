@@ -80,7 +80,6 @@ class InCaseFrontend extends Component {
 // This handler fires whenever bgGeo receives a location update.
 BackgroundGeolocation.on('location', function(location) {
   this.setState({message: JSON.stringify(location)});
-  //console.log('- [js]location: ', JSON.stringify(location));
 }.bind(this));
 
 // This handler fires whenever bgGeo receives an error
@@ -93,10 +92,9 @@ BackgroundGeolocation.on('error', function(error) {
 // This handler fires when movement states changes (stationary->moving; moving->stationary)
 BackgroundGeolocation.on('motionchange', function(location) {
   this.setState({message: JSON.stringify(location)});
-  //console.log('- [js]motionchanged: ', JSON.stringify(location));
   var latlong = location
 
-  fetch('http://localhost:3000/places', {
+  fetch('http://boiling-refuge-94422.herokuapp.com/places/', {
     method: 'POST',
     body: JSON.stringify({
       latlong: location
@@ -104,29 +102,25 @@ BackgroundGeolocation.on('motionchange', function(location) {
   })
   .then(function(response) {
 
-    //console.log('request succeeded with json response', response)
   }).catch(function(error) {
-    //console.log('request failed', error)
+
   })
 
 }.bind(this));
 
 BackgroundGeolocation.start(function() {
-  //console.log('- [js] BackgroundGeolocation started successfully');
 
   // Fetch current position
   BackgroundGeolocation.getCurrentPosition({timeout: 30}, function(location) {
-    // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
-    // var latlong = location;
 
-    fetch('http://localhost:3000/places', {
+    fetch('http://boiling-refuge-94422.herokuapp.com/places/', {
       method: 'POST',
       body: JSON.stringify({
         latlong: location
       }),
 
     }).then((responseText) => {
-      //console.log(responseText);
+
     })
   }, function(error) {
     alert("Location error: " + error);

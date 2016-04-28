@@ -13,9 +13,9 @@ import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer'
 
 
-const API_URL = 'http://localhost:3000/places/favorites';
-// const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/favorites';
-const DEFAULT_NUM_ITEMS = 10;
+// const API_URL = 'http://localhost:3000/places/favorites';
+const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/favorites';
+const DEFAULT_NUM_ITEMS = 3;
 
 class FavoriteContainer extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ class FavoriteContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       favorites:this.ds.cloneWithRows([]),
+      favoritesData: [],
       numItems: DEFAULT_NUM_ITEMS,
       loaded: false,
     }
@@ -36,7 +37,7 @@ class FavoriteContainer extends Component {
     var num = this.state.numItems + 10;
     this.setState({
       numItems: num,
-      favorites: this.ds.cloneWithRows(this.state.todayData.slice(0, num))
+      favorites: this.ds.cloneWithRows(this.state.favoritesData.slice(0, num))
     });
   }
 

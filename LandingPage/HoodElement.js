@@ -20,14 +20,15 @@ import React, {
       }
     }
 
-    checkCat(ele){
-      for(var i = 0; i < ele.categories.length; i++){
-        return this.state.text.toLowerCase() === ele.categories[i].category
-      }
-    }
-
     checkCategory(){
-      return this.props.todayData.filter(this.checkCat.bind(this));
+      var filteredArray = [];
+      for(var i = 0; i < this.props.todayData.length; i++) {
+        for(var j = 0; j < this.props.todayData[i].categories.length; j++) {
+          if(this.state.text.toLowerCase().trim() === this.props.todayData[i].categories[j].category)
+            filteredArray.push(this.props.todayData[i])
+        }
+      }
+      return filteredArray.slice(0, 50);
     }
 
     submitForm(){
@@ -36,6 +37,7 @@ import React, {
         component: <SearchListContainer
         filteredData={this.checkCategory()}
         text={this.state.text}
+
         />
       })
     }
@@ -68,7 +70,6 @@ import React, {
     mainContainer: {
       backgroundColor: '#2199e8',
       alignItems: "center",
-      color: '#FFFFFF',
       paddingTop:10,
       paddingBottom:20,
       paddingLeft:20,
@@ -95,7 +96,6 @@ import React, {
       width: 200,
       borderRadius: 10,
       backgroundColor: '#35d37c',
-      textAlign: "center",
     }
 
 
