@@ -68,7 +68,7 @@ import React, {
 
   const styles = StyleSheet.create({
     mainContainer: {
-      backgroundColor: '#2199e8',
+      backgroundColor: 'rgba(143, 185, 243, 0.1)',
       alignItems: "center",
       paddingTop:10,
       paddingBottom:20,
@@ -81,7 +81,6 @@ import React, {
       fontSize: 28,
       marginTop: 80,
       marginBottom: 50,
-      color: '#FFFFFF'
     },
 
     submitText: {

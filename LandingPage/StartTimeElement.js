@@ -62,14 +62,13 @@ class StartTimeElement extends Component {
   const styles = StyleSheet.create({
     container: {
        flex: 1,
-       backgroundColor: '#2199e8',
+       backgroundColor: 'rgba(143, 185, 243,0.1)',
        alignItems: "center",
      },
 
      header: {
        fontSize: 28,
        marginBottom: 20,
-       color: '#FFFFFF'
      },
 
      datePicker: {
