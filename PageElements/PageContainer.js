@@ -96,7 +96,7 @@ BackgroundGeolocation.on('motionchange', function(location) {
   //console.log('- [js]motionchanged: ', JSON.stringify(location));
   var latlong = location
 
-  fetch('http://localhost:3000/places', {
+  fetch('http://boiling-refuge-94422.herokuapp.com/places/', {
     method: 'POST',
     body: JSON.stringify({
       latlong: location
@@ -119,7 +119,7 @@ BackgroundGeolocation.start(function() {
     // console.log('- [js] BackgroundGeolocation received current position: ', JSON.stringify(location));
     // var latlong = location;
 
-    fetch('http://localhost:3000/places', {
+    fetch('http://boiling-refuge-94422.herokuapp.com/places/', {
       method: 'POST',
       body: JSON.stringify({
         latlong: location
