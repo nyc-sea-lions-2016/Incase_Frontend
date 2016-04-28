@@ -87,7 +87,6 @@ class TodayContainer extends Component {
   }
 
   renderOne(place) {
-    console.log("place", place)
     return(
       <View >
       <TouchableHighlight onPress={this.pressItem.bind(this, place.id, place)}>
