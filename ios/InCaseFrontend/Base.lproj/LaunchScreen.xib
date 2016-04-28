@@ -18,15 +18,15 @@
                     <color key="textColor" red="0.49411764705882355" green="0.66274509803921566" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ICYMI-Blue-logo" translatesAutoresizingMaskIntoConstraints="NO" id="bfY-1L-w1P">
-                    <rect key="frame" x="72" y="238" width="271" height="215"/>
-                </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Find what you've been missing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
                     <rect key="frame" x="20" y="185" width="375" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                     <color key="textColor" red="0.49411764705882355" green="0.66274509803921566" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ICYMI-Blue-logo" translatesAutoresizingMaskIntoConstraints="NO" id="bfY-1L-w1P">
+                    <rect key="frame" x="72" y="236" width="271" height="215"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -41,7 +41,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-            <point key="canvasLocation" x="535" y="414"/>
+            <point key="canvasLocation" x="364" y="388"/>
         </view>
     </objects>
     <resources>
