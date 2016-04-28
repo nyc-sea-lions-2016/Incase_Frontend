@@ -56,7 +56,10 @@ import React, {
             value={this.state.text}
           />
 
-          <TouchableHighlight onPress={this.submitForm.bind(this)}>
+          <TouchableHighlight
+          onPress={this.submitForm.bind(this)}
+          style={styles.touchable}
+          >
             <View style={styles.button}>
               <Text style={styles.submitText}>Submit</Text>
             </View>
@@ -95,8 +98,11 @@ import React, {
       width: 200,
       borderRadius: 10,
       backgroundColor: '#35d37c',
-    }
+    },
 
+    touchable: {
+      borderRadius: 10,
+    }
 
   })
 

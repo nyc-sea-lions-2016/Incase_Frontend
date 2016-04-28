@@ -66,6 +66,7 @@ import StartTimeElement from './StartTimeElement'
 
   var styles = StyleSheet.create({
     container: {
+      paddingTop: 180,
       flex: 1,
       alignItems: 'center',
     },
