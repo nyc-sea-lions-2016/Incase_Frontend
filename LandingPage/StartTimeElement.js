@@ -30,7 +30,7 @@ class StartTimeElement extends Component {
           />
         })
       }
-      
+
       dateChange( date ){
         this.setState( { date: date } );
       }
@@ -39,7 +39,7 @@ class StartTimeElement extends Component {
       render() {
         return (
           <View style={styles.container}>
-            <View style={{ padding: 20, marginTop: 100 }}>
+            <View style={{ padding: 20}}>
               <Text style={styles.header}>Start Time</Text>
             </View>
             <View style={ styles.datePicker }>
@@ -68,7 +68,6 @@ class StartTimeElement extends Component {
 
      header: {
        fontSize: 28,
-       marginTop: 20,
        marginBottom: 20,
        color: '#FFFFFF'
      },
