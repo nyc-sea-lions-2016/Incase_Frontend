@@ -13,7 +13,6 @@ import React, {
   class PlaceElement extends Component {
     constructor(props) {
       super(props);
-      console.log("constructor state", props.place.favorite)
       this.state = {
         fav: props.place.favorite
       }
@@ -25,7 +24,6 @@ import React, {
 
 
     favoriteButtonClicked(favoriteState){
-      console.log("fav button clicked", this.props.favorite)
       this.setState({
         fav: favoriteState
       })
