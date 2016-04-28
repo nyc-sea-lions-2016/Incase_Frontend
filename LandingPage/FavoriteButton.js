@@ -29,16 +29,10 @@ import React, {
           method: "PUT"
         }
       )
-      this.props.favoriteButtonClicked()
+      this.setState({fav: !this.state.fav})
+      // this.props.favoriteButtonClicked(!this.props.favorite)
     }
 
-    // pressUnfavorite(){
-    //   fetch('http://localhost:3000/places/'+ this.props.id + "", {
-    //       method: "PUT"
-    //     }
-    //   )
-    //   this.props.favoriteButtonClicked()
-    // }
     // was this props.favorite
     render(){
       if(this.state.fav === false){
