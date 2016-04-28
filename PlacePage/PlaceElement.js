@@ -23,6 +23,7 @@ import React, {
       this._root.setNativeProps(nativeProps);
     }
 
+
     favoriteButtonClicked(favoriteState){
       console.log("fav button clicked", this.props.favorite)
       this.setState({
