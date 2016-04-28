@@ -12,7 +12,6 @@ import React, {
 import ItemContainer from '../LandingPage/ItemContainer'
 import PlaceContainer from '../PlacePage/PlaceContainer'
 
-const DEFAULT_NUM_ITEMS = 10;
 
 class SearchListContainer extends Component {
   constructor(props) {
@@ -20,9 +19,6 @@ class SearchListContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       searchItem: this.ds.cloneWithRows(this.props.filteredData),
-      numItems: DEFAULT_NUM_ITEMS,
-      loaded: false,
-      arrayIndex: 0,
     };
   }
 
@@ -33,24 +29,6 @@ class SearchListContainer extends Component {
         place={place}
           />
       })
-  }
-
-  endReached() {
-    var num = this.state.numItems + 10;
-    this.setState({
-      numItems: num,
-      searchItem: this.ds.cloneWithRows(this.state.filteredData.slice(0, num)),
-    });
-  }
-
-  renderLoadingView() {
-    return(
-      <View style={styles.container}>
-        <Text>
-          Loading Results...
-        </Text>
-      </View>
-    );
   }
 
   renderOne(place) {
@@ -64,9 +42,6 @@ class SearchListContainer extends Component {
   }
 
     render() {
-      if(!this.state.loaded) {
-        return this.renderLoadingView();
-      }
 
       if(this.state.searchItem.length == 0) {
         return(
@@ -80,9 +55,6 @@ class SearchListContainer extends Component {
         <View>
           <ListView
             dataSource={this.state.searchItem}
-            onEndReachedThreshold={10}
-            onEndReached={this.endReached.bind(this)}
-            enableEmptySections={true}
             renderRow={this.renderOne.bind(this)}
           />
         </View>

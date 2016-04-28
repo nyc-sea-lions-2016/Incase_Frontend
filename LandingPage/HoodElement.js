@@ -28,7 +28,6 @@ import React, {
             filteredArray.push(this.props.todayData[i])
         }
       }
-      console.log(filteredArray.slice(0, 50));
       return filteredArray.slice(0, 50);
     }
 

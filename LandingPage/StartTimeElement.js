@@ -29,9 +29,8 @@ class StartTimeElement extends Component {
               day={this.props.day}
           />
         })
-
-
       }
+      
       dateChange( date ){
         this.setState( { date: date } );
       }
