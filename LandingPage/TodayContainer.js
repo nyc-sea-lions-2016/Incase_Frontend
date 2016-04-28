@@ -156,8 +156,8 @@ class TodayContainer extends Component {
       height: 40,
       width: 200,
       borderRadius:10,
-      justifyContent: 'center',
     },
+    
     touchable: {
       borderRadius: 10,
     },

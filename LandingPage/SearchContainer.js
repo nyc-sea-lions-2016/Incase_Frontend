@@ -32,7 +32,6 @@ class SearchContainer extends Component {
 
 var styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
     flex: 1,
     alignItems: "center",
     backgroundColor: 'rgba(143, 185, 243,0.1)',
