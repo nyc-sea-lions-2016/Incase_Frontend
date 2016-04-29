@@ -19,6 +19,10 @@ class StartTimeElement extends Component {
         this.state = {
           date: new Date(),
         }
+        console.ignoredYellowBox = [
+          'Warning: Failed propType',
+          // Other warnings you don't want like 'jsSchedulingOverhead',
+        ];
       }
       pressStartDate(){
         this.props.navigator.push({
@@ -34,6 +38,7 @@ class StartTimeElement extends Component {
       dateChange( date ){
         this.setState( { date: date } );
       }
+
 
 
       render() {

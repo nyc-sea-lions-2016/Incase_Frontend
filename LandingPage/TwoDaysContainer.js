@@ -132,7 +132,7 @@ class TwoDaysContainer extends Component {
   }
 }
 
-var twoDayContainerStyle = StyleSheet.create({
+var styles = StyleSheet.create({
   emptyContainer:{
     flex: 1,
     justifyContent: 'center',
