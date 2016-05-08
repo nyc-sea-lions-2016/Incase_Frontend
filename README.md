@@ -7,7 +7,7 @@
 ## Summary
 An IOS app, that shows users a searchable list of businesses
 they pass throughout the day in order to help them find places they may have missed.
-Check out our Ruby on Rails backend server which acts like an API for our IOS app. [ICYMI(In Case You Missed It)](https://github.com/nyc-sea-lions-2016/ICYMI_backend)
+Check out our Ruby on Rails backend server which acts like an API for our IOS app. [ICYMI(In Case You Missed It) Server](https://github.com/nyc-sea-lions-2016/ICYMI_backend)
 
 ## Technologies/APIs
 
