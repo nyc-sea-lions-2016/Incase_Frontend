@@ -9,6 +9,8 @@
     "react": "^0.14.8",
     "react-native": "^0.24.1",
     "react-native-background-geolocation": "^0.5.1",
+    "react-native-facebook-login": "^1.0.3",
+    "react-native-fbsdk": "^0.1.0",
     "react-native-maps": "^0.3.2",
     "react-native-refreshable-listview": "^2.0.0-beta4",
     "react-native-tabbar-navigator": "^0.3.0"
