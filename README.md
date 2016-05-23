@@ -1,5 +1,5 @@
 # ICYMI(In Case You Missed It)
-##[See the sample Live) Server](http://johnmaguiredeveloper.com/ICYMI_site/#section_welcome)
+##[See the sample Live](http://johnmaguiredeveloper.com/ICYMI_site/#section_welcome)
 
 ![In Case You Missed It][logo]
 
