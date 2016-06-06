@@ -22,11 +22,12 @@ class Login extends Component{
     return (
       <FBLogin
         onLogin={function(data){
+          debugger;
           fetch('graph.facebook.com', {
             method: 'GET',
             body: JSON.stringify({
               token: "EAAGy8cRtCH0BAFWZAt49NsY7EGDEYXCnfFvKAqkGXwwIce6xlgeFiWGR3xJiI6J2zwR8Eh4IVcS8Q7Da11jwS0iOZB9b9odePeskfD1kUZAkg9648kquuoyMmyYXHljMIE95RZBoWdTznCNRoK4SAAz1WegKGeqJZC4yQssKwzSs9hSOGYjG8CmoLX2au4BIZD",
-              userId: "10101119175185840",
+              userId: data['credentials']['userId'],
               fields: 'id,name'
             })
           }).then((response) => response.json())
