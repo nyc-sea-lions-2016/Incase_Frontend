@@ -12,7 +12,7 @@ import React, {
 import PlaceContainer from '../PlacePage/PlaceContainer';
 import ItemContainer from '../LandingPage/ItemContainer';
 import SearchContainer from './SearchContainer';
-
+import Login from './LoginBtn';
 //var RefreshableListView = require('react-native-refreshable-listview');
 
  // const API_URL = 'http://boiling-refuge-94422.herokuapp.com/places/today';
@@ -111,6 +111,7 @@ class TodayContainer extends Component {
     } else {
       return (
         <View style={styles.container}>
+        <Login />
         <View style={styles.buttonContainer}>
         <TouchableHighlight
         onPress={this.pressSearch.bind(this)}
@@ -157,7 +158,7 @@ class TodayContainer extends Component {
       width: 200,
       borderRadius:10,
     },
-    
+
     touchable: {
       borderRadius: 10,
     },
